@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import localFont from 'next/font/local'
 import "../globals.css";
 import Navigation from "./components/navigation/Navigation";
+import Footer from "./components/footer/Footer";
+import ToastProvider from "@/providers/ToastProvider";
 
 export const metadata: Metadata = {
-  title: "Nomeo Apartments | Home",
+  title: "Nomeo Suites | Home",
   description: "A real estate webapp built with nextjs. A webapp designed by Salomi Afolabi of Nomeo Consults. The app was initially intended as a real estate application to help in leasing and purchasing apartments but it will now serve as an app that advertise and monitors a certain real estate.",
 };
 
@@ -23,8 +25,10 @@ export default function RootLayout({children}:{children: React.ReactNode}) {
   return (
     <html lang="en">
       <body className={`${urbanist.variable} ${barlow.variable}`}>
+        <ToastProvider/>
         <Navigation/>
         {children}
+        <Footer/>
       </body>
     </html>
   );

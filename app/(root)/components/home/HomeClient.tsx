@@ -1,12 +1,21 @@
+'use client'
+
 import React from 'react'
 import LandingPage from './LandingPage';
+import OurServiceSection from './OurServiceSection';
+import OurTestimonialSection from './OurTestimonialSection';
+import FrequentlyAskedQuestionsSection from './FrequentlyAskedQuestionsSection';
+import LatestBlogSection from './LatestBlogSection';
 
-type Props = {}
 
-const HomeClient = (props: Props) => {
+const HomeClient = () => {
   return (
     <React.Fragment>
       <LandingPage/>
+      <OurServiceSection/>
+      <LatestBlogSection/>
+      <OurTestimonialSection/>
+      <FrequentlyAskedQuestionsSection/>
     </React.Fragment>
   )
 }

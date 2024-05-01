@@ -1,11 +1,10 @@
 'use client'
 
 import { navBarList, navbarItem } from '@/components/data/constants'
-import Box from '@/components/shared/Box'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import React from 'react'
-import { HiBars3, HiOutlineHomeModern, HiOutlineMoon, HiOutlineSun, HiOutlineUser } from 'react-icons/hi2'
+import { HiBars3, HiOutlineHomeModern, HiOutlineUser } from 'react-icons/hi2'
 
 
 const NavigationClient = () => {
@@ -22,9 +21,7 @@ const NavigationClient = () => {
 
 
   const navbarAbsolute = `pt-4 absolute left-0 top-0 w-full lg:h-[75px] md:h-[70px] z-[200] h-[60px] ${navbarTextColor} z-[40000]`;
-
-  const navbarFixed = 'pt-4 z-[4000] fixed w-full lg:h-[75px] md:h-[70px] h-[60px] lg:-top-[75px] md:-top-[70px] -top-[60px] bg-white text-black transform lg:translate-y-[65px] md:translate-y-[60px] translate-y-[50px] ease-in-out duration-600 shadow shadow-[4px_4px_4px_0_rgba(0, 0, 0, 0.3)]';
-
+  const navbarFixed = 'pt-4 z-[4000] fixed w-full lg:h-[75px] md:h-[70px] h-[60px] lg:-top-[75px] md:-top-[70px] -top-[60px] bg-gray-50 text-black transform lg:translate-y-[65px] md:translate-y-[60px] translate-y-[50px] transition ease-in-out duration-600 shadow shadow-[4px_4px_4px_0_rgba(0, 0, 0, 0.3)]';
   const [navbarState, setNavbarState] = React.useState(navbarAbsolute);
 
 
@@ -48,6 +45,7 @@ const NavigationClient = () => {
 
   React.useEffect(() => {
     toggleNavbarState();
+    
     window.addEventListener('scroll', toggleNavbarState)
   }, [toggleNavbarState]);
 
@@ -64,7 +62,7 @@ const NavigationClient = () => {
           <div>
             <Link href={'/'} className='flex items-center gap-4'>
               <HiOutlineHomeModern size={26}/>
-              <p className='lg:text-2xl md:text-xl text-lg'>Nomeo Apartments</p>
+              <p className='lg:text-2xl md:text-xl text-lg'>Nomeo Suites</p>
             </Link>
           </div>
         </div>
@@ -108,29 +106,29 @@ const NavigationClient = () => {
 
       {/* mobile interface menu */}
       { showMobileNav &&
-        <Box className="md:hidden absolute left-[4%] min-w-[180px] top-[70px] bg-white/50 text-black rounded-md shadow-md overflow-hidden">
+        <div className="slide-in-left md:hidden absolute left-[4%] min-w-[180px] top-[70px] bg-white text-black rounded-md drop-shadow-md overflow-hidden">
           <div className="flex flex-col">
             {navBarList.map((item:navbarItem ,index:number) => (
-              <Link key={index} href={item.path} className='capitalize py-2 pl-4 hover:bg-neutral-700 hover:text-white'>{item.label}</Link>
+              <Link key={index} href={item.path} className='capitalize py-2 pl-4 hover:bg-neutral-700 hover:text-white active:bg-neutral-700 active:text-white'>{item.label}</Link>
             ))}
           </div>
           {loggedIn && 
             <React.Fragment>
-              <hr className='border-neutral-700'/>
-              <Link className='px-3 py-2 lg:text-lg block hover:bg-neutral-700 hover:text-white' href={'/dashboard'}>
+              <hr/>
+              <Link className='px-3 py-2 lg:text-lg block hover:bg-neutral-700 hover:text-white active:bg-neutral-700 active:text-white' href={'/dashboard'}>
                 Dashboard
               </Link>
-              <button className='px-3 py-2 lg:text-lg capitalize hover:bg-neutral-700 hover:text-white w-full text-left'>
+              <button className='px-3 py-2 lg:text-lg capitalize hover:bg-neutral-700 hover:text-white w-full text-left active:bg-neutral-700 active:text-white'>
                 sign out
               </button>
             </React.Fragment>
           }
-        </Box>
+        </div>
       }
 
       {/* sign out & link to dashboard */}
       { showLoggedInMenu &&
-        <Box className='absolute right-[3%] bg-white text-black rounded-md top-[75px] lg:top-[80px] min-w-[140px] overflow-hidden hidden md:block'>
+        <div className='slide-in-left absolute right-[3%] bg-white text-black rounded-md top-[75px] lg:top-[80px] min-w-[140px] overflow-hidden hidden md:block drop-shadow-md'>
           <Link className='px-3 py-2 block hover:bg-gray-300' href={'/dashboard'}>
             Dashboard
           </Link>
@@ -138,7 +136,7 @@ const NavigationClient = () => {
           <button className='px-3 py-2 capitalize hover:bg-gray-300 w-full text-left'>
             sign out
           </button>
-        </Box>
+        </div>
       }
     </div>
   )

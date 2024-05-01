@@ -27,7 +27,7 @@ const CustomSelectComponent = ({selectStyle, title, data, selected, setSelected,
     } else {
       setSelected('')
     }
-  }
+  };
 
   return (
     <div className={twMerge('w-full relative ', selectStyle)}>
@@ -68,4 +68,4 @@ const CustomSelectComponent = ({selectStyle, title, data, selected, setSelected,
   )
 }
 
-export default CustomSelectComponent
+export default CustomSelectComponent;
