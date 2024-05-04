@@ -6,6 +6,7 @@ import OurServiceSection from './OurServiceSection';
 import OurTestimonialSection from './OurTestimonialSection';
 import FrequentlyAskedQuestionsSection from './FrequentlyAskedQuestionsSection';
 import LatestBlogSection from './LatestBlogSection';
+import FeaturedPropertiesSection from './FeaturedPropertiesSection';
 
 
 const HomeClient = () => {
@@ -13,6 +14,7 @@ const HomeClient = () => {
     <React.Fragment>
       <LandingPage/>
       <OurServiceSection/>
+      <FeaturedPropertiesSection/>
       <LatestBlogSection/>
       <OurTestimonialSection/>
       <FrequentlyAskedQuestionsSection/>

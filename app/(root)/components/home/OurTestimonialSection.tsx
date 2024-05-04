@@ -14,7 +14,7 @@ const OurTestimonialSection = () => {
         mainTitle='What our customers are saying'
         subTitle="Don't just take our word for it! Here at Nomeo Suites, we're dedicated to providing exceptional service to our clients on all sides of the Lagos real estate market.  See what some of our satisfied customers have to say about their experiences with our team:"
       />
-      <TestimonialSlider testimonials={testimonyList}/>
+      <TestimonialSlider testimonials={testimonyList} useButton/>
     </Box>
   )
 }

@@ -1,9 +1,9 @@
 'use client'
 
-import { navBarList, navbarItem } from '@/components/data/constants'
+import React from 'react'
+import { loggedIn, navBarList, navbarItem, userSurname } from '@/components/data/constants'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import React from 'react'
 import { HiBars3, HiOutlineHomeModern, HiOutlineUser } from 'react-icons/hi2'
 
 
@@ -15,9 +15,6 @@ const NavigationClient = () => {
   const [navbarTextColor, setNavbarTextColor] = React.useState('text-white');
   const [showMobileNav, setShowMobileNav] = React.useState(false);
   const [showLoggedInMenu, setShowLoggedInMenu] = React.useState(false);
-
-  const loggedIn = true;
-  const userSurname = 'Salomi';
 
 
   const navbarAbsolute = `pt-4 absolute left-0 top-0 w-full lg:h-[75px] md:h-[70px] z-[200] h-[60px] ${navbarTextColor} z-[40000]`;
@@ -53,9 +50,9 @@ const NavigationClient = () => {
     <div className={navbarState}>
       <div className="w-full h-full flex lg:px-[4%] md:px-[3%] px-[5%] py-3 items-center md:justify-between gap-4">
         {/* hamburger menu for mobile query*/}
-        <div className='md:hidden cursor-pointer'>
-          <HiBars3 size={30} onClick={() => setShowMobileNav((prevState) => !prevState)}/>
-        </div>
+        <button className='md:hidden cursor-pointer' onClick={() => setShowMobileNav((prevState) => !prevState)} >
+          <HiBars3 size={26}/>
+        </button>
 
         {/* main navbar header */}
         <div className='lg:min-w-[30%] md:min-w-[35%] w-full flex justify-between items-center h-[40px]'>

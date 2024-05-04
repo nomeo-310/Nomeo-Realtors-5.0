@@ -6,7 +6,7 @@ import { CiWallet , CiLocationOn, CiPercent } from "react-icons/ci"
 
 const OurServices = () => {
   return (
-    <div className="mt-8 grid md:grid-cols-3 grid-cols-1 gap-2 lg:gap-4">
+    <div className="mt-8 lg:mt-10 grid md:grid-cols-3 grid-cols-1 gap-2 lg:gap-4">
       <OurServiceCard
         title='Sellout Properties'
         icon={CiWallet}

@@ -11,8 +11,8 @@ import { Navigation, Pagination, A11y } from 'swiper/modules';
 import SwiperCore from 'swiper';
 import { CiCircleChevLeft, CiCircleChevRight } from 'react-icons/ci';
 import TestimonialCard from './TestimonialCard';
-import { testimony, testimonyList } from '@/components/data/constants';
-import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
+import { testimony,  } from '@/components/data/constants';
+import { LiaArrowRightSolid, LiaArrowLeftSolid } from "react-icons/lia"
 
 
 type testimonialSliderProps = {
@@ -44,10 +44,12 @@ const TestimonialSlider = ({useButton, testimonials}:testimonialSliderProps) => 
   const swiperRef = React.useRef<SwiperCore>();
   return (
     <div className='mt-8 lg:mt-10 lg:-mx-10 -mx-4'>
-      <div className='flex lg:gap-2 gap-1'>
-        <button onClick={() => swiperRef.current?.slidePrev()} className={`${useButton ? 'grow w-11 h-11 flex items-center justify-center rounded-full bg-white dark:bg-primary/50': ''}`}>
-          { useButton ? <HiChevronLeft size={30} /> : <CiCircleChevLeft size={45} /> }
-        </button>
+      <div className='flex lg:gap-2 gap-1 items-center'>
+        <div>
+          <button onClick={() => swiperRef.current?.slidePrev()} className={`${useButton ? 'grow w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-primary/50 hover:scale-105': ''}`}>
+            { useButton ? <LiaArrowLeftSolid size={26} /> : <CiCircleChevLeft size={45} /> }
+          </button>
+        </div>
         <Swiper 
           breakpoints={sliderSettings}
           modules={[Navigation, Pagination, A11y]}
@@ -66,9 +68,11 @@ const TestimonialSlider = ({useButton, testimonials}:testimonialSliderProps) => 
           </SwiperSlide>
           ))}
         </Swiper>
-        <button onClick={() => swiperRef.current?.slideNext()} className={`${useButton ? 'grow w-11 h-11 flex items-center justify-center rounded-full bg-white dark:bg-primary/50': ''}`}>
-          { useButton ? <HiChevronRight size={30} /> : <CiCircleChevRight size={45} /> }
-        </button>
+        <div>
+          <button onClick={() => swiperRef.current?.slideNext()} className={`${useButton ? 'grow w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-primary/50 hover:scale-105': ''}`}>
+            { useButton ? <LiaArrowRightSolid size={26} /> : <CiCircleChevRight size={45} /> }
+          </button>
+        </div>
       </div>
     </div>
   )

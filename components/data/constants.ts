@@ -16,7 +16,43 @@ export interface frequentlyAskedQuestion {
   answer: string;
 }
 
-export const navBarList:navbarItem[] = [
+export interface blog {
+  id: string;
+  title: string;
+  description: string;
+  imageBanner: string;
+  createdAt: string;
+  author: string;
+}
+
+export interface  propertyProps {
+  id:string
+  propertTag: string
+  furnitureTag: string
+  propertyImage: string
+  propertySize: number
+  beds: number
+  baths: number
+  toilets: number
+  agentInCharge: string
+  agentInChargeImage: string,
+  liked?: boolean
+  saved?: boolean
+  monthlyRent?: number
+  propertyCost?: number
+  title: string
+  location: string
+  mainFees: [{name: string, amount: number}]
+  optionalFees: {name: string, amount: number}[]
+  intro: string
+  description: string
+  verifiedamenities: string[]
+}
+
+export const loggedIn = true;
+export const userSurname = 'Salomi';
+
+export const navBarList = [
   {
     label: 'buy', 
     path: '/buy'
@@ -31,7 +67,7 @@ export const navBarList:navbarItem[] = [
   },
   {
     label: 'blog', 
-    path: '/blog'
+    path: '/blogs'
   },
   {
     label: 'search', 
@@ -39,7 +75,7 @@ export const navBarList:navbarItem[] = [
   }
 ];
 
-export const testimonyList:testimony[] = [
+export const testimonyList = [
   {
     title: 'finding my dream home',
     testimony: "As a first-time homebuyer, I was feeling overwhelmed by the entire process.  Nomeo Suites was a lifesaver!  My agent, Tunde Koleosho, was incredibly patient and knowledgeable.  She took the time to understand my needs and budget, and ultimately found me the perfect condo in a great neighborhood.  I highly recommend Nomeo Suites to anyone looking to buy a home in Lagos.",
@@ -91,6 +127,34 @@ export const testimonyList:testimony[] = [
   }
 ];
 
+export const blogList = [
+  {
+    id: "blog_1",
+    title: "The Art of Negotiation: Getting the Best Deal on Your Lagos Property.",
+    description: "In the fast-paced world of Lagos real estate, negotiation is an essential skill for both buyers and sellers.  Whether you're aiming to snag your dream home at a competitive price or maximize your return on investment, mastering the art of negotiation can significantly impact your outcome.  Don't worry, aspiring Lagosian negotiator, we've got you covered!  This guide will equip you with valuable tips and strategies to navigate the negotiation process and secure the best deal on your Lagos property.",
+    imageBanner: "/images/blogImage_1.jpg",
+    createdAt: "18 Jan 2024",
+    author: "Salomi Onome",
+  },
+  {
+    id: "blog_2",
+    title: "Investing in Lagos Real Estate: Strategies for Success.",
+    description: "The Lagos real estate market is a vibrant and ever-growing landscape, brimming with potential for savvy investors. Whether you're a seasoned pro or a curious newcomer, this guide will equip you with valuable strategies to navigate the exciting world of Lagos real estate investment.",
+    imageBanner: "/images/blogImage_2.jpg",
+    createdAt: "25 Jan 2024",
+    author: "Babatunde Omisola",
+  },
+  {
+    id: "blog_3",
+    title: "The Ultimate Lagos Home Staging Guide: Transforming Your Property for Success",
+    description: "Selling your property in Lagos? First impressions are everything! Home staging is the art of preparing your property to showcase its best features and attract qualified buyers. A well-staged home can significantly increase interest, shorten selling time, and potentially fetch a higher price. Here's your ultimate guide to home staging success in Lagos:",
+    imageBanner: "/images/blogImage_3.jpg",
+    createdAt: "2 Feb 2024",
+    author: "Babatunde Omisola",
+  },
+
+]
+
 export const frequentlyAskedQuestions = [
   {
     question: 'In buying a home, how much can I afford',
@@ -133,3 +197,200 @@ export const frequentlyAskedQuestions = [
     answer: "We can provide information on available government programs and grants that may help with down payment or closing costs."
   }
 ];
+
+export const propertyList = [
+  {
+    id:'property_1',
+    propertTag: 'sale',
+    furnitureTag: 'furnished',
+    propertyImage: '/images/property_1.jpg',
+    propertySize: 2500,
+    beds: 4,
+    baths: 4,
+    toilets: 5,
+    agentInCharge: 'Tunde Okeowo',
+    agentInChargeImage: '/images/profile_1.jpg',
+    liked: false,
+    saved: false,
+    monthlyRent: undefined,
+    propertyCost: 750000000,
+    title: 'Modern Oasis Apartment in Lekki Phase 1',
+    location: 'Lekki Phase 1, Lagos',
+    mainFees: [
+      { name: 'application fees', amount:  50000},
+      { name: 'service charge', amount: 120000 },
+      { name: 'annual estate security', amount: 120000 },
+      { name: 'annual estate electricity', amount: 250000 },
+    ],
+    optionalFees: [
+      { name: 'wifi', amount:  50000},
+      { name: 'estate club membership', amount: 50000 },
+    ],
+    intro: "This stunning 4-bedroom detached home in Lekki Phase 1 boasts modern finishes, a private pool, and lush landscaping.  Perfect for entertaining and enjoying the Lagos outdoor lifestyle.",
+    description: "This expansive 4-bedroom, 4-bathroom detached property offers a haven of modern luxury.  The open-plan living area is ideal for entertaining, while the well-equipped kitchen is a chef's dream.  Each bedroom is a tranquil retreat, and the master suite features a spa-like bathroom.  Step outside to your private oasis, complete with a sparkling pool, lush gardens, and a covered patio perfect for relaxing or unwinding with loved ones.",
+    verifiedamenities: ["wifi", "private pool", "landscaped gardens", "backyard", "modern kitchen", "storage space", "security post", "parking space"]
+  },
+  {
+    id:'property_2',
+    propertTag: 'rent',
+    furnitureTag: 'furnished',
+    propertyImage: '/images/property_2.jpg',
+    propertySize: 120,
+    beds: 3,
+    baths: 3,
+    toilets: 4,
+    agentInCharge: 'Afolabi Ishola',
+    agentInChargeImage: '/images/profile_2.jpg',
+    liked: true,
+    saved: false,
+    monthlyRent: 158000,
+    propertyCost: undefined,
+    title: 'Luxurious Living Apartment in the heart of Alausa, Ikeja',
+    location: 'Ikeja, Lagos',
+    mainFees: [
+      { name: 'application fees', amount:  50000},
+      { name: 'agreement', amount: 80000 },
+      { name: 'commission', amount: 80000 },
+      { name: 'damages', amount: 250000 },
+      { name: 'facility charges', amount: 250000 },
+    ],
+    optionalFees: [
+      { name: 'wifi', amount:  50000},
+      { name: 'dog rent', amount: 50000 },
+      { name: 'cat rent', amount: 50000 },
+    ],
+    intro: "This stunning 3-bedroom detached home in Alausa boasts modern finishes, a private pool, and lush landscaping.  Perfect for entertaining and enjoying the Lagos outdoor lifestyle.",
+    description: "This expansive 3-bedroom, 3-bathroom detached property offers a haven of modern luxury.  The open-plan living area is ideal for entertaining, while the well-equipped kitchen is a chef's dream.  Each bedroom is a tranquil retreat, and the master suite features a spa-like bathroom.  Step outside to your private oasis, complete with a sparkling pool, lush gardens, and a covered patio perfect for relaxing or unwinding with loved ones.",
+    verifiedamenities: ["wifi", "private pool", "landscaped gardens", "backyard", "modern kitchen", "storage space", "security post", "parking space"]
+  },
+  {
+    id:'property_3',
+    propertTag: 'sale',
+    furnitureTag: 'furnished',
+    propertyImage: '/images/property_3.jpg',
+    propertySize: 2500,
+    beds: 3,
+    baths: 3,
+    toilets: 4,
+    agentInCharge: 'Babajide Smart',
+    agentInChargeImage: '/images/profile_3.jpg',
+    liked: true,
+    saved: true,
+    monthlyRent: undefined,
+    propertyCost: 450000000,
+    title: 'Luxurious Apartment Living in Ikoyi',
+    location: 'Ikoyi, Lagos',
+    mainFees: [
+      { name: 'application fees', amount:  50000},
+      { name: 'service charge', amount: 120000 },
+      { name: 'annual estate security', amount: 120000 },
+      { name: 'annual estate electricity', amount: 250000 },
+    ],
+    optionalFees: [
+      { name: 'wifi', amount:  50000},
+      { name: 'estate club membership', amount: 50000 },
+    ],
+    intro: "This stunning 3-bedroom detached home in Lekki Phase 1 boasts modern finishes, a private pool, and lush landscaping.  Perfect for entertaining and enjoying the Lagos outdoor lifestyle.",
+    description: "This expansive 3-bedroom, 3-bathroom detached property offers a haven of modern luxury.  The open-plan living area is ideal for entertaining, while the well-equipped kitchen is a chef's dream.  Each bedroom is a tranquil retreat, and the master suite features a spa-like bathroom.  Step outside to your private oasis, complete with a sparkling pool, lush gardens, and a covered patio perfect for relaxing or unwinding with loved ones.",
+    verifiedamenities: ["wifi", "private pool", "landscaped gardens", "backyard", "modern kitchen", "storage space", "security post", "parking space"]
+  },
+  {
+    id: 'property_4',
+    propertTag: 'rent',
+    furnitureTag: 'furnished',
+    propertyImage: '/images/property_4.jpg',
+    propertySize: 120,
+    beds: 3,
+    baths: 3,
+    toilets: 4,
+    agentInCharge: 'Afolabi Ishola',
+    agentInChargeImage: '/images/profile_4.jpg',
+    liked: false,
+    saved: false,
+    monthlyRent: 158000,
+    propertyCost: undefined,
+    title: 'Luxurious Living Apartment in the heart of Alausa, Ikeja',
+    location: 'Ikeja, Lagos',
+    mainFees: [
+      { name: 'application fees', amount:  50000},
+      { name: 'agreement', amount: 80000 },
+      { name: 'commission', amount: 80000 },
+      { name: 'damages', amount: 250000 },
+      { name: 'facility charges', amount: 250000 },
+    ],
+    optionalFees: [
+      { name: 'wifi', amount:  50000},
+      { name: 'dog rent', amount: 50000 },
+      { name: 'cat rent', amount: 50000 },
+    ],
+    intro: "This stunning 3-bedroom detached home in Alausa boasts modern finishes, a private pool, and lush landscaping.  Perfect for entertaining and enjoying the Lagos outdoor lifestyle.",
+    description: "This expansive 3-bedroom, 3-bathroom detached property offers a haven of modern luxury.  The open-plan living area is ideal for entertaining, while the well-equipped kitchen is a chef's dream.  Each bedroom is a tranquil retreat, and the master suite features a spa-like bathroom.  Step outside to your private oasis, complete with a sparkling pool, lush gardens, and a covered patio perfect for relaxing or unwinding with loved ones.",
+    verifiedamenities: ["wifi", "private pool", "landscaped gardens", "backyard", "modern kitchen", "storage space", "security post", "parking space"]
+  },
+  {
+    id: 'property_5',
+    propertTag: 'rent',
+    furnitureTag: 'furnished',
+    propertyImage: '/images/property_5.jpg',
+    propertySize: 120,
+    beds: 3,
+    baths: 3,
+    toilets: 4,
+    agentInCharge: 'Afolabi Ishola',
+    agentInChargeImage: '/images/profile_5.jpg',
+    liked: true,
+    saved: false,
+    monthlyRent: 158000,
+    propertyCost: undefined,
+    title: 'Luxurious Living Apartment in the heart of Alausa, Ikeja',
+    location: 'Ikeja, Lagos',
+    mainFees: [
+      { name: 'application fees', amount:  50000},
+      { name: 'agreement', amount: 80000 },
+      { name: 'commission', amount: 80000 },
+      { name: 'damages', amount: 250000 },
+      { name: 'facility charges', amount: 250000 },
+    ],
+    optionalFees: [
+      { name: 'wifi', amount:  50000},
+      { name: 'dog rent', amount: 50000 },
+      { name: 'cat rent', amount: 50000 },
+    ],
+    intro: "This stunning 3-bedroom detached home in Alausa boasts modern finishes, a private pool, and lush landscaping.  Perfect for entertaining and enjoying the Lagos outdoor lifestyle.",
+    description: "This expansive 3-bedroom, 3-bathroom detached property offers a haven of modern luxury.  The open-plan living area is ideal for entertaining, while the well-equipped kitchen is a chef's dream.  Each bedroom is a tranquil retreat, and the master suite features a spa-like bathroom.  Step outside to your private oasis, complete with a sparkling pool, lush gardens, and a covered patio perfect for relaxing or unwinding with loved ones.",
+    verifiedamenities: ["wifi", "private pool", "landscaped gardens", "backyard", "modern kitchen", "storage space", "security post", "parking space"]
+  },
+  {
+    id: 'property_6',
+    propertTag: 'rent',
+    furnitureTag: 'furnished',
+    propertyImage: '/images/property_6.jpg',
+    propertySize: 120,
+    beds: 3,
+    baths: 3,
+    toilets: 4,
+    agentInCharge: 'Afolabi Ishola',
+    agentInChargeImage: '/images/profile_6.jpg',
+    liked: false,
+    saved: false,
+    monthlyRent: 158000,
+    propertyCost: undefined,
+    title: 'Luxurious Living Apartment in the heart of Alausa, Ikeja',
+    location: 'Ikeja, Lagos',
+    mainFees: [
+      { name: 'application fees', amount:  50000},
+      { name: 'agreement', amount: 80000 },
+      { name: 'commission', amount: 80000 },
+      { name: 'damages', amount: 250000 },
+      { name: 'facility charges', amount: 250000 },
+    ],
+    optionalFees: [
+      { name: 'wifi', amount:  50000},
+      { name: 'dog rent', amount: 50000 },
+      { name: 'cat rent', amount: 50000 },
+    ],
+    intro: "This stunning 3-bedroom detached home in Alausa boasts modern finishes, a private pool, and lush landscaping.  Perfect for entertaining and enjoying the Lagos outdoor lifestyle.",
+    description: "This expansive 3-bedroom, 3-bathroom detached property offers a haven of modern luxury.  The open-plan living area is ideal for entertaining, while the well-equipped kitchen is a chef's dream.  Each bedroom is a tranquil retreat, and the master suite features a spa-like bathroom.  Step outside to your private oasis, complete with a sparkling pool, lush gardens, and a covered patio perfect for relaxing or unwinding with loved ones.",
+    verifiedamenities: ["wifi", "private pool", "landscaped gardens", "backyard", "modern kitchen", "storage space", "security post", "parking space"]
+  },
+]

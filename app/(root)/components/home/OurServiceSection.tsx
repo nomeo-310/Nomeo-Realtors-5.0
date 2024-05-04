@@ -10,6 +10,8 @@ const OurServiceSection = () => {
     <Box className='lg:pt-20 pt-16'>
       <Header 
         mainTitle='Our Services'
+        link='/about/#ourservices'
+        linkTitle='Read more...'
         subTitle="At Nomeo Suites, we offer a comprehensive range of services designed to empower you on your real estate journey in Lagos and other states we operate, whether you're a buyer, seller, landlord, or tenant."
       />
       <OurServices />
