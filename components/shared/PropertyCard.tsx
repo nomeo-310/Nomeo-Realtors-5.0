@@ -56,7 +56,7 @@ const PropertyCard = ({id, propertTag, propertyImage, propertySize, propertyCost
           {saved &&
             <div className='relative hover:opacity-80 transition cursor-pointer mt-1'>
               <HiOutlineBookmark size={26} className='text-white absolute -top-[2px] -right-[2px]'/>
-              <HiBookmark size={22} className={`${saved ? 'text-yellow-500' : ''}`}/>
+              <HiBookmark size={22} className={`${saved ? 'text-blue-400' : ''}`}/>
             </div>
           }
         </div>
