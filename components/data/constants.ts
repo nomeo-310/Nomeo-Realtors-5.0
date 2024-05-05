@@ -23,6 +23,7 @@ export interface blog {
   imageBanner: string;
   createdAt: string;
   author: string;
+  authorImage: string
 }
 
 export interface  propertyProps {
@@ -30,6 +31,7 @@ export interface  propertyProps {
   propertTag: string
   furnitureTag: string
   propertyImage: string
+  propertyImageList: string[]
   propertySize: number
   beds: number
   baths: number
@@ -135,6 +137,7 @@ export const blogList = [
     imageBanner: "/images/blogImage_1.jpg",
     createdAt: "18 Jan 2024",
     author: "Salomi Onome",
+    authorImage: "/images/profile_1.jpg"
   },
   {
     id: "blog_2",
@@ -143,6 +146,7 @@ export const blogList = [
     imageBanner: "/images/blogImage_2.jpg",
     createdAt: "25 Jan 2024",
     author: "Babatunde Omisola",
+    authorImage: "/images/profile_4.jpg"
   },
   {
     id: "blog_3",
@@ -151,9 +155,10 @@ export const blogList = [
     imageBanner: "/images/blogImage_3.jpg",
     createdAt: "2 Feb 2024",
     author: "Babatunde Omisola",
+    authorImage: "/images/profile_4.jpg"
   },
 
-]
+];
 
 export const frequentlyAskedQuestions = [
   {
@@ -204,6 +209,7 @@ export const propertyList = [
     propertTag: 'sale',
     furnitureTag: 'furnished',
     propertyImage: '/images/property_1.jpg',
+    propertyImageList: ['/images/property_1a.jpg', '/images/property_1b.jpg', '/images/property_1c.jpg', '/images/property_1d.jpg', '/images/property_1e.jpg', '/images/property_1f.jpg', '/images/property_1g.jpg', '/images/property_1h.jpg', '/images/property_1i.jpg', '/images/property_1j.jpg', '/images/property_1k.jpg', '/images/property_1l.jpg' ],
     propertySize: 2500,
     beds: 4,
     baths: 4,
@@ -393,4 +399,4 @@ export const propertyList = [
     description: "This expansive 3-bedroom, 3-bathroom detached property offers a haven of modern luxury.  The open-plan living area is ideal for entertaining, while the well-equipped kitchen is a chef's dream.  Each bedroom is a tranquil retreat, and the master suite features a spa-like bathroom.  Step outside to your private oasis, complete with a sparkling pool, lush gardens, and a covered patio perfect for relaxing or unwinding with loved ones.",
     verifiedamenities: ["wifi", "private pool", "landscaped gardens", "backyard", "modern kitchen", "storage space", "security post", "parking space"]
   },
-]
+];

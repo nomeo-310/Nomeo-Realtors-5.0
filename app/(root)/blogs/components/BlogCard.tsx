@@ -8,6 +8,7 @@ import ImageAvatar from '@/components/shared/ImageAvatar'
 
 type blogCardProps = {
   author: string
+  authorImage: string
   createdAt: string
   title: string
   description: string
@@ -15,7 +16,7 @@ type blogCardProps = {
   blogBanner: string
 }
 
-const BlogCard = ({author, createdAt, title, description, id, blogBanner}: blogCardProps) => {
+const BlogCard = ({author, createdAt, title, description, id, blogBanner, authorImage}: blogCardProps) => {
   return (
     <div className="w-full flex flex-col gap-2 cursor-pointer group">
       <div className="md:aspect-square xl:h-[280px] lg:h-[250px] md:h-[230px] h-[220px] aspect-video flex items-center justify-center overflow-hidden rounded-md">
@@ -27,7 +28,7 @@ const BlogCard = ({author, createdAt, title, description, id, blogBanner}: blogC
               <p>{createdAt}</p>
             </div>
             <div>
-              <ImageAvatar className='rounded-full overflow-hidden lg:w-11 lg:h-11 w-10 h-10'/>
+              <ImageAvatar className='rounded-full overflow-hidden lg:w-11 lg:h-11 w-10 h-10' src={authorImage}/>
             </div>
           </div>
         </div>

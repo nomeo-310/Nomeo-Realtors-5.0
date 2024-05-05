@@ -4,6 +4,7 @@ import "../globals.css";
 import Navigation from "./components/navigation/Navigation";
 import Footer from "./components/footer/Footer";
 import ToastProvider from "@/providers/ToastProvider";
+import ScrollToTopButton from "@/components/shared/ScrollToTopButton";
 
 export const metadata: Metadata = {
   title: "Nomeo Suites | Home",
@@ -27,6 +28,7 @@ export default function RootLayout({children}:{children: React.ReactNode}) {
       <body className={`${urbanist.variable} ${barlow.variable}`}>
         <ToastProvider/>
         <Navigation/>
+        <ScrollToTopButton/>
         {children}
         <Footer/>
       </body>

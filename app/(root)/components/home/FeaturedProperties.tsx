@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { propertyList, propertyProps } from '@/components/data/constants'
+import { propertyList } from '@/components/data/constants'
 import PropertyCard from '@/components/shared/PropertyCard'
 
 const FeaturedProperties = () => {

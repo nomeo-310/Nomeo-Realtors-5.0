@@ -4,9 +4,8 @@ import React from 'react'
 import { blog, blogList } from '@/components/data/constants'
 import BlogCard from '../../blogs/components/BlogCard'
 
-type Props = {}
 
-const LatestBlogs = (props: Props) => {
+const LatestBlogs = () => {
   return (
     <div className="w-full grid md:grid-cols-3 grid-cols-1 mt-8 lg:mt-10 lg:gap-x-4 md:gap-x-3 gap-y-6">
       {blogList.map((blog:blog, index:number) => (
@@ -16,7 +15,8 @@ const LatestBlogs = (props: Props) => {
           title={blog.title} 
           description={blog.description} 
           id={blog.id} 
-          blogBanner={blog.imageBanner}          
+          blogBanner={blog.imageBanner}
+          authorImage={blog.authorImage}        
         />
       ))} 
     </div>

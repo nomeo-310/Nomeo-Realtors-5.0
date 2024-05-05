@@ -2,19 +2,18 @@
 
 import React from 'react'
 import Image from 'next/image'
-import { HiHeart, HiOutlineMapPin } from "react-icons/hi2";
-import { ImBookmark } from "react-icons/im";
+import { HiBookmark, HiHeart, HiOutlineBookmark, HiOutlineMapPin } from "react-icons/hi2";
 import { SlSizeFullscreen } from "react-icons/sl"
 import { LuBed } from "react-icons/lu"
 import { LiaBathSolid, LiaToiletSolid } from "react-icons/lia"
 import ImageAvatar from '@/components/shared/ImageAvatar'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { propertyProps } from '../data/constants';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
-type proprtyCardProps = Omit<propertyProps, 'mainFees'| 'optionalFees' | 'intro' | 'description'| 'verifiedamenities' >
+type propertyCardProps = Omit<propertyProps, 'mainFees'| 'optionalFees' | 'intro' | 'description'| 'verifiedamenities' | 'propertyImageList' >
 
-const PropertyCard = ({id, propertTag, propertyImage, propertySize, propertyCost, baths, beds, title, toilets, agentInCharge, agentInChargeImage, liked, location, saved, monthlyRent}:proprtyCardProps) => {
+const PropertyCard = ({id, propertTag, propertyImage, propertySize, propertyCost, baths, beds, title, toilets, agentInCharge, agentInChargeImage, liked, location, saved, monthlyRent}:propertyCardProps) => {
   const nairaSign:string = String.fromCodePoint(8358);
   const router = useRouter();
 
@@ -44,31 +43,33 @@ const PropertyCard = ({id, propertTag, propertyImage, propertySize, propertyCost
           </div>
           <div className='flex flex-col justify-center gap-2 items-center'>
             <ImageAvatar className='rounded-full overflow-hidden lg:w-12 lg:h-12 w-11 h-11' src={agentInChargeImage}/>
-            <Link className='lg:text-lg underline' href={'/profile/2'}>{agentInCharge}</Link>
+            <p>{agentInCharge}</p>
           </div>
         </div>
         <div className="right-3 top-3 absolute flex items-center gap-4">
           {liked &&
-            <div className="w-9 h-9 rounded-full bg-red-100 flex items-center justify-center">
-              <HiHeart className='text-red-500 mt-1' size={20}/>
+            <div className='relative hover:opacity-80 transition cursor-pointer mt-1'>
+              <AiOutlineHeart size={26} className='fill-white absolute -top-[2px] -right-[2px]'/>
+              <AiFillHeart size={22} className={`${liked ? 'fill-rose-500' : ''}`}/>
             </div>
           }
           {saved &&
-            <div className="w-9 h-9 rounded-full bg-yellow-100 flex items-center justify-center">
-              <ImBookmark className='text-yellow-500 mt-1' size={20}/>
+            <div className='relative hover:opacity-80 transition cursor-pointer mt-1'>
+              <HiOutlineBookmark size={26} className='text-white absolute -top-[2px] -right-[2px]'/>
+              <HiBookmark size={22} className={`${saved ? 'text-yellow-500' : ''}`}/>
             </div>
           }
         </div>
       </div>
       <div>
-        <p className='lg:text-xl text-lg line-clamp-2 mb-2 font-semibold'>{title}</p>
+        <p className='lg:text-xl text-lg line-clamp-1 mb-2 font-semibold'>{title}</p>
         <div className="flex items-center justify-between lg:text-lg">
           <div className="flex items-center gap-2">
             <HiOutlineMapPin size={22}/>
             <p>{location}.</p>
           </div>
           <div className='text-yellow-400'>
-            {nairaSign} { propertTag === 'rent' ? `${monthlyRent?.toLocaleString()}` : `${propertyCost?.toLocaleString()}`} {propertTag === 'rent' ? <span>per month</span> : <span>annual mortgage</span> }
+            {nairaSign} { propertTag === 'rent' ? `${monthlyRent?.toLocaleString()}` : `${propertyCost?.toLocaleString()}`} {propertTag === 'rent' ? <span>per month</span> : '' }
           </div>
         </div>
       </div>
