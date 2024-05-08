@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation'
 import { propertyProps } from '../data/constants';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
-type propertyCardProps = Omit<propertyProps, 'mainFees'| 'optionalFees' | 'intro' | 'description'| 'verifiedamenities' | 'propertyImageList' >
+type propertyCardProps = Omit<propertyProps, 'mainFees'| 'optionalFees' | 'intro' | 'description'| 'verifiedamenities' | 'propertyImageList' | 'nearbyPlaces' >
 
 const PropertyCard = ({id, propertTag, propertyImage, propertySize, propertyCost, baths, beds, title, toilets, agentInCharge, agentInChargeImage, liked, location, saved, monthlyRent}:propertyCardProps) => {
   const nairaSign:string = String.fromCodePoint(8358);

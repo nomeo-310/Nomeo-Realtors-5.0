@@ -44,8 +44,9 @@ export interface  propertyProps {
   propertyCost?: number
   title: string
   location: string
-  mainFees: [{name: string, amount: number}]
+  mainFees: {name: string, amount: number}[]
   optionalFees: {name: string, amount: number}[]
+  nearbyPlaces: {name:string, distance: string}[]
   intro: string
   description: string
   verifiedamenities: string[]
@@ -223,14 +224,20 @@ export const propertyList = [
     title: 'Modern Oasis Apartment in Lekki Phase 1',
     location: 'Lekki Phase 1, Lagos',
     mainFees: [
-      { name: 'application fees', amount:  50000},
-      { name: 'service charge', amount: 120000 },
-      { name: 'annual estate security', amount: 120000 },
-      { name: 'annual estate electricity', amount: 250000 },
+      { name: 'application', amount:  50000},
+      { name: 'service', amount: 120000 },
+      { name: 'security', amount: 120000 },
+      { name: 'electricity', amount: 250000 },
+    ],
+    nearbyPlaces: [
+      { name: 'restaurant', distance:  '500km'},
+      { name: 'mall', distance: '800km' },
+      { name: 'central market', distance: '200km' },
+      { name: 'schools', distance: '800m' },
     ],
     optionalFees: [
       { name: 'wifi', amount:  50000},
-      { name: 'estate club membership', amount: 50000 },
+      { name: 'club membership', amount: 50000 },
     ],
     intro: "This stunning 4-bedroom detached home in Lekki Phase 1 boasts modern finishes, a private pool, and lush landscaping.  Perfect for entertaining and enjoying the Lagos outdoor lifestyle.",
     description: "This expansive 4-bedroom, 4-bathroom detached property offers a haven of modern luxury.  The open-plan living area is ideal for entertaining, while the well-equipped kitchen is a chef's dream.  Each bedroom is a tranquil retreat, and the master suite features a spa-like bathroom.  Step outside to your private oasis, complete with a sparkling pool, lush gardens, and a covered patio perfect for relaxing or unwinding with loved ones.",
@@ -259,6 +266,12 @@ export const propertyList = [
       { name: 'commission', amount: 80000 },
       { name: 'damages', amount: 250000 },
       { name: 'facility charges', amount: 250000 },
+    ],
+    nearbyPlaces: [
+      { name: 'restaurant', distance:  '500km'},
+      { name: 'mall', distance: '800km' },
+      { name: 'central market', distance: '200km' },
+      { name: 'schools', distance: '800m' },
     ],
     optionalFees: [
       { name: 'wifi', amount:  50000},
@@ -292,6 +305,12 @@ export const propertyList = [
       { name: 'annual estate security', amount: 120000 },
       { name: 'annual estate electricity', amount: 250000 },
     ],
+    nearbyPlaces: [
+      { name: 'restaurant', distance:  '500km'},
+      { name: 'mall', distance: '800km' },
+      { name: 'central market', distance: '200km' },
+      { name: 'schools', distance: '800m' },
+    ],
     optionalFees: [
       { name: 'wifi', amount:  50000},
       { name: 'estate club membership', amount: 50000 },
@@ -323,6 +342,12 @@ export const propertyList = [
       { name: 'commission', amount: 80000 },
       { name: 'damages', amount: 250000 },
       { name: 'facility charges', amount: 250000 },
+    ],
+    nearbyPlaces: [
+      { name: 'restaurant', distance:  '500km'},
+      { name: 'mall', distance: '800km' },
+      { name: 'central market', distance: '200km' },
+      { name: 'schools', distance: '800m' },
     ],
     optionalFees: [
       { name: 'wifi', amount:  50000},
@@ -357,6 +382,12 @@ export const propertyList = [
       { name: 'damages', amount: 250000 },
       { name: 'facility charges', amount: 250000 },
     ],
+    nearbyPlaces: [
+      { name: 'restaurant', distance:  '500km'},
+      { name: 'mall', distance: '800km' },
+      { name: 'central market', distance: '200km' },
+      { name: 'schools', distance: '800m' },
+    ],
     optionalFees: [
       { name: 'wifi', amount:  50000},
       { name: 'dog rent', amount: 50000 },
@@ -389,6 +420,12 @@ export const propertyList = [
       { name: 'commission', amount: 80000 },
       { name: 'damages', amount: 250000 },
       { name: 'facility charges', amount: 250000 },
+    ],
+    nearbyPlaces: [
+      { name: 'restaurant', distance:  '500km'},
+      { name: 'mall', distance: '800km' },
+      { name: 'central market', distance: '200km' },
+      { name: 'schools', distance: '800m' },
     ],
     optionalFees: [
       { name: 'wifi', amount:  50000},

@@ -67,7 +67,7 @@ const NavigationClient = () => {
           {/* desktop navlinks*/}
           <div className="flex items-center">
             { navBarList.map((item:navbarItem,index:number) => (
-              <Link key={index} href={item.path} className='capitalize lg:text-lg py-1.5 lg:px-4 px-3 rounded-full hover:bg-gray-300 hover:text-black'>{item.label}</Link>
+              <Link key={index} href={item.path} className={`capitalize lg:text-lg py-1.5 lg:px-4 px-3 rounded-full hover:bg-gray-300 hover:text-black ${item.path === path && 'bg-neutral-700 text-white'}`}>{item.label}</Link>
             ))}
           </div>
 
@@ -106,7 +106,7 @@ const NavigationClient = () => {
         <div className="slide-in-left md:hidden absolute left-[4%] min-w-[180px] top-[70px] bg-white text-black rounded-md drop-shadow-md overflow-hidden">
           <div className="flex flex-col">
             {navBarList.map((item:navbarItem ,index:number) => (
-              <Link key={index} href={item.path} className='capitalize py-2 pl-4 hover:bg-neutral-700 hover:text-white active:bg-neutral-700 active:text-white'>{item.label}</Link>
+              <Link key={index} href={item.path} className={`capitalize py-2 pl-4 hover:bg-neutral-700 hover:text-white active:bg-neutral-700 active:text-white ${item.path === path && 'bg-neutral-700 text-white'}`}>{item.label}</Link>
             ))}
           </div>
           {loggedIn && 
