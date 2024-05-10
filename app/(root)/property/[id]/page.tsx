@@ -7,10 +7,13 @@ interface pageProps {
 }
 
 const PropertyPage = ({params}:pageProps) => {
-  console.log(params.id);
   const property = propertyList.find((property) => property.id === params.id)
-  console.log(property)
-  return <PropertyClient />;
+
+  if (!property) {
+    return 
+  }
+
+  return <PropertyClient property={property} />;
 };
 
 export default PropertyPage;
