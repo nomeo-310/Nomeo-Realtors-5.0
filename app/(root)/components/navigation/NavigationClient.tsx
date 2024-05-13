@@ -12,7 +12,7 @@ const NavigationClient = () => {
   const router = useRouter();
   const path = usePathname();
 
-  const [navbarTextColor, setNavbarTextColor] = React.useState('text-white');
+  const [navbarTextColor, setNavbarTextColor] = React.useState('text-black');
   const [showMobileNav, setShowMobileNav] = React.useState(false);
   const [showLoggedInMenu, setShowLoggedInMenu] = React.useState(false);
 
@@ -65,9 +65,9 @@ const NavigationClient = () => {
         </div>
         <div className='hidden md:flex lg:gap-8 gap-6 lg:min-w-[70%] md:min-w-[65%] justify-end h-full items-center'>
           {/* desktop navlinks*/}
-          <div className="flex items-center">
+          <div className="flex items-center gap-1">
             { navBarList.map((item:navbarItem,index:number) => (
-              <Link key={index} href={item.path} className={`capitalize lg:text-lg py-1.5 lg:px-4 px-3 rounded-full hover:bg-gray-300 hover:text-black ${item.path === path && 'bg-neutral-700 text-white'}`}>{item.label}</Link>
+              <Link key={index} href={item.path} className={`capitalize lg:text-lg py-1.5 lg:px-4 px-3 rounded-full ${item.path === path ? 'bg-neutral-700 text-white hover:bg-neutral-700' : 'hover:bg-neutral-500 hover:text-white'}`}>{item.label}</Link>
             ))}
           </div>
 
@@ -104,18 +104,18 @@ const NavigationClient = () => {
       {/* mobile interface menu */}
       { showMobileNav &&
         <div className="slide-in-left md:hidden absolute left-[4%] min-w-[180px] top-[70px] bg-white text-black rounded-md drop-shadow-md overflow-hidden">
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-[3px]">
             {navBarList.map((item:navbarItem ,index:number) => (
-              <Link key={index} href={item.path} className={`capitalize py-2 pl-4 hover:bg-neutral-700 hover:text-white active:bg-neutral-700 active:text-white ${item.path === path && 'bg-neutral-700 text-white'}`}>{item.label}</Link>
+              <Link key={index} href={item.path} className={`capitalize py-2 pl-4 ${item.path === path ? 'bg-neutral-700 text-white hover:bg-neutral-700 hover:text-white active:bg-neutral-700 active:text-white' : 'hover:bg-neutral-500 hover:text-white active:bg-neutral-500 active:text-white'}`}>{item.label}</Link>
             ))}
           </div>
           {loggedIn && 
             <React.Fragment>
               <hr/>
-              <Link className='px-3 py-2 lg:text-lg block hover:bg-neutral-700 hover:text-white active:bg-neutral-700 active:text-white' href={'/dashboard'}>
+              <Link className='px-3 py-2 lg:text-lg block hover:bg-neutral-500 hover:text-white active:bg-neutral-500 active:text-white' href={'/dashboard'}>
                 Dashboard
               </Link>
-              <button className='px-3 py-2 lg:text-lg capitalize hover:bg-neutral-700 hover:text-white w-full text-left active:bg-neutral-700 active:text-white'>
+              <button className='px-3 py-2 lg:text-lg capitalize hover:bg-neutral-500 hover:text-white w-full text-left active:bg-neutral-500 active:text-white'>
                 sign out
               </button>
             </React.Fragment>

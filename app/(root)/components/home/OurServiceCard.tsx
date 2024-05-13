@@ -25,7 +25,7 @@ const OurServiceCard = ({icon:Icon, subTitle, title, id}:cardProps) => {
       <p className='lg:block hidden text-2xl font-medium'>{title}</p>
       <p className='line-clamp-4 lg:text-center'>{subTitle}</p>
       <div className='flex items-center justify-start w-full'>
-        <Link href={`/about/${id}`} className='lg:text-xl text-lg text-yellow-500'>Read more...</Link>
+        <Link href={`/about-us/${id}`} className='lg:text-xl text-lg text-yellow-500'>Read more...</Link>
       </div>
     </div>
   )

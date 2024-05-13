@@ -442,3 +442,82 @@ export const propertyList = [
     verifiedamenities: ["wifi", "private pool", "landscaped gardens", "backyard", "modern kitchen", "storage space", "security post", "parking space"]
   },
 ];
+
+export const aboutUsData = {
+  maintitle: "At Nomeo Suites, we're passionate about empowering you to achieve your real estate goals in Lagos. Whether you're a first-time homebuyer, a seasoned investor, or a landlord seeking reliable tenants, we offer a comprehensive suite of services designed to streamline your journey and maximize your success.",
+  whatSetUsApart: {
+    subtitle: "Navigating the dynamic Lagos real estate market requires a partner who understands your goals and possesses the expertise to deliver exceptional results. At Nomeo Suites, we stand out from the crowd with a unique combination of qualities that ensure a smooth and successful experience for our clients. What set us apart includes:",
+    setApart: [
+      {
+        title: "Full-Spectrum Expertise",
+        body:"We cater to both sides of the real estate market. Our team of experienced agents is adept at assisting buyers in finding their dream property and helping landlords secure qualified tenants for their investment properties."
+      },
+      {
+        title: "Unwavering Client Focus",
+        body:"We understand that your real estate needs are unique. We take the time to understand your specific goals, budget, and preferences, providing personalized guidance and support throughout the entire process."
+      },
+      {
+        title: "Extensive Local Market Knowledge",
+        body:"As a deeply rooted Lagos agency, we possess an unrivaled understanding of the local market. This translates into expert advice on neighborhoods, pricing trends, and property values."
+      },
+      {
+        title: "Streamlined Buying and Selling",
+        body:"Let us navigate the complexities of the real estate transaction for you. We handle everything from property search and negotiation to mortgage pre-approval recommendations and closing coordination."
+      },
+      {
+        title: "Seamless Leasing and Property Management",
+        body:"For landlords, we offer a stress-free leasing and property management experience. We take care of tenant screening, lease agreements, rent collection, and property maintenance, allowing you to enjoy the benefits of ownership without the hassle."
+      },
+      {
+        title: "Unwavering Commitment to Quality",
+        body:"We believe in transparency, integrity, and exceeding client expectations. Our commitment to these values has earned us a reputation for excellence in the Lagos real estate market."
+      },
+    ]
+  },
+  partneringWithUs: {
+    subtitle: "The Lagos real estate market is a vibrant tapestry, brimming with opportunities but also complexities.  Navigating this landscape requires a partner you can trust; a partner who understands your goals, possesses the expertise to unlock them, and prioritizes your success throughout the journey. What partnering withus means:",
+    whyPartner: [
+      {
+        title: "Access to a diverse range of properties",
+        body:"We maintain a robust network of property listings across Lagos, ensuring you have a wide selection of options to consider, whether you're searching for a cozy apartment, a spacious family home, or a lucrative investment property."
+      },
+      {
+        title: "Highly skilled and dedicated agents",
+        body:"Our team of licensed and experienced agents is committed to providing you with exceptional service. They possess in-depth market knowledge, strong negotiation skills, and a genuine desire to see you achieve your real estate goals."
+      },
+      {
+        title: "Streamlined communication and efficient transactions",
+        body:"We leverage technology to make the process as smooth and convenient as possible for you. From online property listings to secure communication channels, we ensure you're informed and involved every step of the way"
+      },
+    ]
+  },
+  whatservice: {
+    subtitle: "At Nomeo Suites, we are your one-stop shop for all your Lagos real estate needs. Whether you're a seasoned investor seeking lucrative opportunities or a first-time homebuyer searching for your dream place, our experienced agents are here to guide you every step of the way.",
+    ourServices: [
+      {
+        title: "Property Search and Acquisition (For Buyers and Renters)",
+        body: "This involves assisting clients in finding their ideal property, whether for purchase or rent.  Real estate agents leverage their market expertise and local knowledge to source suitable properties, schedule viewings, and guide clients through the selection process. In course of this process, We take time to understand the need of our client by looking at their desired locations, their budget, checking out their lifestyle needs such proximity to school and work, and their move-in timelines (whether within a week or month). This part usually is the longest but with the help of our strong database and agent networks we are able to reduce the stress in half.", 
+        id: "acquisition"
+      },
+      {
+        title: "Sales and Marketing (For Sellers)",
+        body: "Real estate agencies support sellers in achieving a successful sale of their property.  This includes tasks like property valuation, developing a marketing strategy, conducting open houses, managing negotiations, and handling the closing process. Selling your Lagos property can be an exciting prospect, but navigating the process alone can be daunting. At Nomeo Suites, we understand the intricacies of the Lagos real estate market and are here to guide you every step of the way, ensuring a stress-free and successful sale. During the whole process, we conduct a thorough market analysis to determine the current market value of your property, considering comparable recent sales, current trends, and neighborhood factors. After all of these things we employ our content creator to help in the advertisement because we understand we are in a competitive market.", 
+        id: "sales"
+      },
+      {
+        title: "Property Management (For Investors)",
+        body: "Real estate agencies offer property management services to investors who own rental properties.  This can encompass tasks like tenant screening, rent collection, maintenance coordination, lease renewals, and ensuring compliance with relevant regulations. Investing in Lagos real estate can be a strategic decision, but managing rental properties requires time, effort, and expertise. At Nomeo Suites, we understand the unique needs of investors and offer comprehensive property management services that maximize your return on investment (ROI) while minimizing your stress. We meticulously screen potential tenants, conducting credit checks, employment verification, and reference checks to ensure responsible and qualified occupants for your property.", 
+        id: "management"
+      },
+
+    ]
+  },
+  meetTheTeam: {
+    subtitle: "At Nomeo Suites, we believe our success hinges on the dedication and expertise of our team.  Our agents are more than just real estate professionals; they're passionate about connecting you with the perfect property in Lagos, whether you're a seasoned investor, a first-time homebuyer, or a renter seeking your dream apartment.",
+    teamList: [
+      {
+
+      }
+    ]
+  }
+}

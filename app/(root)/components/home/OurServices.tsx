@@ -8,22 +8,22 @@ const OurServices = () => {
   return (
     <div className="mt-8 lg:mt-10 grid md:grid-cols-3 grid-cols-1 gap-2 lg:gap-4">
       <OurServiceCard
-        title='Sellout Properties'
+        title='Property Search & Acquisition'
         icon={CiWallet}
-        subTitle="As a deeply rooted Lagos agency, we possess an unrivaled understanding of the local market. This translates into expert advice on neighborhoods, pricing trends, and property values."
-        id='#sell'
+        subTitle="This involves assisting clients in finding their ideal property, whether for purchase or rent. Real estate agents leverage their market expertise and local knowledge to source suitable properties, schedule viewings, and guide clients through the selection process."
+        id='#acquisition'
       />
       <OurServiceCard
-        title='Rentout Properties'
+        title='Sales & Marketing'
         icon={CiLocationOn}
-        subTitle='We understand that your real estate needs are unique. We take the time to understand your specific goals, budget, and preferences, providing personalized guidance and support throughout the entire process.'
-        id='#rent'
+        subTitle="Real estate agencies support sellers in achieving a successful sale of their property.  This includes tasks like property valuation, developing a marketing strategy, conducting open houses, managing negotiations, and handling the closing process."
+        id='#sales'
       />
       <OurServiceCard
-        title='Properties Consultations'
+        title='Property Management'
         icon={CiPercent}
-        subTitle='We believe in transparency, integrity, and exceeding client expectations. Our commitment to these values has earned us a reputation for excellence in the Lagos real estate market.'
-        id='#help'
+        subTitle="Real estate agencies offer property management services to investors who own rental properties.  This can encompass tasks like tenant screening, rent collection, maintenance coordination, lease renewals, and ensuring compliance with relevant regulations."
+        id='#management'
       />
     </div>
   )
