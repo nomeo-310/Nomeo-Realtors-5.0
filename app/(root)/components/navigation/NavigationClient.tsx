@@ -18,7 +18,7 @@ const NavigationClient = () => {
 
 
   const navbarAbsolute = `pt-4 absolute left-0 top-0 w-full lg:h-[75px] md:h-[70px] z-[200] h-[60px] ${navbarTextColor} z-[40000]`;
-  const navbarFixed = 'pt-4 z-[4000] fixed w-full lg:h-[75px] md:h-[70px] h-[60px] lg:-top-[75px] md:-top-[70px] -top-[60px] bg-gray-50 text-black transform lg:translate-y-[65px] md:translate-y-[60px] translate-y-[50px] transition ease-in-out duration-600 shadow shadow-[4px_4px_4px_0_rgba(0, 0, 0, 0.3)]';
+  const navbarFixed = 'pt-4 z-[4000] fixed w-full lg:h-[75px] md:h-[70px] h-[60px] lg:-top-[75px] md:-top-[70px] -top-[60px] bg-gray-50 text-black transform lg:translate-y-[65px] md:translate-y-[60px] translate-y-[50px] transition-all ease-out duration-200 shadow shadow-[4px_4px_4px_0_rgba(0, 0, 0, 0.3)]';
   const [navbarState, setNavbarState] = React.useState(navbarAbsolute);
 
 
@@ -59,7 +59,7 @@ const NavigationClient = () => {
           <div>
             <Link href={'/'} className='flex items-center gap-4'>
               <HiOutlineHomeModern size={26}/>
-              <p className='lg:text-2xl md:text-xl text-lg'>Nomeo Suites</p>
+              <p className='lg:text-2xl md:text-xl text-lg font-semibold'>Nomeo Suites</p>
             </Link>
           </div>
         </div>

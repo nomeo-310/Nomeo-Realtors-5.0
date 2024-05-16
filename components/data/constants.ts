@@ -24,6 +24,17 @@ export interface blog {
   createdAt: string;
   author: string;
   authorImage: string
+  blogContent: {
+    paragraph?: string;
+    quote?: {
+      author: string
+      content:string
+    }
+    content: {
+      header?: string;
+      content: string;
+  }[]
+  }
 };
 
 export interface  propertyProps {
@@ -52,7 +63,7 @@ export interface  propertyProps {
   verifiedamenities: string[]
 };
 
-export const loggedIn = true;
+export const loggedIn = false;
 export const userSurname = 'Salomi';
 
 export const navBarList = [
@@ -137,6 +148,10 @@ export const blogList = [
     description: "In the fast-paced world of Lagos real estate, negotiation is an essential skill for both buyers and sellers.  This dance, as Olajide Martins, a seasoned agent at Martoni Consults Inc., puts it, requires understanding your counterpart, respecting their position, but also fiercely advocating for your own interests. Whether you're aiming to snag your dream home at a competitive price or maximize your return on investment, mastering the art of negotiation can significantly impact your outcome.  Don't worry, aspiring Lagosian negotiator, we've got you covered!  This guide will equip you with valuable tips and strategies to navigate the negotiation process and secure the best deal on your Lagos property.",
     blogContent: {
       paragraph: "Here are some key notes to remeber when doing negotiation: ",
+      quote: {
+        author: "Madam Bukola McCarthy, seasoned Lagos landlady.",
+        content: "Negotiating Lagos property is like navigating the energetic streets of Lagos itself, It's a dance – a courteous back-and-forth where respect and cunning go hand-in-hand. Be firm on your value, but don't be afraid to bend a little. A win-win solution is often the sweetest deal, leaving both parties satisfied and ready to celebrate with a plate of delicious jollof rice."
+      },
       content: [
         {
           header: "Knowledge is Power: The Bedrock of Confidence",
@@ -174,7 +189,7 @@ export const blogList = [
     },
     imageBanner: "/images/blogImage_1.jpg",
     createdAt: "18 Jan 2024",
-    author: "Salomi Onome",
+    author: "Eliazor Nwanne",
     authorImage: "/images/profile_1.jpg"
   },
   {
@@ -183,6 +198,10 @@ export const blogList = [
     description: "Lagos, a bustling metropolis and the economic heart of Nigeria, presents a compelling opportunity for real estate investors. With a rapidly growing population and a constant demand for housing, the Lagos property market offers the potential for significant returns. However, navigating this dynamic market requires a well-defined strategy and a deep understanding of the local landscape.",
     blogContent: {
       paragraph: "",
+      quote: {
+        author: "Chief Adeola Ogunbiyi, veteran investor.",
+        content: "Lagos real estate is a patient lion, it may slumber for a while, but with the right knowledge and a well-timed approach, you can rouse it and unlock its potential for impressive returns. Do your research, understand the market cycles, and be prepared to pounce when the right opportunity arises. Remember, Lagos rewards those who are bold and strategic."
+      },
       content: [
         {
           title: "",
@@ -221,6 +240,10 @@ export const blogList = [
     description: "Selling your property in Lagos? First impressions are everything! Home staging is the art of preparing your property to showcase its best features and attract qualified buyers. A well-staged home can significantly increase interest, shorten selling time, and potentially fetch a higher price. Here's your ultimate guide to home staging success in Lagos:",
     blogContent : {
       paragraph: "",
+      quote: {
+        author: "",
+        content: "Staging a Lagos home is like dressing for success in this market – a little polish can make all the difference in catching a buyer's eye. It's not about hiding flaws, but rather accentuating the positive features and showcasing the potential your property holds. Just like a well-tailored outfit boosts confidence, a staged home makes a bold statement, leaving a lasting impression that says 'This is the Lagos home you've been waiting for.'"
+      },
       content: [
         {
           title: "Declutter and Depersonalize:",

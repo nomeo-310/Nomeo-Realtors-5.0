@@ -12,7 +12,7 @@ type boxProps = {
 
 const Box = ({children, className, id}: boxProps) => {
   return (
-    <div className={twMerge('lg:px-[6%] md:px-[4%] px-[5%] lg:pb-20 pb-16', className)} id={id}>
+    <div className={twMerge('lg:px-[6%] md:px-[4%] px-[4%] lg:pb-20 pb-16', className)} id={id}>
       {children}
     </div>
   )
