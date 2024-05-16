@@ -24,7 +24,7 @@ export interface blog {
   createdAt: string;
   author: string;
   authorImage: string
-}
+};
 
 export interface  propertyProps {
   id:string
@@ -50,7 +50,7 @@ export interface  propertyProps {
   intro: string
   description: string
   verifiedamenities: string[]
-}
+};
 
 export const loggedIn = true;
 export const userSurname = 'Salomi';
@@ -134,7 +134,44 @@ export const blogList = [
   {
     id: "blog_1",
     title: "The Art of Negotiation: Getting the Best Deal on Your Lagos Property.",
-    description: "In the fast-paced world of Lagos real estate, negotiation is an essential skill for both buyers and sellers.  Whether you're aiming to snag your dream home at a competitive price or maximize your return on investment, mastering the art of negotiation can significantly impact your outcome.  Don't worry, aspiring Lagosian negotiator, we've got you covered!  This guide will equip you with valuable tips and strategies to navigate the negotiation process and secure the best deal on your Lagos property.",
+    description: "In the fast-paced world of Lagos real estate, negotiation is an essential skill for both buyers and sellers.  This dance, as Olajide Martins, a seasoned agent at Martoni Consults Inc., puts it, requires understanding your counterpart, respecting their position, but also fiercely advocating for your own interests. Whether you're aiming to snag your dream home at a competitive price or maximize your return on investment, mastering the art of negotiation can significantly impact your outcome.  Don't worry, aspiring Lagosian negotiator, we've got you covered!  This guide will equip you with valuable tips and strategies to navigate the negotiation process and secure the best deal on your Lagos property.",
+    blogContent: {
+      paragraph: "Here are some key notes to remeber when doing negotiation: ",
+      content: [
+        {
+          header: "Knowledge is Power: The Bedrock of Confidence",
+          content: "The foundation of a strong negotiating position is built on knowledge.  In Lagos' dynamic market, immersing yourself in local trends, understanding neighborhood values, and researching comparable properties is paramount. Solid research equips you to speak with confidence and propose realistic offers and knowing the market empowers you to navigate the dance with a steady step."
+        },
+        {
+          header: "Building Rapport: The Foundation for Mutual Understanding",
+          content: "While negotiation involves advocating for your needs, it's not a battleground. Clay Holloway once advised that Building rapport with the seller or landlord is key because a genuine conversation fosters trust and opens the door to creative solutions that benefit both parties.  Imagine negotiation as a tango – two partners working in harmony, yet each with their own steps to perform."
+        },
+        {
+          header: "Active Listening: Unveiling the Other Side's Needs",
+          content: "Effective negotiation is a two-way street. It is a popular advise that you listen intently to the seller's perspective because understanding their motivations and timelines can help you craft a compelling offer that addresses their priorities alongside yours. By actively listening, you can anticipate their next move and respond with a graceful counter-step."
+        },
+        {
+          header: "Confidence with Flexibility: Striking the Perfect Balance",
+          content: "Projecting confidence is vital, but remaining flexible is equally important. It is always good to be prepared to walk away if the deal doesn't align with your needs.  However, also express a willingness to compromise on certain aspects, demonstrating your genuine interest in reaching a mutually beneficial agreement.  Think of it as finding the sweet spot in the music – your voice strong and clear, yet adaptable to the rhythm of the seller's needs."
+        },
+        {
+          header: "Beyond Price: Exploring Creative Solutions",
+          content: "Negotiation isn't just about the bottom line.  It includes think creatively and exploring other options like closing dates, repair responsibilities, or even including furniture or appliances in the deal. These creative solutions can bridge gaps and pave the way for a successful outcome for both parties.  Imagine negotiation as a jazz improvisation – you and the seller riffing off each other, finding unexpected harmonies that elevate the entire piece."
+        },
+        {
+          header: "Partnering for Success: Why Having an Expert in Your Corner Matters",
+          content: "Lagos' real estate market can be complex. Therefore, having an experienced agent by your side is invaluable.This is beacuse they possess the market knowledge, negotiation skills, and local connections to ensure you achieve the best possible deal. An expert agent acts as your guide on the dance floor, anticipating the seller's moves, and helping you execute yours with finesse."
+        },
+        {
+          header: "Partnering for Success: Why Having an Expert in Your Corner Matters",
+          content: "Lagos' real estate market can be complex. Therefore, having an experienced agent by your side is invaluable.This is beacuse they possess the market knowledge, negotiation skills, and local connections to ensure you achieve the best possible deal. An expert agent acts as your guide on the dance floor, anticipating the seller's moves, and helping you execute yours with finesse."
+        },
+        {
+          header: "The Art of Negotiation: A Rewarding Journey",
+          content: "Negotiation may seem daunting, but with knowledge, preparation, and a willingness to collaborate, you can master this art form. A successful negotiation isn't just about securing the best price, but it's about securing a deal that leaves everyone feeling satisfied and sets the stage for a positive experience in thriving property market.  Ultimately, negotiation is a rewarding journey – a dance where both partners emerge feeling they've created something beautiful."
+        }
+      ]
+    },
     imageBanner: "/images/blogImage_1.jpg",
     createdAt: "18 Jan 2024",
     author: "Salomi Onome",
@@ -143,7 +180,36 @@ export const blogList = [
   {
     id: "blog_2",
     title: "Investing in Lagos Real Estate: Strategies for Success.",
-    description: "The Lagos real estate market is a vibrant and ever-growing landscape, brimming with potential for savvy investors. Whether you're a seasoned pro or a curious newcomer, this guide will equip you with valuable strategies to navigate the exciting world of Lagos real estate investment.",
+    description: "Lagos, a bustling metropolis and the economic heart of Nigeria, presents a compelling opportunity for real estate investors. With a rapidly growing population and a constant demand for housing, the Lagos property market offers the potential for significant returns. However, navigating this dynamic market requires a well-defined strategy and a deep understanding of the local landscape.",
+    blogContent: {
+      paragraph: "",
+      content: [
+        {
+          title: "",
+          content: "The first step to success lies in thorough market research. Familiarize yourself with current trends, rental yields in different neighborhoods, and the projected growth trajectory of various areas. As Lagos itself is dynamic and no condition is permanent, the real estate landscape is no exception. By staying informed, you can position yourself to capitalize on emerging opportunities."
+        },
+        {
+          title: "",
+          content: "Choosing the right location is paramount. Lagos boasts a diverse range of neighborhoods, each catering to a distinct demographic.  Ikoyi, for instance, is renowned for its luxury apartments and high-end clientele, while Lekki attracts young professionals seeking a modern lifestyle. Understanding the target market for each area is crucial for maximizing rental income and capital appreciation."
+        },
+        {
+          title: "",
+          content: "The type of property you choose will also significantly impact your investment's success.  Apartments in safe, secure neighborhoods are ideal for generating rental income, while land in developing areas holds the potential for long-term capital gains. Consider your investment goals and risk tolerance when making this decision."
+        },
+        {
+          title: "",
+          content: "Lagos' legal framework surrounding property can be complex. Consulting with a reputable lawyer specializing in real estate is essential. They can guide you through the buying process, ensure you acquire a clean title, and protect your investment from unforeseen legal issues."
+        },
+        {
+          title: "",
+          content: "Finally, having a clear exit strategy in mind is crucial.  Are you looking for steady rental income or aiming to sell the property for a profit in a few years?  Knowing your end goal will influence the type of property you choose and the overall investment strategy you employ."
+        },
+        {
+          title: "",
+          content: "Investing in Lagos real estate can be a rewarding path to building wealth and achieving financial security. However, by following these strategies, you can increase your chances of success in this dynamic and ever-evolving market. Remember, knowledge is power – conduct your research, secure the right team, and make informed decisions to turn your Lagos real estate dreams into a brick-and-mortar reality."
+        },
+      ]
+    },
     imageBanner: "/images/blogImage_2.jpg",
     createdAt: "25 Jan 2024",
     author: "Babatunde Omisola",
@@ -153,6 +219,39 @@ export const blogList = [
     id: "blog_3",
     title: "The Ultimate Lagos Home Staging Guide: Transforming Your Property for Success",
     description: "Selling your property in Lagos? First impressions are everything! Home staging is the art of preparing your property to showcase its best features and attract qualified buyers. A well-staged home can significantly increase interest, shorten selling time, and potentially fetch a higher price. Here's your ultimate guide to home staging success in Lagos:",
+    blogContent : {
+      paragraph: "",
+      content: [
+        {
+          title: "Declutter and Depersonalize:",
+          content: "Your home is a canvas – potential buyers need to envision themselves living there.  Pack away personal belongings, family photos, and knick-knacks.  Decluttering creates a sense of spaciousness and allows potential buyers to see the full potential of the property.  Always remember that you have nothing in your house that you do not know to be useful, or believe to be beautiful. Let your home's inherent beauty shine through."
+        },
+        {
+          title: "Deep Clean and Spruce Up:",
+          content: "First impressions are paramount, and a spotless, sparkling home creates a positive emotional connection with viewers.  Ensure the property is thoroughly cleaned, from sparkling floors to gleaming windows.  Address minor repairs like leaky faucets or loose doorknobs.  A well-maintained home assures buyers they won't be inheriting a string of repair headaches."
+        },
+        {
+          title: "Lighten Up and Brighten Up:",
+          content: "Lagos boasts beautiful sunshine – use it to your advantage! Open curtains and blinds to allow natural light to flood the rooms.  If possible, schedule viewings during the daytime to maximize the impact.  Consider adding strategically placed lamps and mirrors to enhance the brightness and create an illusion of spaciousness.  A bright and airy home feels more inviting and uplifting."
+        },
+        {
+          title: "Stage for Functionality:",
+          content: "Showcase the functionality of each room.  In the living room, arrange furniture to create a conversation area.  Set the dining table for a casual meal in the dining room.  Place towels neatly folded on the bathroom counter.  This subtle staging helps buyers envision themselves using the space and living comfortably in the home."
+        },
+        {
+          title: "Curb Appeal is King:",
+          content: "Don't underestimate the power of a well-maintained exterior.  Pressure wash the driveway, mow the lawn, and plant some colorful flowers.  A vibrant and inviting entrance sets the tone for the entire property and creates a positive first impression."
+        },
+        {
+          title: "Stage Within Your Budget:",
+          content: "Home staging doesn't require a complete overhaul.  You can achieve impressive results with a strategic rearrangement of furniture, creative use of throw pillows and colorful accents, and fresh flowers.  The key is to invest in small touches that create a warm, inviting atmosphere."
+        },
+        {
+          title: "",
+          content: "By following these tips, you can transform your Lagos property from a lived-in space into a haven that entices potential buyers.  Remember, staging is an investment – a relatively small outlay that can significantly increase your chances of a quick and profitable sale. So, declutter, clean, stage strategically, and in no time, your property will get sold."
+        }
+      ]
+    },
     imageBanner: "/images/blogImage_3.jpg",
     createdAt: "2 Feb 2024",
     author: "Babatunde Omisola",
@@ -443,6 +542,8 @@ export const propertyList = [
   },
 ];
 
+export const homePageData = {};
+
 export const aboutUsData = {
   maintitle: "At Nomeo Suites, we're passionate about empowering you to achieve your real estate goals in Lagos. Whether you're a first-time homebuyer, a seasoned investor, or a landlord seeking reliable tenants, we offer a comprehensive suite of services designed to streamline your journey and maximize your success.",
   whatSetUsApart: {
@@ -613,4 +714,8 @@ export const aboutUsData = {
       },
     ]
   }
-}
+};
+
+export const blogData = {
+  mainTitle: "Are you navigating the exciting yet complex world of Lagos real estate? Look no further! At Nomeo Suites, we're passionate about connecting you with your dream property and empowering you with knowledge. This blog is your gateway to expert advice, insightful market trends, and local real estate news. Whether you're a seasoned investor, a first-time homebuyer, or a renter seeking your perfect place, we've got something for everyone.",
+};
