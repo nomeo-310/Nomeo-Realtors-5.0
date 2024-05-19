@@ -6,13 +6,12 @@ import { getLocalGovernment } from '@/hooks/getLocalGovernment';
 import NumberInput from './NumberInput';
 import { useRouter, useSearchParams } from 'next/navigation';
 import qs from 'query-string'
+import { states } from '@/components/data/constants';
 
 
 const RentApartmentTab = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-
-  const data = ['Edo', 'Federal Capital Territory', 'Kano', 'Kwara', 'Lagos', 'Ondo', 'Osun', 'Oyo'];
 
   const [state, setState] = React.useState('');
   const localGovernmentAreas = getLocalGovernment(state)
@@ -50,7 +49,7 @@ const RentApartmentTab = () => {
     const url = qs.stringifyUrl({url: '/search', query: updatedQuery}, {skipNull: true});
 
     router.push(url);
-  }
+  };
 
   return (
     <div className='bg-white/60 rounded-tr-md rounded-bl-lg rounded-br-lg'>
@@ -60,7 +59,7 @@ const RentApartmentTab = () => {
           selected={state}
           setSelected={setState}
           placeholder='state'
-          data={data}
+          data={states}
           flowTop
           useSearch
         />

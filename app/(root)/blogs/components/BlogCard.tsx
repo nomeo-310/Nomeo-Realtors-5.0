@@ -19,7 +19,7 @@ type blogCardProps = {
 const BlogCard = ({author, createdAt, title, description, id, blogBanner, authorImage}: blogCardProps) => {
   return (
     <div className="w-full flex flex-col gap-2 cursor-pointer group">
-      <div className="md:aspect-square xl:h-[240px] lg:h-[250px] md:h-[230px] h-[220px] aspect-video flex items-center justify-center overflow-hidden rounded-md">
+      <div className="md:aspect-square xl:h-[15rem] lg:h-[14rem] md:h-[13rem] h-[12.5rem] aspect-video flex items-center justify-center overflow-hidden rounded">
         <div className='w-full h-full relative bg-neutral-600'>
           <Image src={blogBanner} alt='blog_art' fill className='object-cover group-hover:scale-110' priority/>
           <div className="absolute bottom-0 left-0 w-full bg-black/30 p-4 text-white flex items-center justify-between">
@@ -28,7 +28,7 @@ const BlogCard = ({author, createdAt, title, description, id, blogBanner, author
               <p>{createdAt}</p>
             </div>
             <div>
-              <ImageAvatar className='rounded-full overflow-hidden lg:w-11 lg:h-11 w-10 h-10' src={authorImage}/>
+              <ImageAvatar className='rounded overflow-hidden lg:w-11 lg:h-11 w-10 h-10' src={authorImage}/>
             </div>
           </div>
         </div>

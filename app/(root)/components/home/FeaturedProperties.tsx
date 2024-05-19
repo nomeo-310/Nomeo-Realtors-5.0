@@ -25,6 +25,7 @@ const FeaturedProperties = () => {
           monthlyRent={property.monthlyRent}
           liked={property.liked}
           saved={property.saved}
+          hideTag={false}
         />
       ))}
     </div>

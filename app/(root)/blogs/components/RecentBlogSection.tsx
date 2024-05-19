@@ -10,7 +10,7 @@ const RecentBlogSection = ({blogList}:{blogList:blog[]}) => {
   return (
     <div className="w-full h-fit grid md:grid-cols-2 xl:gap-4 gap-3 grid-cols-1">
       <div className="w-full mb-2 md:mb-0">
-        <div className="w-full aspect-video lg:h-[18rem] h-[15rem] rounded-md relative overflow-hidden flex items-center justify-center mb-4">
+        <div className="w-full aspect-video lg:h-[18rem] h-[15rem] rounded relative overflow-hidden flex items-center justify-center mb-4">
           <Image src={blogList[0].imageBanner} alt='banner_1' priority fill className='object-cover'/>
           <div className="absolute bottom-0 left-0 w-full bg-black/30 p-4 text-white flex items-center justify-between">
             <div>
@@ -18,7 +18,7 @@ const RecentBlogSection = ({blogList}:{blogList:blog[]}) => {
               <p>{blogList[0].createdAt}</p>
             </div>
             <div>
-              <ImageAvatar className='rounded-full overflow-hidden lg:w-11 lg:h-11 w-10 h-10' src={blogList[0].authorImage}/>
+              <ImageAvatar className='rounded overflow-hidden lg:w-11 lg:h-11 w-10 h-10' src={blogList[0].authorImage}/>
             </div>
           </div>
         </div>
@@ -32,7 +32,7 @@ const RecentBlogSection = ({blogList}:{blogList:blog[]}) => {
         </div>
       </div>
       <div className="w-full md:hidden mb-2">
-        <div className="w-full aspect-video lg:h-[18rem] h-[15rem] rounded-md relative overflow-hidden flex items-center justify-center mb-4">
+        <div className="w-full aspect-video lg:h-[18rem] h-[15rem] rounded relative overflow-hidden flex items-center justify-center mb-4">
           <Image src={blogList[1].imageBanner} alt='banner_1' priority fill className='object-cover'/>
           <div className="absolute bottom-0 left-0 w-full bg-black/30 p-4 text-white flex items-center justify-between">
             <div>
@@ -40,7 +40,7 @@ const RecentBlogSection = ({blogList}:{blogList:blog[]}) => {
               <p>{blogList[1].createdAt}</p>
             </div>
             <div>
-              <ImageAvatar className='rounded-full overflow-hidden lg:w-11 lg:h-11 w-10 h-10' src={blogList[1].authorImage}/>
+              <ImageAvatar className='rounded overflow-hidden lg:w-11 lg:h-11 w-10 h-10' src={blogList[1].authorImage}/>
             </div>
           </div>
         </div>
@@ -54,7 +54,7 @@ const RecentBlogSection = ({blogList}:{blogList:blog[]}) => {
         </div>
       </div>
       <div className="w-full md:hidden mb-2">
-        <div className="w-full aspect-video lg:h-[18rem] h-[15rem] rounded-md relative overflow-hidden flex items-center justify-center mb-4">
+        <div className="w-full aspect-video lg:h-[18rem] h-[15rem] rounded relative overflow-hidden flex items-center justify-center mb-4">
           <Image src={blogList[2].imageBanner} alt='banner_1' priority fill className='object-cover'/>
           <div className="absolute bottom-0 left-0 w-full bg-black/30 p-4 text-white flex items-center justify-between">
             <div>
@@ -62,7 +62,7 @@ const RecentBlogSection = ({blogList}:{blogList:blog[]}) => {
               <p>{blogList[2].createdAt}</p>
             </div>
             <div>
-              <ImageAvatar className='rounded-full overflow-hidden lg:w-11 lg:h-11 w-10 h-10' src={blogList[2].authorImage}/>
+              <ImageAvatar className='rounded overflow-hidden lg:w-11 lg:h-11 w-10 h-10' src={blogList[2].authorImage}/>
             </div>
           </div>
         </div>
@@ -77,7 +77,7 @@ const RecentBlogSection = ({blogList}:{blogList:blog[]}) => {
       </div>
       <div className="md:grid w-full grid-rows-2 xl:gap-4 gap-3 hidden">
         <div className="w-full flex gap-3">
-          <div className="w-[40%] h-full relative rounded-md overflow-hidden flex items-center justify-center">
+          <div className="w-[40%] h-full relative rounded overflow-hidden flex items-center justify-center">
             <Image src={blogList[1].imageBanner} alt='banner_image' fill priority className='object-cover'/>
             <div className="absolute bottom-0 left-0 w-full bg-black/30 p-4 text-white flex items-center justify-between">
               <div>
@@ -85,7 +85,7 @@ const RecentBlogSection = ({blogList}:{blogList:blog[]}) => {
                 <p>{blogList[1].createdAt}</p>
               </div>
               <div>
-                <ImageAvatar className='rounded-full overflow-hidden w-10 h-10' src={blogList[1].authorImage}/>
+                <ImageAvatar className='rounded overflow-hidden w-10 h-10' src={blogList[1].authorImage}/>
               </div>
             </div>
           </div>
@@ -99,7 +99,7 @@ const RecentBlogSection = ({blogList}:{blogList:blog[]}) => {
           </div>
         </div>
         <div className="w-full flex gap-3">
-          <div className="w-[40%] h-full relative rounded-md overflow-hidden flex items-center justify-center">
+          <div className="w-[40%] h-full relative rounded overflow-hidden flex items-center justify-center">
             <Image src={blogList[2].imageBanner} alt='banner_image' fill priority className='object-cover'/>
             <div className="absolute bottom-0 left-0 w-full bg-black/30 p-4 text-white flex items-center justify-between">
               <div>
@@ -107,7 +107,7 @@ const RecentBlogSection = ({blogList}:{blogList:blog[]}) => {
                 <p>{blogList[2].createdAt}</p>
               </div>
               <div>
-                <ImageAvatar className='rounded-full overflow-hidden w-10 h-10' src={blogList[2].authorImage}/>
+                <ImageAvatar className='rounded overflow-hidden w-10 h-10' src={blogList[2].authorImage}/>
               </div>
             </div>
           </div>

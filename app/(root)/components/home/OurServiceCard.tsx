@@ -13,7 +13,7 @@ type cardProps = {
 
 const OurServiceCard = ({icon:Icon, subTitle, title, id}:cardProps) => {
   return (
-    <div className="border p-4 md:p-3 lg:p-8 md:aspect-square aspect-video hover:drop-shadow-md hover:bg-white active:bg-white flex active:border-0 hover:border-0 items-center justify-center rounded-md flex-col gap-6">
+    <div className="border p-4 md:p-3 lg:p-8 md:aspect-square aspect-video hover:drop-shadow-md hover:bg-white active:bg-white flex active:border-0 hover:border-0 items-center justify-center rounded flex-col gap-6">
       <div className='flex items-center w-full gap-4 md:gap-2 lg:justify-center justify-normal'>
         <div className="lg:w-28 lg:h-28 w-20 h-20 md:w-16 md:h-16 rounded bg-neutral-200 flex items-center justify-center">
           <Icon size={80} className='text-neutral-700 lg:block hidden'/>

@@ -13,8 +13,8 @@ const ImageGallery = ({property,  setOpenSlider}:{property:propertyProps, setOpe
 
   const ViewAllButton = ({className}:{className?:string}) => {
     return (
-      <button className={twMerge("absolute right-3 bottom-3  bg-white py-2 px-3 rounded-md flex items-center", className)} onClick={() => setOpenSlider(true)}>
-        <h2 className='md:text-sm lg:text-base'>View all {property.propertyImageList.length} photos</h2>
+      <button className={twMerge("absolute right-3 bottom-3  bg-white py-2 pl-3 pr-1 rounded flex items-center", className)} onClick={() => setOpenSlider(true)}>
+        <h2 className='text-sm lg:text-base'>View all {property.propertyImageList.length} photos</h2>
         <div>
           <HiChevronRight size={22}/>
         </div>
@@ -25,28 +25,28 @@ const ImageGallery = ({property,  setOpenSlider}:{property:propertyProps, setOpe
   return (
     <React.Fragment>
       <div className='w-full rounded overflow-hidden xl:h-[30rem] lg:h-[28rem] md:h-[22rem] h-[20rem] grid md:grid-cols-2 gap-2 grid-cols-1'>
-        <div className="w-full h-full rounded-md flex justify-center items-center relative overflow-hidden bg-neutral-500">
+        <div className="w-full h-full rounded flex justify-center items-center relative overflow-hidden bg-gray-300">
           <Image src={property.propertyImageList[0]} alt='property_image_1' priority className='object-cover' fill/>
-          <ViewAllButton  className='md:hidden rounded-full'/>
+          <ViewAllButton  className='md:hidden'/>
         </div>
         <div className="w-full h-full md:grid grid-rows-2 overflow-hidden gap-2 hidden">
-            <div className="w-full flex h-full justify-center items-center rounded-md relative overflow-hidden bg-neutral-500">
+            <div className="w-full flex h-full justify-center items-center rounded relative overflow-hidden bg-gray-300">
               <Image src={property.propertyImageList[1]} alt='property_image_2' priority className='object-cover' fill/>
             </div>
             <div className="grid grid-cols-2 w-full h-full gap-2 overflow-hidden">
-              <div className="w-full h-full rounded-md flex items-center justify-center relative overflow-hidden bg-neutral-500">
+              <div className="w-full h-full rounded flex items-center justify-center relative overflow-hiddenbg-gray-3000">
                 <Image src={property.propertyImageList[2]} alt='property_image_3' priority className='object-cover' fill/>
               </div>
-              <div className="w-full h-full rounded-md flex items-center justify-center overflow-hidden relative bg-neutral-500 cursor-pointer">
+              <div className="w-full h-full rounded flex items-center justify-center overflow-hidden relative bg-gray-300 cursor-pointer">
                 <Image src={property.propertyImageList[3]} alt='property_image_4' priority className='object-cover' fill/>
-                <ViewAllButton className='rounded-full' />
+                <ViewAllButton />
               </div>
             </div>
         </div>
       </div>
       <div className='my-4 flex justify-between items-start md:items-center flex-col md:flex-row'>
         <p className='lg:text-2xl text-xl mb-2 md:mb-0'>{property.propertTag === 'rent' ? 'Monthly Rent' : 'Price'}: <span className='text-yellow-400'>{nairaSign} {property.propertTag === 'rent' ? property.monthlyRent?.toLocaleString() : property.propertyCost?.toLocaleString()}.00</span></p>
-        <div className="py-2.5 px-5 rounded-full bg-neutral-700 text-white flex w-fit gap-2 lg:gap-3 lg:text-lg items-center">
+        <div className="py-2.5 px-5 rounded bg-neutral-700 text-white flex w-fit gap-2 lg:gap-3 lg:text-lg items-center">
           <div className='border-r pr-2.5 lg:pr-3.5 capitalize'>{property.beds} beds</div>
           <div className='border-r pr-2.5 lg:pr-3.5 capitalize'>{property.baths} baths</div>
           <div className='border-r pr-2.5 lg:pr-3.5 capitalize'>{property.toilets} toilets</div>

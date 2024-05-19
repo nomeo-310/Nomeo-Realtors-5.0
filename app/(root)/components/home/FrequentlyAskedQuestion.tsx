@@ -25,7 +25,7 @@ const FrequentlyAskedQuestion = ({ title, content, isOpen, onClick }:frequentlyA
   }, [isOpen]);
 
   return (
-    <li className={` border-b ${isOpen ? "bg-neutral-200" : ""}`} onClick={onClick}>
+    <li className={` border-b ${isOpen ? "bg-neutral-200 " : ""}`} onClick={onClick}>
       <div className="w-full flex lg:items-center justify-between lg:p-4 p-3 gap-4">
         <h2 className="lg:text-xl text-lg">
           <button className={`font-medium text-left ${ isOpen ? "font-semibold" : ""}`}>

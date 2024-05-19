@@ -63,7 +63,7 @@ export interface  propertyProps {
   verifiedamenities: string[]
 };
 
-export const loggedIn = false;
+export const loggedIn = true;
 export const userSurname = 'Salomi';
 
 export const navBarList = [
@@ -82,10 +82,6 @@ export const navBarList = [
   {
     label: 'blog', 
     path: '/blogs'
-  },
-  {
-    label: 'search', 
-    path: '/search'
   }
 ];
 
@@ -279,8 +275,7 @@ export const blogList = [
     createdAt: "2 Feb 2024",
     author: "Babatunde Omisola",
     authorImage: "/images/profile_4.jpg"
-  },
-
+  }
 ];
 
 export const frequentlyAskedQuestions = [
@@ -742,3 +737,5 @@ export const aboutUsData = {
 export const blogData = {
   mainTitle: "Are you navigating the exciting yet complex world of Lagos real estate? Look no further! At Nomeo Suites, we're passionate about connecting you with your dream property and empowering you with knowledge. This blog is your gateway to expert advice, insightful market trends, and local real estate news. Whether you're a seasoned investor, a first-time homebuyer, or a renter seeking your perfect place, we've got something for everyone.",
 };
+
+export const states = ['Edo', 'Federal Capital Territory', 'Kano', 'Kwara', 'Lagos', 'Ondo', 'Osun', 'Oyo'];

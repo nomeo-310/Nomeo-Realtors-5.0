@@ -6,13 +6,13 @@ import { getLocalGovernment } from '@/hooks/getLocalGovernment';
 import NumberInput from './NumberInput';
 import { useRouter, useSearchParams } from 'next/navigation';
 import qs from 'query-string'
+import { states } from '@/components/data/constants';
 
 type Props = {}
 
 const BuyApartmentTab = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const data = ['Edo', 'Federal Capital Territory', 'Kano', 'Kwara', 'Lagos', 'Ondo', 'Osun', 'Oyo'];
 
   const [state, setState] = React.useState('');
   const localGovernmentAreas = getLocalGovernment(state)
@@ -59,7 +59,7 @@ const BuyApartmentTab = () => {
           selected={state}
           setSelected={setState}
           placeholder='state'
-          data={data}
+          data={states}
           flowTop
           useSearch
         />

@@ -103,7 +103,7 @@ const NavigationClient = () => {
 
       {/* mobile interface menu */}
       { showMobileNav &&
-        <div className="slide-in-left md:hidden absolute left-[4%] min-w-[180px] top-[70px] bg-white text-black rounded-md drop-shadow-md overflow-hidden">
+        <div className="slide-in-left md:hidden absolute left-[4%] min-w-[180px] top-[70px] bg-white text-black rounded drop-shadow-md overflow-hidden">
           <div className="flex flex-col gap-[3px]">
             {navBarList.map((item:navbarItem ,index:number) => (
               <Link key={index} href={item.path} className={`capitalize py-2 pl-4 ${item.path === path ? 'bg-neutral-700 text-white hover:bg-neutral-700 hover:text-white active:bg-neutral-700 active:text-white' : 'hover:bg-neutral-500 hover:text-white active:bg-neutral-500 active:text-white'}`} onClick={() => setShowMobileNav(false)}>{item.label}</Link>
@@ -112,10 +112,10 @@ const NavigationClient = () => {
           {loggedIn && 
             <React.Fragment>
               <hr/>
-              <Link className='px-3 py-2 lg:text-lg block hover:bg-neutral-500 hover:text-white active:bg-neutral-500 active:text-white' href={'/dashboard'}>
+              <Link className='px-3 py-2 lg:text-lg block hover:bg-neutral-500 hover:text-white active:bg-neutral-500 active:text-white' href={'/dashboard'} onClick={() => setShowMobileNav(false)}>
                 Dashboard
               </Link>
-              <button className='px-3 py-2 lg:text-lg capitalize hover:bg-neutral-500 hover:text-white w-full text-left active:bg-neutral-500 active:text-white'>
+              <button className='px-3 py-2 lg:text-lg capitalize hover:bg-neutral-500 hover:text-white w-full text-left active:bg-neutral-500 active:text-white' onClick={() => setShowMobileNav(false)}>
                 sign out
               </button>
             </React.Fragment>
@@ -125,12 +125,12 @@ const NavigationClient = () => {
 
       {/* sign out & link to dashboard */}
       { showLoggedInMenu &&
-        <div className='slide-in-left absolute right-[3%] bg-white text-black rounded-md top-[75px] lg:top-[80px] min-w-[140px] overflow-hidden hidden md:block drop-shadow-md'>
-          <Link className='px-3 py-2 block hover:bg-neutral-500 hover:text-white' href={'/dashboard'}>
+        <div className='slide-in-left absolute right-[3%] bg-white text-black rounded top-[75px] lg:top-[80px] min-w-[140px] overflow-hidden hidden md:block drop-shadow-md'>
+          <Link className='px-3 py-2 block hover:bg-neutral-500 hover:text-white' href={'/dashboard'} onClick={() => setShowLoggedInMenu(false)}>
             Dashboard
           </Link>
           <hr/>
-          <button className='px-3 py-2 capitalize hover:bg-neutral-500 hover:text-white w-full text-left'>
+          <button className='px-3 py-2 capitalize hover:bg-neutral-500 hover:text-white w-full text-left' onClick={() => setShowLoggedInMenu(false)}>
             sign out
           </button>
         </div>
