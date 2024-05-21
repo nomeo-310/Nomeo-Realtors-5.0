@@ -16,10 +16,10 @@ const DashBoardLayout = ({children, agentLoggedIn, activeTab, setActiveTab}: lay
 
   return (
     <Box className='pt-24 lg:pt-28 flex md:gap-5 lg:gap-6 gap-3'>
-      <div className="sticky top-[78px] h-full lg:w-[22%] md:w-[32%] flex flex-col md:gap-1 gap-3 w-fit">
+      <div className="sticky top-[78px] h-full lg:w-[22%] md:w-[32%] flex flex-col md:gap-2 gap-3 w-fit">
         <DashBoardMenu agentLoggedIn={agentLoggedIn} activeTab={activeTab} setActiveTab={setActiveTab}/>
       </div>
-      <div className='lg:w-[78%] md:w-[68%] border'>
+      <div className='lg:w-[78%] md:w-[68%]'>
         {children}
       </div>
     </Box>
