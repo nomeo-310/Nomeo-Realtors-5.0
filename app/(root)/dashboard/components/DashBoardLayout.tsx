@@ -15,11 +15,11 @@ type layoutProps = {
 const DashBoardLayout = ({children, agentLoggedIn, activeTab, setActiveTab}: layoutProps) => {
 
   return (
-    <Box className='pt-24 lg:pt-28 flex md:gap-5 lg:gap-6 gap-3'>
-      <div className="sticky top-[78px] h-full lg:w-[22%] md:w-[32%] flex flex-col md:gap-2 gap-3 w-fit">
+    <Box className='pt-24 lg:pt-28 flex md:gap-5 lg:gap-9 gap-5'>
+      <div className="sticky top-[78px] h-full lg:w-[22%] md:w-[32%] flex flex-col gap-2 w-fit">
         <DashBoardMenu agentLoggedIn={agentLoggedIn} activeTab={activeTab} setActiveTab={setActiveTab}/>
       </div>
-      <div className='lg:w-[78%] md:w-[68%]'>
+      <div className='lg:w-[78%] md:w-[68%] grow'>
         {children}
       </div>
     </Box>
