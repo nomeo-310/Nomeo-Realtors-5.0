@@ -11,7 +11,7 @@ const LandingPage = () => {
         <Image src={'/images/desktop_banner.png'} className='object-cover hidden md:block' fill alt='banner' priority/>
         <Image src={'/images/mobile_banner.png'} className='object-cover md:hidden' fill alt='banner' priority/>
       </div>
-      <div className="absolute left-0 top-0 w-full h-full flex items-center justify-center md:gap-12 gap-7 flex-col lg:pt-[5%] pt-[12%]">
+      <div className="absolute left-0 top-0 w-full h-full flex items-center justify-center md:gap-12 gap-7 flex-col lg:pt-[3%] pt-[12%]">
         <div className="flex flex-col lg:gap-10 md:gap-8 gap-5">
           <div className="flex flex-col items-center slide-in-top_1">
             <h2 className='lg:text-7xl md:text-5xl text-2xl text-white'>Find a modern property</h2>

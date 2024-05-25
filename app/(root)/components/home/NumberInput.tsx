@@ -15,7 +15,7 @@ const NumberInput = ({id, label, placeholder, value, onChange}:NumberInputProps)
   return (
     <div className='w-full'>
       {label && <label htmlFor={id} className='uppercase ml-2 mb-1 text-sm block'>{label} ({nairaSign})</label>}
-      <input id={id} type="number" className='w-full rounded-md bg-white p-2 lg:p-2.5 outline-none placeholder:text-gray-400' placeholder={placeholder} value={value} onChange={onChange} />
+      <input id={id} type="number" className='lg:text-lg w-full rounded bg-gray-200 md:p-4 p-3.5 outline-none placeholder:text-gray-400' placeholder={placeholder} value={value} onChange={onChange} />
     </div>
   )
 }

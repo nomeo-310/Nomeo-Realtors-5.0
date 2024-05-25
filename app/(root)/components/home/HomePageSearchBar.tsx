@@ -15,10 +15,10 @@ const HomePageSearchBar = () => {
   const TabSelectButton = () => {
     return (
       <div className="flex">
-        <button className={`text-sm uppercase py-3 px-10 lg:px-14 rounded-tl-md ${activeTab === 'rent' ? 'bg-white/60' : 'bg-white'}`} onClick={() => handleSelectTab('rent')}>
+        <button className={`text-sm uppercase py-3.5 md:py-4 px-10 lg:px-14 rounded-tl-md ${activeTab === 'rent' ? 'bg-white/60' : 'bg-white'}`} onClick={() => handleSelectTab('rent')}>
           rent
         </button>
-        <button className={`text-sm uppercase py-3 px-10 lg:px-14 rounded-tr-md ${activeTab === 'buy' ? 'bg-white/60' : 'bg-white'}`} onClick={() => handleSelectTab('buy')}>
+        <button className={`text-sm uppercase py-3.5 md:py-4 px-10 lg:px-14 rounded-tr-md ${activeTab === 'buy' ? 'bg-white/60' : 'bg-white'}`} onClick={() => handleSelectTab('buy')}>
           buy
         </button>
       </div>

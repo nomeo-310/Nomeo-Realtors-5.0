@@ -31,18 +31,18 @@ const CustomSelectComponent = ({selectStyle, title, data, selected, setSelected,
 
   return (
     <div className={twMerge('w-full relative ', selectStyle)}>
-      <h2 className='uppercase ml-2 mb-1 text-sm'>{title}</h2>
-      <div onClick={() => setIsOpen((prevState) => !prevState)} className={`bg-white w-full cursor-pointer flex items-center justify-between p-2 lg:p-2.5 rounded capitalize ${!selected && 'text-gray-400'}`}>
-        <div className='grow'>{selected ? selected : `select ${placeholder}`}</div>
-        <div className="border-l pl-2 lg:pl-2.5 border-black text-black">
+      {title && <h2 className='uppercase ml-2 mb-1 text-sm'>{title}</h2>}
+      <div onClick={() => setIsOpen((prevState) => !prevState)} className={`bg-gray-200 w-full cursor-pointer flex items-center justify-between md:p-4 p-3.5 rounded ${!selected && 'text-gray-400'}`}>
+        <div className='grow lg:text-lg'>{selected ? selected : `select ${placeholder}`}</div>
+        <div className="border-l md:pl-4 pl-3.5 border-black text-black">
           { isOpen ? <HiChevronDown size={16}/> : <HiChevronUp size={16}/> }
         </div>
       </div>
-      <ul className={`bg-white z-[120] px-2 absolute ${flowTop ? '-top-[145px]' : '-bottom-[170px]'}  left-0 w-full rounded overflow-hidden overflow-y-auto ${isOpen ? 'max-h-44' : 'max-h-0'} `}>
+      <ul className={`bg-white z-[120] px-3.5 absolute ${flowTop ? '-top-[145px]' : '-bottom-[170px]'}  left-0 w-full rounded overflow-hidden overflow-y-auto ${isOpen ? 'max-h-44' : 'max-h-0'} `}>
         { useSearch && data?.length > 0 &&
           <React.Fragment>
-            <div className="flex items-center sticky top-0 px-2 lg:px-2.5 py-2 bg-white">
-              <div className='pr-2 lg:pr-2.5'>
+            <div className="flex items-center sticky top-0 md:px-4 px-3.5 py-3.5 bg-white">
+              <div className='md:pr-4 pr-3.5'>
                 <HiMagnifyingGlass size={16}/>
               </div>
               <input type='text' className='grow focus:outline-none'

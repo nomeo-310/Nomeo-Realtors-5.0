@@ -112,7 +112,7 @@ const EditProfile = (props: Props) => {
           </div>
         </div>
         <hr/>
-        <div className="flex flex-col gap-3 grow">
+        <React.Fragment>
           <h2 className='text-xl lg:text-2xl mb-4'>Personal Details</h2>
           <Input
             type='text'
@@ -137,9 +137,9 @@ const EditProfile = (props: Props) => {
               onChange={(event) => setCurrentState(event.target.value)}
             />
           </div>
-        </div>
+        </React.Fragment>
         <hr/>
-        <div className="flex flex-col gap-3 grow">
+        <React.Fragment>
           <h2 className='text-xl lg:text-2xl mb-4'>Agent & Agency Details</h2>
           <Input
             type='text'
@@ -191,7 +191,7 @@ const EditProfile = (props: Props) => {
             value={bio}
             onChange={(event) => setBio(event.target.value)}
           />
-        </div>
+        </React.Fragment>
         <div className='mt-8 flex items-center'>
           <Button type='button' onClick={()=> console.log('update profile')}>
             Update Profile

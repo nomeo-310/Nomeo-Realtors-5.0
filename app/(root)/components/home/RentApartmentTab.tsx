@@ -88,7 +88,7 @@ const RentApartmentTab = () => {
         />
       </div>
       <div className="mt-5 p-2.5 lg:p-3 w-full flex justify-end">
-        <button className='w-1/2 bg-neutral-700 p-2 lg:p-2.5 text-white lg:text-xl rounded-md hover:opacity-80' onClick={handleSearch}>
+        <button className='w-1/2 bg-neutral-700 p-3 text-white lg:text-xl rounded-md hover:opacity-80' onClick={handleSearch}>
           Search
         </button>
       </div>
