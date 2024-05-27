@@ -11,10 +11,11 @@ type customSelectProps = {
   flowTop?: boolean
   setSelected: React.Dispatch<React.SetStateAction<string>>
   useSearch?:boolean
-
+  flowTopHeight?: string
+  flowBottomHeight?: string
 }
 
-const CustomSelectComponent = ({selectStyle, title, data, selected, setSelected, placeholder, flowTop, useSearch}: customSelectProps) => {
+const CustomSelectComponent = ({flowTopHeight, flowBottomHeight,selectStyle, title, data, selected, setSelected, placeholder, flowTop, useSearch}: customSelectProps) => {
 
   const [inputValue, setInputValue] = React.useState('');
   const [isOpen, setIsOpen] = React.useState(false);
@@ -38,7 +39,7 @@ const CustomSelectComponent = ({selectStyle, title, data, selected, setSelected,
           { isOpen ? <HiChevronDown size={16}/> : <HiChevronUp size={16}/> }
         </div>
       </div>
-      <ul className={`bg-white z-[120] px-3.5 absolute ${flowTop ? '-top-[145px]' : '-bottom-[170px]'}  left-0 w-full rounded overflow-hidden overflow-y-auto ${isOpen ? 'max-h-44' : 'max-h-0'} `}>
+      <ul className={twMerge(`bg-white z-[120] px-3.5 absolute ${flowTop ? '-top-[145px]' : '-bottom-[170px]'}  ${flowTop ? flowTopHeight : flowBottomHeight} left-0 w-full rounded overflow-hidden overflow-y-auto ${isOpen ? 'max-h-44' : 'max-h-0'}`)}>
         { useSearch && data?.length > 0 &&
           <React.Fragment>
             <div className="flex items-center sticky top-0 md:px-4 px-3.5 py-3.5 bg-white">

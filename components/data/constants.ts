@@ -69,6 +69,9 @@ export interface  propertyProps {
 export const loggedIn = true;
 export const userSurname = 'Salomi';
 
+export const furnitureTags = ['furnished', 'unfurnished'];
+export const propertyTags = ['sale', 'rent'];
+
 export const navBarList = [
   {
     label: 'buy', 
