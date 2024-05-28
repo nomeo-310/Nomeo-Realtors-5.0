@@ -41,18 +41,16 @@ const CreateProperty = (props: Props) => {
 
   const [mainFeeName, setMainFeeName] = React.useState('');
   const [mainFeeAmount, setMainFeeAmount] = React.useState(0);
-  const [mainFee, setMainFee] = React.useState([{mainFeeName: '', mainFeeAmount: 0}]);
-  const singleMainFee = {mainFeeName, mainFeeAmount};
+  const [mainFee, setMainFee] = React.useState([{mainFeeName: '', mainFeeAmount: 0}].filter((item) => item.mainFeeAmount !== 0));
+
 
   const [optFeeName, setOptFeeName] = React.useState('');
   const [optFeeAmount, setOptFeeAmount] = React.useState(0);
-  const [optFee, setOptFee] = React.useState([{optFeeName: '', optFeeAmount: 0}]);
-  const singleOptFee = {optFeeName, optFeeAmount};
+  const [optFee, setOptFee] = React.useState([{optFeeName: '', optFeeAmount: 0}].filter((item) => item.optFeeAmount !== 0));
 
   const [landmarkName, setLandmarkName] = React.useState('');
   const [distance, setDistance] = React.useState('');
-  const [closestLandmark, setClosestLandmark] = React.useState([{landmarkName: '', distance: ''}]);
-  const singleClosestLandmark = {landmarkName, distance};
+  const [closestLandmark, setClosestLandmark] = React.useState([{landmarkName: '', distance: ''}].filter((item) => item.landmarkName !== ''));
 
   const [bedNumber, setBedNumber] = React.useState(0);
   const [bathNumber, setBathNumber] = React.useState(0);
@@ -112,32 +110,38 @@ const CreateProperty = (props: Props) => {
     setOptFeeAmount(value);
   };
 
-  const createMainFee = () => {
+  const createMainFee = React.useCallback(() => {
+    const singleMainFee = {mainFeeName, mainFeeAmount};
+
     if (mainFeeName && mainFeeAmount || mainFeeName !== '' && mainFeeAmount !== 0) {
       setMainFee([...mainFee, singleMainFee].filter((item) => item.mainFeeAmount !== 0));
       setMainFeeName('')
       setMainFeeAmount(0);
     }
     return;
-  };
+  },[mainFee, mainFeeAmount, mainFeeName]);
 
-  const createOptionalFee = () => {
+  const createOptionalFee = React.useCallback(() => {
+    const singleOptFee = {optFeeName, optFeeAmount}
+
     if (optFeeName && optFeeAmount || optFeeName !== '' && optFeeAmount !== 0) {
       setOptFee([...optFee, singleOptFee].filter((item) => item.optFeeAmount !== 0));
       setOptFeeName('')
       setOptFeeAmount(0);
     }
     return;
-  };
+  }, [optFee, optFeeAmount, optFeeName]);
 
-  const createClosestLandmark = () => {
+  const createClosestLandmark = React.useCallback(() => {
+    const singleClosestLandmark = {landmarkName, distance}
+
     if (landmarkName && distance || landmarkName !== '' && distance !== '') {
       setClosestLandmark([...closestLandmark, singleClosestLandmark].filter((item) => item.landmarkName !== ''));
       setLandmarkName('')
       setDistance('');
     }
     return;
-  };
+  },[closestLandmark, distance, landmarkName])
 
   const removeSingleMainFee = (value:string) => {
     const renderedAmenities = mainFee.filter((item) => item.mainFeeName !== value);
@@ -188,12 +192,13 @@ const CreateProperty = (props: Props) => {
     const value = parseInt(e.target.value) || 0;
     setToiletNumber(value);
   };
+
   const onChangeApartmentArea = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value) || 0;
     setApartmentArea(value);
   };
 
-  const ImageHolder = ():React.JSX.Element => {
+  const ImageHolder = () => {
     return (
       <div className="rounded bg-gray-200 overflow-hidden flex items-center justify-center aspect-square relative cursor-pointer group">
         <Image src={'/images/blogImage_1.jpg'} fill priority alt='imag_2'/>
@@ -202,7 +207,7 @@ const CreateProperty = (props: Props) => {
         </div>
       </div>
     )
-  }
+  };
 
   return (
     <div className='w-full h-full flex items-center'>
@@ -256,18 +261,6 @@ const CreateProperty = (props: Props) => {
             { imageList ?
             <React.Fragment>
               <div className="w-full grid grid-cols-3 md:grid-cols-4 gap-2 lg:grid-cols-5">
-                <ImageHolder/>
-                <ImageHolder/>
-                <ImageHolder/>
-                <ImageHolder/>
-                <ImageHolder/>
-                <ImageHolder/>
-                <ImageHolder/>
-                <ImageHolder/>
-                <ImageHolder/>
-                <ImageHolder/>
-                <ImageHolder/>
-                <ImageHolder/>
                 <ImageHolder/>
               </div>
               <div className='text-right text-sm md:text-base'>18 images uploaded.</div>
@@ -399,7 +392,7 @@ const CreateProperty = (props: Props) => {
               <div className='flex items-center justify-end'>
                 <Button className='lg:text-lg py-2 px-4 md:px-6 flex items-center gap-2 mt-1 justify-end' type='button' onClick={createMainFee}>
                   <HiPlus size={24}/>
-                  {mainFee.length > 1 ? 'Add more' : 'Add fee'}
+                  { mainFee.length === 0 ? 'Add fee': 'Add more'}
                 </Button>
               </div>
             </div>
@@ -436,7 +429,7 @@ const CreateProperty = (props: Props) => {
               <div className='flex items-center justify-end'>
                 <Button className='lg:text-lg py-2 px-4 md:px-6 flex items-center gap-2 mt-1 justify-end' type='button' onClick={createOptionalFee}>
                   <HiPlus size={24}/>
-                  {optFee.length > 1 ? 'Add more' : 'Add fee'}
+                  {optFee.length === 0 ? 'Add fee' : 'Add more'}
                 </Button>
               </div>
             </div>
@@ -473,7 +466,7 @@ const CreateProperty = (props: Props) => {
               <div className='flex items-center justify-end'>
                 <Button className='lg:text-lg py-2 px-4 md:px-6 flex items-center gap-2 mt-1 justify-end' type='button' onClick={createClosestLandmark}>
                   <HiPlus size={24}/>
-                  {closestLandmark.length > 1 ? 'Add more' : 'Add nearby place'}
+                  {closestLandmark.length === 0 ? 'Add nearby place' : 'Add more nearby place'}
                 </Button>
               </div>
             </div>
