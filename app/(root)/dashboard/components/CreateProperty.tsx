@@ -13,10 +13,15 @@ import Button from '@/components/shared/Button'
 import { LuImagePlus } from 'react-icons/lu'
 import { PiBathtub, PiBed, PiMapPinArea, PiToilet } from 'react-icons/pi'
 import Image from 'next/image'
+import { CldUploadWidget } from 'next-cloudinary'
+import { deleteCloudinaryImages } from '@/libs/actions/deleteCloudinaryImage'
 
-type Props = {}
+type propertyImageProps = {
+  public_id:string,
+  secure_url:string
+}
 
-const CreateProperty = (props: Props) => {
+const CreateProperty = () => {
 
   const maxLimit = 450;
   const maxAmenities = 10;
@@ -56,6 +61,27 @@ const CreateProperty = (props: Props) => {
   const [bathNumber, setBathNumber] = React.useState(0);
   const [toiletNumber, setToiletNumber] = React.useState(0);
   const [apartmentArea, setApartmentArea] = React.useState(0);
+
+  const [uploadedImages, setUploadedImages] = React.useState<propertyImageProps[]>([])
+
+  const uploadOptions = {
+    cloudName:process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME as string,
+    multiple:true,
+    maxFiles:16,
+    uploadPreset: 'apartmentImages',
+  };
+
+  const handleUploadPropertyImages = (result:{info?: any}) => {
+    const images = Array.isArray(result.info) ? result.info : [result.info];
+
+    const newImage = images.map((image) => ({
+      public_id: image.public_id as string,
+      secure_url: image.secure_url as string,
+    }));
+    setUploadedImages((prevImages) => [...prevImages, ...newImage]);
+  };
+
+  console.log(uploadedImages)
 
   const nairaSign:string = String.fromCodePoint(8358);
   const imageList = true;
@@ -198,12 +224,22 @@ const CreateProperty = (props: Props) => {
     setApartmentArea(value);
   };
 
-  const ImageHolder = () => {
+  const handleDeleteUploadedImages = async(publicId:string) => {
+    try {
+      deleteCloudinaryImages(publicId);
+      const newImages = uploadedImages.filter((item) => item.public_id !== publicId);
+      setUploadedImages(newImages);
+    } catch (error) {
+      return;
+    }
+  }
+
+  const ImageHolder = ({public_id, secure_url}:{public_id:string, secure_url:string}) => {
     return (
       <div className="rounded bg-gray-200 overflow-hidden flex items-center justify-center aspect-square relative cursor-pointer group">
-        <Image src={'/images/blogImage_1.jpg'} fill priority alt='imag_2'/>
+        <Image src={secure_url} fill priority alt='imag_2'/>
         <div className="bg-black/40 absolute left-0 w-full h-full z-10 text-white flex flex-col items-end justify-end p-2 opacity-0 group-hover:opacity-100">
-          <HiOutlineXCircle size={32} onClick={() => console.log('remove image')}/>
+          <HiOutlineXCircle size={32} onClick={() => handleDeleteUploadedImages(public_id)}/>
         </div>
       </div>
     )
@@ -258,19 +294,26 @@ const CreateProperty = (props: Props) => {
           <hr/>
           <h2 className='text-xl lg:text-2xl mb-4'>Property Images</h2>
           <div className="flex flex-col gap-2 w-full h-full">
-            { imageList ?
-            <React.Fragment>
-              <div className="w-full grid grid-cols-3 md:grid-cols-4 gap-2 lg:grid-cols-5">
-                <ImageHolder/>
-              </div>
-              <div className='text-right text-sm md:text-base'>18 images uploaded.</div>
-            </React.Fragment>:
-              <div className="w-full aspect-video bg-gray-200 rounded flex items-center justify-center flex-col text-neutral-600 lg:text-lg cursor-pointer">
-                <LuImagePlus size={100} className='lg:block hidden'/>
-                <LuImagePlus size={80} className='hidden md:block lg:hidden'/>
-                <LuImagePlus size={60} className='md:hidden'/>
-                <span className='text-gray-400'>Add images of the property (maximum of 16)</span>
-              </div>
+            <CldUploadWidget options={uploadOptions} onSuccess={handleUploadPropertyImages}>
+              {({ open }) => {
+                return (
+                  <div onClick={() => open?.()} className="w-full h-[12rem] md:h-[15rem] bg-gray-200 rounded flex items-center justify-center flex-col text-neutral-600 lg:text-lg cursor-pointer">
+                    <LuImagePlus size={100} className='lg:block hidden'/>
+                    <LuImagePlus size={80} className='hidden md:block lg:hidden'/>
+                    <LuImagePlus size={60} className='md:hidden'/>
+                    <span className='text-gray-400'>Add images of the property, not more than 16 (max. size of one is 3mb)</span>
+                  </div>
+                )
+              }}
+            </CldUploadWidget>
+            { uploadedImages.length > 0 &&
+              <React.Fragment>
+                <div className="w-full grid grid-cols-4 md:grid-cols-5 gap-2 lg:grid-cols-6">
+                  { uploadedImages.map((item) => (
+                    <ImageHolder key={item.public_id} secure_url={item.secure_url} public_id={item.public_id}/>
+                  ))}
+                </div>
+              </React.Fragment> 
             }
           </div>
           <hr/>

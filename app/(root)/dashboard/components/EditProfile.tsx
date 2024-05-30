@@ -1,10 +1,13 @@
 import Button from '@/components/shared/Button'
 import Input from '@/components/shared/Input'
 import TextArea from '@/components/shared/TextArea'
+import { uploadImage } from '@/hooks/uploadImages'
+import { deleteCloudinaryImages } from '@/libs/actions/deleteCloudinaryImage'
 import Image from 'next/image'
 import React from 'react'
 import { HiOutlineBriefcase, HiOutlineClock, HiOutlineCloudArrowUp, HiOutlineCreditCard, HiOutlineEnvelope, HiOutlineMapPin, HiOutlinePhone, HiOutlineSparkles, HiOutlineUser, HiXMark} from 'react-icons/hi2'
 import { LuImagePlus } from 'react-icons/lu'
+import { toast } from 'sonner'
 
 type Props = {}
 
@@ -12,6 +15,7 @@ const EditProfile = (props: Props) => {
 
   const [imageFile, setImageFile] = React.useState<File | null>(null);
   const [newProfileImage, setNewProfileImage] = React.useState({public_id: '', secure_url: ''});
+  const [imageUploaded, setImageUploaded] = React.useState(false);
 
   const [mobileNum, setMobileNum] = React.useState('');
   const [officeNum, setOfficeNum] = React.useState('');
@@ -55,13 +59,33 @@ const EditProfile = (props: Props) => {
     }
   };
 
-  const uploadProfileImage = () => {
-    console.log(newProfileImage.secure_url);
+  const uploadProfileImage = async() => {
+    let loadingImageToast = toast.loading("...Uploading");
+    const data = {image: imageFile, uploadPreset: 'profileImages'}
+    try {
+      const imageData = await uploadImage(data)
+      const imageUrls = {public_id: imageData?.public_id, secure_url: imageData?.secure_url};
+      setNewProfileImage(imageUrls);
+      toast.dismiss(loadingImageToast);
+      toast.success("Image successfully uploaded");
+      setImageUploaded(true);
+    } catch (error) {
+      toast.dismiss(loadingImageToast);
+      toast.error("Error uploading image");
+    }
   };
 
   const resetImageFile = () => {
     setImageFile(null)
     setNewProfileImage({...newProfileImage, secure_url: ''})
+  };
+
+  const deleteImageFile = () => {
+    if (newProfileImage.public_id !== '') {
+      deleteCloudinaryImages(newProfileImage.public_id)
+      setImageFile(null)
+      setNewProfileImage({...newProfileImage, secure_url: ''})
+    }
   };
 
 
@@ -72,29 +96,34 @@ const EditProfile = (props: Props) => {
         <div className="flex lg:gap-4 gap-3">
           <div className='w-fit'>
             <label htmlFor="profileImage" className='w-fit'>
-              <div className="aspect-square md:w-40 w-[7.5rem] rounded drop-shadow-md overflow-hidden group bg-gray-300 flex items-center justify-center relative">
+              <div className="aspect-square md:w-40 w-[7.5rem] rounded overflow-hidden group bg-gray-200 flex items-center justify-center relative">
                 { newProfileImage.secure_url ?
-                  <Image src={newProfileImage.secure_url} priority fill alt='profile_photo'/> :
-                  <Image src={'/images/default_user.png'} priority fill alt='profile_photo'/>
+                  <Image src={newProfileImage.secure_url} priority fill alt='profile_photo' className='object-cover'/> :
+                  <Image src={'/images/default_user.png'} priority fill alt='profile_photo' className='object-cover'/>
                 }
                 <div className="z-[200] cursor-pointer w-full h-full bg-black/50 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 group-active:opacity-100 absolute left-0 top-0">
+                { newProfileImage.secure_url && !imageUploaded ? 
+                  <div className='flex items-center gap-5 w-full justify-between p-3'>
+                    <button className='md:p-2.5 p-2 rounded-full bg-green-600 text-white' onClick={uploadProfileImage}>
+                      <HiOutlineCloudArrowUp size={25} className='hidden md:block'/>
+                      <HiOutlineCloudArrowUp size={22} className='md:hidden'/>
+                    </button>
+                    <button className='md:p-2.5 p-2 rounded-full bg-red-400' onClick={resetImageFile}>
+                      <HiXMark size={25} className='hidden md:block'/>
+                      <HiXMark size={22} className='md:hidden'/>
+                    </button>
+                  </div> :
+                  newProfileImage.secure_url && imageUploaded ?
+                  <button className='md:p-2.5 p-2 rounded-full bg-red-400' onClick={deleteImageFile}>
+                    <HiXMark size={25} className='hidden md:block'/>
+                    <HiXMark size={22} className='md:hidden'/>
+                  </button> :
                   <LuImagePlus size={60} className='cursor-pointer'/>
+                }
                 </div>
                 <Input type='file' id='profileImage' hidden accept=".png, .jpg, .jpeg" className="cursor-pointer" onChange={onChangeImageFile}/>
               </div>
             </label>
-            { newProfileImage.secure_url &&
-              <div className='flex items-center gap-5 w-full justify-between mt-1'>
-                <button className='md:p-2.5 p-2 rounded-full bg-neutral-600 text-white' onClick={uploadProfileImage}>
-                  <HiOutlineCloudArrowUp size={25} className='hidden md:block'/>
-                  <HiOutlineCloudArrowUp size={22} className='md:hidden'/>
-                </button>
-                <button className='md:p-2.5 p-2 rounded-full bg-gray-300' onClick={resetImageFile}>
-                  <HiXMark size={25} className='hidden md:block'/>
-                  <HiXMark size={22} className='md:hidden'/>
-                </button>
-              </div>
-            }
           </div>
           <div className="flex flex-col gap-3 grow">
             <Input
