@@ -17,7 +17,7 @@ const ReactQuill = dynamic(() => {
 }, {ssr: false});
 
 
-const CreatePost = () => {
+const CreatePost = ({setActiveTab}:{setActiveTab: React.Dispatch<React.SetStateAction<string>>}) => {
   const [title, setTitle] = React.useState('');
   const [editorContent, setEditorContent] = React.useState('');
 
@@ -91,9 +91,12 @@ const CreatePost = () => {
   }
 
   return (
-    <div className='w-full h-full flex items-center'>
+    <div className='w-full h-full flex slide-in-left'>
       <div className="flex flex-col lg:gap-4 gap-3 w-full lg:w-[80%] xl:w-[70%]">
-        <h2 className='text-2xl md:text-3xl lg:text-4xl font-semibold mb-8 w-full'>Create Post</h2>
+        <div className='flex gap-4 mb-8 lg:gap-6 cursor-pointer'>
+          <h2 className='text-2xl md:text-3xl lg:text-4xl font-semibold'>Create Post</h2>
+          <h2 className='text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-400' onClick={() =>setActiveTab('all-posts')}>All Posts</h2>
+        </div>
         <div className="flex flex-col gap-3">
           <Input
             type='text'

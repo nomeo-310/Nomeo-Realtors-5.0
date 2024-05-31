@@ -12,8 +12,6 @@ const ChangePassword = (props: Props) => {
   const [oldPassword, setOldPassword] = React.useState('');
   const [newPassword, setNewPassword] = React.useState('');
 
-  console.log(oldPassword, newPassword);
-
   const handleChangePassword = () => {
     if (oldPassword.length > 0 && oldPassword !== newPassword) {
       toast.error('Password does not match!!');
@@ -39,7 +37,7 @@ const ChangePassword = (props: Props) => {
   };
 
   return (
-    <div className='w-full h-full flex items-center'>
+    <div className='w-full h-full flex items-center slide-in-left'>
       <div className="flex flex-col gap-4 w-full lg:w-[80%] xl:w-[70%]">
         <h2 className='text-2xl md:text-3xl lg:text-4xl font-semibold mb-8 w-full'>Change Password</h2>
           <Input

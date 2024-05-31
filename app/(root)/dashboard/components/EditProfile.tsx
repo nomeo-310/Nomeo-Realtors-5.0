@@ -11,7 +11,7 @@ import { toast } from 'sonner'
 
 type Props = {}
 
-const EditProfile = (props: Props) => {
+const EditProfile = ({setActiveTab}:{setActiveTab: React.Dispatch<React.SetStateAction<string>>}) => {
 
   const [imageFile, setImageFile] = React.useState<File | null>(null);
   const [newProfileImage, setNewProfileImage] = React.useState({public_id: '', secure_url: ''});
@@ -90,9 +90,12 @@ const EditProfile = (props: Props) => {
 
 
   return (
-    <div className='w-full h-full flex items-center'>
+    <div className='w-full h-full flex slide-in-left'>
       <div className="flex flex-col lg:gap-4 gap-3 w-full lg:w-[80%] xl:w-[70%]">
-        <h2 className='text-2xl md:text-3xl lg:text-4xl font-semibold mb-8 w-full'>Edit Profile</h2>
+        <div className='flex w-full mb-8 lg:gap-6 gap-4 cursor-pointer'>
+          <h2 className='text-2xl md:text-3xl lg:text-4xl font-semibold'>Edit Profile</h2>
+          <h2 className='text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-400' onClick={() =>setActiveTab('profile')}>Profile</h2>
+        </div>
         <div className="flex lg:gap-4 gap-3">
           <div className='w-fit'>
             <label htmlFor="profileImage" className='w-fit'>

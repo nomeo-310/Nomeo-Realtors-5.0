@@ -21,7 +21,7 @@ type propertyImageProps = {
   secure_url:string
 }
 
-const CreateProperty = () => {
+const CreateProperty = ({setActiveTab}:{setActiveTab: React.Dispatch<React.SetStateAction<string>>}) => {
 
   const maxLimit = 450;
   const maxAmenities = 10;
@@ -80,8 +80,6 @@ const CreateProperty = () => {
     }));
     setUploadedImages((prevImages) => [...prevImages, ...newImage]);
   };
-
-  console.log(uploadedImages)
 
   const nairaSign:string = String.fromCodePoint(8358);
   const imageList = true;
@@ -232,7 +230,7 @@ const CreateProperty = () => {
     } catch (error) {
       return;
     }
-  }
+  };
 
   const ImageHolder = ({public_id, secure_url}:{public_id:string, secure_url:string}) => {
     return (
@@ -246,9 +244,12 @@ const CreateProperty = () => {
   };
 
   return (
-    <div className='w-full h-full flex items-center'>
+    <div className='w-full h-full flex slide-in-left'>
       <div className="flex flex-col lg:gap-4 gap-3 w-full lg:w-[80%] xl:w-[70%]">
-        <h2 className='text-2xl md:text-3xl lg:text-4xl font-semibold mb-8 w-full'>Create Property</h2>
+        <div className='flex gap-4 mb-8 lg:gap-6 cursor-pointer'>
+          <h2 className='text-2xl md:text-3xl lg:text-4xl font-semibold'>Create Property</h2>
+          <h2 className='text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-400' onClick={() =>setActiveTab('all-properties')}>All Properties</h2>
+        </div>
         <div className='flex flex-col gap-3'>
           <h2 className='text-xl lg:text-2xl mb-4'>Property Description</h2>
           <Input
@@ -297,11 +298,11 @@ const CreateProperty = () => {
             <CldUploadWidget options={uploadOptions} onSuccess={handleUploadPropertyImages}>
               {({ open }) => {
                 return (
-                  <div onClick={() => open?.()} className="w-full h-[12rem] md:h-[15rem] bg-gray-200 rounded flex items-center justify-center flex-col text-neutral-600 lg:text-lg cursor-pointer">
+                  <div onClick={() => open?.()} className="w-full h-[12rem] md:h-[15rem] bg-gray-200 rounded flex items-center justify-center flex-col text-neutral-600 lg:text-lg cursor-pointer p-4">
                     <LuImagePlus size={100} className='lg:block hidden'/>
                     <LuImagePlus size={80} className='hidden md:block lg:hidden'/>
                     <LuImagePlus size={60} className='md:hidden'/>
-                    <span className='text-gray-400'>Add images of the property, not more than 16 (max. size of one is 3mb)</span>
+                    <span className='text-gray-400'>Add images of the property, not more than 16.</span>
                   </div>
                 )
               }}
