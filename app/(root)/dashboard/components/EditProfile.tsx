@@ -5,46 +5,56 @@ import { uploadImage } from '@/hooks/uploadImages'
 import { deleteCloudinaryImages } from '@/libs/actions/deleteCloudinaryImage'
 import Image from 'next/image'
 import React from 'react'
-import { HiOutlineBriefcase, HiOutlineClock, HiOutlineCloudArrowUp, HiOutlineCreditCard, HiOutlineEnvelope, HiOutlineMapPin, HiOutlinePhone, HiOutlineSparkles, HiOutlineUser, HiXMark} from 'react-icons/hi2'
+import { HiOutlineBriefcase, HiOutlineCloudArrowUp, HiOutlineCreditCard, HiOutlineEnvelope, HiOutlineMapPin, HiOutlinePhone, HiOutlineSparkles, HiOutlineUser, HiXMark} from 'react-icons/hi2'
 import { LuImagePlus } from 'react-icons/lu'
 import { toast } from 'sonner'
 
-type Props = {}
+type currentUserProps = {
+  image: string
+  name: string
+  email:string
+  mobileNumber: string
+  city: string
+  state: string
+  agencyName: string
+  officeAddress: string
+  officeNumber: string
+  inspectionFee: number
+  bio: string
+  isAgent: boolean
+}
 
-const EditProfile = ({setActiveTab}:{setActiveTab: React.Dispatch<React.SetStateAction<string>>}) => {
+type profileProps = {
+  setActiveTab: React.Dispatch<React.SetStateAction<string>>
+  user: currentUserProps
+}
+
+const EditProfile = ({setActiveTab, user}:profileProps) => {
+  const isAgentLoggedIn = true;
+
+  const nairaSign:string = String.fromCodePoint(8358);
 
   const [imageFile, setImageFile] = React.useState<File | null>(null);
   const [newProfileImage, setNewProfileImage] = React.useState({public_id: '', secure_url: ''});
   const [imageUploaded, setImageUploaded] = React.useState(false);
 
-  const [mobileNum, setMobileNum] = React.useState('');
-  const [officeNum, setOfficeNum] = React.useState('');
 
-  const [currentState, setCurrentState] = React.useState('');
-  const [currentCity, setCurrentCity] = React.useState('');
+  const [mobileNum, setMobileNum] = React.useState(user.mobileNumber);
+  const [officeNum, setOfficeNum] = React.useState(user.officeNumber);
 
-  const [agencyName, setAgencyName] = React.useState('');
-  const [agencyAddress, setAgencyAddress] = React.useState('');
+  const [currentState, setCurrentState] = React.useState(user.state);
+  const [currentCity, setCurrentCity] = React.useState(user.city);
 
-  const [agentFee, setAgentFee] = React.useState(0);
-  const [workStartTime, setWorkStartTime] = React.useState(0);
-  const [workEndTime, setWorkEndTime] = React.useState(0);
+  const [agencyName, setAgencyName] = React.useState(user.agencyName);
+  const [agencyAddress, setAgencyAddress] = React.useState(user.officeAddress);
 
-  const [bio, setBio] = React.useState('');
+  const [agentFee, setAgentFee] = React.useState(user.inspectionFee);
+
+  const [bio, setBio] = React.useState(user.bio);
 
   const onChangeAgentFee = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value) || 0;
     setAgentFee(value);
-  };
-
-  const onChangeWorkStart = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value) || 0;
-    setWorkStartTime(value);
-  };
-
-  const onChangeWorkEnd = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value) || 0;
-    setWorkEndTime(value);
   };
 
   const onChangeImageFile = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,13 +106,13 @@ const EditProfile = ({setActiveTab}:{setActiveTab: React.Dispatch<React.SetState
           <h2 className='text-2xl md:text-3xl lg:text-4xl font-semibold'>Edit Profile</h2>
           <h2 className='text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-400' onClick={() =>setActiveTab('profile')}>Profile</h2>
         </div>
-        <div className="flex lg:gap-4 gap-3">
+        <div className="flex lg:gap-4 gap-3 items-center">
           <div className='w-fit'>
             <label htmlFor="profileImage" className='w-fit'>
               <div className="aspect-square md:w-40 w-[7.5rem] rounded overflow-hidden group bg-gray-200 flex items-center justify-center relative">
                 { newProfileImage.secure_url ?
                   <Image src={newProfileImage.secure_url} priority fill alt='profile_photo' className='object-cover'/> :
-                  <Image src={'/images/default_user.png'} priority fill alt='profile_photo' className='object-cover'/>
+                  <Image src={user.image ? user.image : '/images/default_user.png'} priority fill alt='profile_photo' className='object-cover'/>
                 }
                 <div className="z-[200] cursor-pointer w-full h-full bg-black/50 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 group-active:opacity-100 absolute left-0 top-0">
                 { newProfileImage.secure_url && !imageUploaded ? 
@@ -133,13 +143,13 @@ const EditProfile = ({setActiveTab}:{setActiveTab: React.Dispatch<React.SetState
               type='text'
               icon={HiOutlineUser}
               disabled
-              value={'Salomi Onome'}
+              value={user.name}
             />
             <Input
               type='email'
               icon={HiOutlineEnvelope}
               disabled
-              value={'onomesalomi@gmail.com'}
+              value={user.email}
             />
           </div>
         </div>
@@ -170,53 +180,43 @@ const EditProfile = ({setActiveTab}:{setActiveTab: React.Dispatch<React.SetState
             />
           </div>
         </React.Fragment>
+        {user.isAgent &&
+          <React.Fragment>
+            <hr/>
+            <h2 className='text-xl lg:text-2xl mb-4'>Agent & Agency Details</h2>
+            <Input
+              type='text'
+              icon={HiOutlineBriefcase}
+              value={agencyName}
+              placeholder='name of your agency'
+              onChange={(event) => setAgencyName(event.target.value)}
+            />
+            <Input
+              type='text'
+              icon={HiOutlineMapPin}
+              value={agencyAddress}
+              placeholder='address of your agency'
+              onChange={(event) => setAgencyAddress(event.target.value)}
+            />
+            <Input
+              type='text'
+              icon={HiOutlinePhone}
+              value={officeNum}
+              placeholder='your office number'
+              onChange={(event) => setOfficeNum(event.target.value)}
+            />
+            <Input
+              type='number'
+              icon={HiOutlineCreditCard}
+              value={agentFee || ''}
+              placeholder={`your inspection fee (${nairaSign} per hour)`}
+              onChange={onChangeAgentFee}
+            />
+          </React.Fragment>
+        }
         <hr/>
         <React.Fragment>
-          <h2 className='text-xl lg:text-2xl mb-4'>Agent & Agency Details</h2>
-          <Input
-            type='text'
-            icon={HiOutlineBriefcase}
-            value={agencyName}
-            placeholder='name of your agency'
-            onChange={(event) => setAgencyName(event.target.value)}
-          />
-          <Input
-            type='text'
-            icon={HiOutlineMapPin}
-            value={agencyAddress}
-            placeholder='address of your agency'
-            onChange={(event) => setAgencyAddress(event.target.value)}
-          />
-          <Input
-            type='text'
-            icon={HiOutlinePhone}
-            value={officeNum}
-            placeholder='your office number'
-            onChange={(event) => setOfficeNum(event.target.value)}
-          />
-          <Input
-            type='number'
-            icon={HiOutlineCreditCard}
-            value={agentFee || ''}
-            placeholder='your inspection fee (per hour)'
-            onChange={onChangeAgentFee}
-          />
-          <div className="grid md:grid-cols-2 grid-cols-1 gap-3">
-            <Input
-              type='number'
-              icon={HiOutlineClock}
-              value={workStartTime || ''}
-              placeholder='work start time (use 24hr clock)'
-              onChange={onChangeWorkStart}
-            />
-            <Input
-              type='number'
-              icon={HiOutlineClock}
-              value={workEndTime || ''}
-              placeholder='work end time (use 24hr clock)'
-              onChange={onChangeWorkEnd}
-            />
-          </div>
+          <h2 className='text-xl lg:text-2xl mb-4'>Personal Bio</h2>
           <TextArea
             icon={HiOutlineSparkles}
             placeholder='Tell us about yourself'

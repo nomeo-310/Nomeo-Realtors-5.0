@@ -761,10 +761,6 @@ export const mainItemList = [
     icon: TbBellRinging
   },
   {
-    label: 'messages',
-    icon: TbMessage
-  },
-  {
     label: 'likes',
     icon: TbHomeHeart
   },
@@ -784,3 +780,33 @@ export const mainItemList = [
 ];
 
 export const states = ['Edo', 'Federal Capital Territory', 'Kano', 'Kwara', 'Lagos', 'Ondo', 'Osun', 'Oyo'];
+
+export const user = {
+  name: 'Salomi Onome',
+  email: 'onomesalomi@gmail.com',
+  image: '/images/profile_4.jpg',
+  mobileNumber: '07037575894',
+  city: 'Ikeja',
+  state: 'Lagos',
+  agencyName: '',
+  officeAddress: '',
+  officeNumber: '',
+  inspectionFee: 0,
+  bio: '',
+  isAgent: false,
+}
+
+export const user_2 = {
+  name: 'Tunde Badamosi',
+  email: 'olatundebadamosi@gmail.com',
+  image: '/images/profile_6.jpg',
+  mobileNumber: '07037575663',
+  city: 'Mushin',
+  state: 'Lagos',
+  agencyName: 'BatchRealtor Inc.',
+  officeAddress: 'block 45, Olatunji Ishola street, Mushin',
+  officeNumber: '08036595663',
+  inspectionFee: 3000,
+  bio: '',
+  isAgent: true,
+}

@@ -82,7 +82,6 @@ const CreateProperty = ({setActiveTab}:{setActiveTab: React.Dispatch<React.SetSt
   };
 
   const nairaSign:string = String.fromCodePoint(8358);
-  const imageList = true;
 
   React.useEffect(() => {
     if (state) {
@@ -286,7 +285,7 @@ const CreateProperty = ({setActiveTab}:{setActiveTab: React.Dispatch<React.SetSt
               placeholder='describe the property (keep it simple and short)'
               value={description}
               onChange={(event) => setDescription(event.target.value)}
-              className='h-[15rem]'
+              className='lg:h-[18rem] h-[16rem]'
               maxLength={maxLimit}
               onKeyDown={handleOnKeyDown}
             />
@@ -294,7 +293,7 @@ const CreateProperty = ({setActiveTab}:{setActiveTab: React.Dispatch<React.SetSt
           </React.Fragment>
           <hr/>
           <h2 className='text-xl lg:text-2xl mb-4'>Property Images</h2>
-          <div className="flex flex-col gap-2 w-full h-full">
+          <div className="flex flex-col gap-2 w-full">
             <CldUploadWidget options={uploadOptions} onSuccess={handleUploadPropertyImages}>
               {({ open }) => {
                 return (
@@ -427,7 +426,7 @@ const CreateProperty = ({setActiveTab}:{setActiveTab: React.Dispatch<React.SetSt
                 />
                 <Input
                   type='number'
-                  placeholder='enter fee amount'
+                  placeholder={`enter fee amount (${nairaSign})`}
                   value={mainFeeAmount || ''}
                   icon={HiOutlineCreditCard}
                   onChange={onChangeFeeAmount}
@@ -464,7 +463,7 @@ const CreateProperty = ({setActiveTab}:{setActiveTab: React.Dispatch<React.SetSt
                 />
                 <Input
                   type='number'
-                  placeholder='enter fee amount'
+                  placeholder={`enter fee amount (${nairaSign})`}
                   value={optFeeAmount || ''}
                   icon={HiOutlineCreditCard}
                   onChange={onChangeOptFeeAmount}

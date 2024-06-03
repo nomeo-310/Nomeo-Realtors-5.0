@@ -1,17 +1,32 @@
-import { formatTargetDate, useCountdownTimer } from '@/hooks/countdownTimer'
+'use client'
+
 import React from 'react'
+import { formatTargetDate, useCountdownTimer } from '@/hooks/countdownTimer'
+import Link from 'next/link'
 
-type Props = {}
+type paymentCardNotificationProps = {
+  client: string 
+  paidDate: string 
+  propertyTag: string
+  isAgent: boolean
+}
 
-const Notifications = (props: Props) => {
-  const PaymentNotificationCard = ({client, paidDate, propertyTag}:{client:string, paidDate:string, propertyTag:string}) => {
+type notificationCardProps = {
+  user:string
+  userId:string
+  propertyId: string
+}
+
+const Notifications = () => {
+
+  const PaymentNotificationCard = ({client, paidDate, propertyTag, isAgent}:paymentCardNotificationProps) => {
 
     const futureDate = formatTargetDate(paidDate);
     const { days, hours, minutes, seconds } = useCountdownTimer(futureDate.toISOString());
 
     return (
       <div className="w-full bg-gray-200 rounded lg:p-4 p-3 flex gap-2 flex-col relative overflow-hidden">
-        <div className="md:text-lg w-fit">{client}&apos;s next {propertyTag === 'rent' ?  'rent' : 'annual mortgage'} is due in:</div>
+        <div className="md:text-lg w-fit">{isAgent ? `${client}'s` : 'Your'} next {propertyTag === 'rent' ?  'rent' : 'annual mortgage'} is due in:</div>
         <div className="grow">
           <span className='lg:text-4xl md:text-3xl text-xl font-bold'>{days} days : {hours} hours : {minutes} mins : {seconds} secs</span>
         </div>
@@ -22,7 +37,33 @@ const Notifications = (props: Props) => {
         </div>
       </div>
     )
-  }
+  };
+
+  const NotificationCard = ({user, userId, propertyId }:notificationCardProps) => {
+    return (
+      <div className="w-full bg-gray-200 rounded lg:p-4 p-3 flex gap-2 flex-col">
+        <div className="md:text-lg w-fit"><Link href={`/users/${userId}`} className='underline cursor-pointer'>{user}</Link> showed interest in one of your <Link href={`/property/${propertyId}`} className='underline cursor-pointer'>property</Link>.</div>
+        <div className='flex items-center justify-end mt-1 gap-5'>
+          <button className='text-neutral-600 hover:underline'>
+            dismiss notification
+          </button>
+        </div>
+      </div>
+    )
+  };
+
+  const InspectionNotificationCard = ({user, userId, propertyId }:notificationCardProps) => {
+    return (
+      <div className="w-full bg-gray-200 rounded lg:p-4 p-3 flex gap-2 flex-col">
+        <div className="md:text-lg w-fit"><Link href={`/users/${userId}`} className='underline cursor-pointer'>{user}</Link> scheduled to inspect your <Link href={`/property/${propertyId}`} className='underline cursor-pointer'>property</Link> on 20 June 2024 by 5PM.</div>
+        <div className='flex items-center justify-end mt-1 gap-5'>
+          <button className='text-neutral-600 hover:underline'>
+            dismiss notification
+          </button>
+        </div>
+      </div>
+    )
+  };
 
   return (
     <div className='w-full h-full flex items-center slide-in-left'>
@@ -32,28 +73,30 @@ const Notifications = (props: Props) => {
           client='Sulaimon'
           paidDate={new Date().toISOString()}
           propertyTag='rent'
+          isAgent={false}
         />
         <PaymentNotificationCard
           client='Samson'
           paidDate={'2024-02-27T11:30:00.000Z'}
           propertyTag='sale'
+          isAgent
         />
         <PaymentNotificationCard
           client='Sulaimon'
           paidDate={'2024-03-25T10:30:00.000Z'}
           propertyTag='rent'
+          isAgent
         />
-        <div className="w-full bg-gray-200 rounded lg:p-4 p-3 flex gap-2 flex-col">
-          <div className="md:text-lg w-fit"><span className='underline cursor-pointer'>Tunde</span> showed interest in one of your <span className='underline cursor-pointer'>property</span></div>
-          <div className='flex items-center justify-end mt-1 gap-5'>
-            <button className='text-neutral-600 hover:underline'>
-              chat him up
-            </button>
-            <button className='text-neutral-600 hover:underline'>
-              dismiss notification
-            </button>
-          </div>
-        </div>
+        <NotificationCard
+          user='James'
+          userId='user_1'
+          propertyId='property_1'
+        />
+        <InspectionNotificationCard
+          user='Salisu'
+          userId='user_3'
+          propertyId='property_2'
+        />
       </div>
     </div>
   )

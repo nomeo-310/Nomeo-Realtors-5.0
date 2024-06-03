@@ -1,6 +1,7 @@
 import React from 'react'
 import Profile from './Profile';
 import EditProfile from './EditProfile';
+import { user, user_2 } from '@/components/data/constants';
 
 type Props = {}
 
@@ -9,8 +10,8 @@ const ProfileClient = (props: Props) => {
 
   return (
     <div className='w-full h-full'>
-      { activeTab === 'profile' && <Profile setActiveTab={setActiveTab} /> }
-      { activeTab === 'edit-profile' && <EditProfile setActiveTab={setActiveTab} /> }
+      { activeTab === 'profile' && <Profile setActiveTab={setActiveTab} user={user_2}/> }
+      { activeTab === 'edit-profile' && <EditProfile setActiveTab={setActiveTab} user={user_2}/> }
     </div>
   )
 }

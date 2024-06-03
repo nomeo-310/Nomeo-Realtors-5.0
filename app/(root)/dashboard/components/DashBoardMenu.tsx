@@ -11,6 +11,12 @@ type menuProps = {
 }
 
 const DashBoardMenu = ({agentLoggedIn, activeTab, setActiveTab}: menuProps) => {
+  let list;
+
+  { agentLoggedIn ? 
+    list = mainItemList.filter((item) => item.label !== 'saves').filter((item) => item.label !== 'likes'):
+    list = mainItemList
+  }
   
   return (
     <React.Fragment>
@@ -25,10 +31,9 @@ const DashBoardMenu = ({agentLoggedIn, activeTab, setActiveTab}: menuProps) => {
               active={activeTab === item.label}
             />
           ))}
-          <hr/>
         </React.Fragment>
       }
-      { mainItemList.map((item, index:number) => (
+      { list.map((item, index:number) => (
         <React.Fragment key={index}>
           <DashboardMenuItem
             setActiveTab={setActiveTab}
@@ -36,7 +41,6 @@ const DashBoardMenu = ({agentLoggedIn, activeTab, setActiveTab}: menuProps) => {
             icon={item.icon}
             active={activeTab === item.label}
           />
-          {index === 1 ? <hr/> : index === 3 ? <hr/> : ''}
         </React.Fragment>
       ))}
     </React.Fragment>

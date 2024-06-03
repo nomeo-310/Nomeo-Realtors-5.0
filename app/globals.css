@@ -78,8 +78,19 @@ div::-webkit-scrollbar-track {
   margin-bottom: 0.2rem !important; 
 }
 
-body {
-  @apply font-barlow;
+.rdrCalendarWrapper {
+  font-size: 0.90rem !important;
+  padding-bottom: 0 !important;
+  opacity: 100 !important;
+  background: inherit !important;
+}
+
+@media (min-width: 1024px) {
+  .rdrCalendarWrapper {
+    font-size: 1.1rem !important;
+    padding-bottom: 0 !important;
+    opacity: 100 !important;
+  }
 }
 
 .slide-in-top_1 {
@@ -156,6 +167,6 @@ body {
 
 @layer utilities {
   body {
-    @apply bg-gray-50;
+    @apply bg-gray-50 font-barlow;
   }
 }

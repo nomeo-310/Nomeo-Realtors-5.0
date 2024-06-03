@@ -3,9 +3,7 @@
 
 import React from 'react'
 import DashBoardLayout from './DashBoardLayout';
-import CreatePost from './CreatePost';
 import Notifications from './Notifications';
-import Messages from './Messages';
 import LikedProperties from './LikedProperties';
 import SavedProperties from './SavedProperties';
 import ChangePassword from './ChangePassword';
@@ -26,7 +24,6 @@ const DashBoardClient = (props: Props) => {
       { activeTab === 'property' && <PropertyClient /> }
       { activeTab === 'post' && <PostClient /> }
       { activeTab === 'notifications' && <Notifications /> }
-      { activeTab === 'messages' && <Messages /> }
       { activeTab === 'likes' && <LikedProperties /> }
       { activeTab === 'saves' && <SavedProperties /> }
       { activeTab === 'profile' && <ProfileClient /> }
