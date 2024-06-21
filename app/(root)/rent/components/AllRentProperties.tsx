@@ -7,8 +7,9 @@ type Props = Omit<propertyProps, 'mainFees'| 'optionalFees' | 'intro' | 'descrip
 
 type allRentProps = {
   propertyList: Props[]
+  useAgent: boolean
 }
-const AllRentProperties = ({propertyList}: allRentProps) => {
+const AllRentProperties = ({propertyList, useAgent}: allRentProps) => {
   return (
     <React.Fragment>
       <div className="w-full grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-x-4 md:gap-x-3 gap-y-6 md:gap-y-8">
@@ -30,7 +31,8 @@ const AllRentProperties = ({propertyList}: allRentProps) => {
             monthlyRent={property.monthlyRent}
             liked={property.liked}
             saved={property.saved} 
-            hideTag={true}        
+            hideTag={true}
+            agentDisplay={useAgent}       
           />
         ))}
       </div>

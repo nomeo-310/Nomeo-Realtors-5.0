@@ -4,7 +4,6 @@
 import React from 'react'
 import { propertyProps } from '@/components/data/constants';
 import ImageAvatar from '@/components/shared/ImageAvatar';
-import Link from 'next/link';
 import { Calendar } from 'react-date-range'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
@@ -12,8 +11,11 @@ import CustomSelectComponent from '@/components/shared/CustomSelectComponent';
 import Button from '@/components/shared/Button';
 import { formatTime } from '@/hooks/formatTime';
 import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 const AgentSection = ({property}:{property:propertyProps}) => {
+
+  const router = useRouter();
 
   const nairaSign:string = String.fromCodePoint(8358);
 
@@ -78,7 +80,7 @@ const AgentSection = ({property}:{property:propertyProps}) => {
     <div className="md:w-[50%] lg:w-[45%] w-full md:border-l md:pl-4">
       <div className="my-4 w-full">
         <h2 className='text-xl lg:text-2xl'>Agent in Charge</h2>
-        <div className="flex mt-3 gap-3 items-center">
+        <div className="flex mt-3 gap-3 ">
           <div className={`w-fit`}>
             <ImageAvatar className={`md:w-20 md:h-20 w-16 h-16 rounded bg-gray-200 overflow-hidden ${property.agentInChargeImage === '' && 'border'}`} src={property.agentInChargeImage}/>
           </div>
@@ -87,7 +89,7 @@ const AgentSection = ({property}:{property:propertyProps}) => {
             <p>Agency: PearlRealtors Agency Inc.</p>
             <div className='w-full mt-3'>
               <div>
-                <Link href={'/dashboard/#profile'} className='mt-5 underline'>Checkout profile</Link>
+                <button className='underline' onClick={() =>router.push(`/profile/user_1`)}>Checkout profile</button>
               </div>
             </div>
           </div>

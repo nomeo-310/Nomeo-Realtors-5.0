@@ -3,6 +3,7 @@
 import React from 'react'
 import { formatTargetDate, useCountdownTimer } from '@/hooks/countdownTimer'
 import Link from 'next/link'
+import ImageAvatar from '@/components/shared/ImageAvatar'
 
 type paymentCardNotificationProps = {
   client: string 
@@ -39,11 +40,30 @@ const Notifications = () => {
     )
   };
 
-  const NotificationCard = ({user, userId, propertyId }:notificationCardProps) => {
+  const NotificationCard = ({user, propertyId }:notificationCardProps) => {
+    const [showUserDetails, setShowUserDetails] = React.useState(false);
+
     return (
       <div className="w-full bg-gray-200 rounded lg:p-4 p-3 flex gap-2 flex-col">
-        <div className="md:text-lg w-fit"><Link href={`/users/${userId}`} className='underline cursor-pointer'>{user}</Link> showed interest in one of your <Link href={`/property/${propertyId}`} className='underline cursor-pointer'>property</Link>.</div>
-        <div className='flex items-center justify-end mt-1 gap-5'>
+        <div className="md:text-lg w-fit">
+          {user} showed interest in one of your <Link href={`/property/${propertyId}`} className='underline cursor-pointer'>property</Link>.
+        </div>
+        { showUserDetails &&
+          <React.Fragment>
+            <hr className='border border-black'/>
+            <div className='flex gap-2 lg:gap-3 flex-row'>
+              <ImageAvatar className='w-20 h-20 md:w-24 md:h-24'/>
+              <div className=''>
+                <p className='md:text-lg'>Fullname: Oladotun James</p>
+                <p className='md:text-lg'>Email: onomesalomi@gmail.com</p>
+                <p className='md:text-lg'>Phone: 0803456785412</p>
+              </div>
+            </div> 
+          </React.Fragment> }
+        <div className='flex items-center justify-between mt-1 gap-5'>
+          <button className='text-neutral-600 hover:underline' onClick={() => setShowUserDetails(prevState => !prevState)}>
+            {showUserDetails ? 'hide details of user' : 'show details of user'}
+          </button>
           <button className='text-neutral-600 hover:underline'>
             dismiss notification
           </button>
@@ -55,8 +75,11 @@ const Notifications = () => {
   const InspectionNotificationCard = ({user, userId, propertyId }:notificationCardProps) => {
     return (
       <div className="w-full bg-gray-200 rounded lg:p-4 p-3 flex gap-2 flex-col">
-        <div className="md:text-lg w-fit"><Link href={`/users/${userId}`} className='underline cursor-pointer'>{user}</Link> scheduled to inspect your <Link href={`/property/${propertyId}`} className='underline cursor-pointer'>property</Link> on 20 June 2024 by 5PM.</div>
-        <div className='flex items-center justify-end mt-1 gap-5'>
+        <div className="md:text-lg w-fit">{user} scheduled to inspect your <Link href={`/property/${propertyId}`} className='underline cursor-pointer'>property</Link> on 20 June 2024 by 5PM.</div>
+        <div className='flex items-center justify-between mt-1 gap-5'>
+          <button className='text-neutral-600 hover:underline'>
+            show details
+          </button>
           <button className='text-neutral-600 hover:underline'>
             dismiss notification
           </button>

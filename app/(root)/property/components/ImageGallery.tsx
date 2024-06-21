@@ -34,7 +34,7 @@ const ImageGallery = ({property,  setOpenSlider}:{property:propertyProps, setOpe
               <Image src={property.propertyImageList[1]} alt='property_image_2' priority className='object-cover' fill/>
             </div>
             <div className="grid grid-cols-2 w-full h-full gap-2 overflow-hidden">
-              <div className="w-full h-full rounded flex items-center justify-center relative overflow-hiddenbg-gray-3000">
+              <div className="w-full h-full rounded flex items-center justify-center relative overflow-hidden bg-gray-3000">
                 <Image src={property.propertyImageList[2]} alt='property_image_3' priority className='object-cover' fill/>
               </div>
               <div className="w-full h-full rounded flex items-center justify-center overflow-hidden relative bg-gray-300 cursor-pointer">

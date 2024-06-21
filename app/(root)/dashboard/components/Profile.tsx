@@ -1,7 +1,7 @@
 import Input from '@/components/shared/Input';
 import Image from 'next/image';
 import React from 'react'
-import { HiOutlineBriefcase, HiOutlineCreditCard, HiOutlineEnvelope, HiOutlineMapPin, HiOutlinePhone, HiOutlineSparkles, HiOutlineUser } from 'react-icons/hi2';
+import { HiOutlineEnvelope, HiOutlineMapPin, HiOutlinePhone, HiOutlineSparkles, HiOutlineUser } from 'react-icons/hi2';
 import TextArea from '@/components/shared/TextArea';
 
 type currentUserProps = {
@@ -111,7 +111,6 @@ const Profile = ({setActiveTab, user}:profileProps) => {
             disabled
           />
         </React.Fragment>
-        
       </div>
     </div>
   )

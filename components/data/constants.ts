@@ -69,6 +69,8 @@ export interface  propertyProps {
 export const loggedIn = true;
 export const userSurname = 'Salomi';
 
+export const nairaSign:string = String.fromCodePoint(8358);
+
 export const furnitureTags = ['furnished', 'unfurnished'];
 export const propertyTags = ['sale', 'rent'];
 
@@ -804,9 +806,9 @@ export const user_2 = {
   city: 'Mushin',
   state: 'Lagos',
   agencyName: 'BatchRealtor Inc.',
-  officeAddress: 'block 45, Olatunji Ishola street, Mushin',
+  officeAddress: 'Block 45, Olatunji Ishola street, Mushin',
   officeNumber: '08036595663',
   inspectionFee: 3000,
-  bio: '',
+  bio: 'Badamosi Olatunde, is a highly successful real estate agentwith over a decade of experience in the industry. Born and raised in Lagos, he has a degree and quantity surveying from the University of Lagos. Tunde does not help in the purcahse of luxury apartments alone but also in the leasing of properties. He is proud member of the Real Estate Board of Lagos. He is married and has two kids (a boy and a girl).',
   isAgent: true,
 }

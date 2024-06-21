@@ -1,3 +1,6 @@
+'use client'
+
+
 import Button from '@/components/shared/Button'
 import Input from '@/components/shared/Input'
 import TextArea from '@/components/shared/TextArea'
@@ -20,16 +23,14 @@ type currentUserProps = {
   officeAddress: string
   officeNumber: string
   inspectionFee: number
-  bio: string
   isAgent: boolean
 }
 
 type profileProps = {
-  setActiveTab: React.Dispatch<React.SetStateAction<string>>
   user: currentUserProps
 }
 
-const EditProfile = ({setActiveTab, user}:profileProps) => {
+const EditProfile = ({user}:profileProps) => {
   const isAgentLoggedIn = true;
 
   const nairaSign:string = String.fromCodePoint(8358);
@@ -49,8 +50,7 @@ const EditProfile = ({setActiveTab, user}:profileProps) => {
   const [agencyAddress, setAgencyAddress] = React.useState(user.officeAddress);
 
   const [agentFee, setAgentFee] = React.useState(user.inspectionFee);
-
-  const [bio, setBio] = React.useState(user.bio);
+  const [agentBio, setAgentBio] = React.useState('')
 
   const onChangeAgentFee = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value) || 0;
@@ -102,10 +102,7 @@ const EditProfile = ({setActiveTab, user}:profileProps) => {
   return (
     <div className='w-full h-full flex slide-in-left'>
       <div className="flex flex-col lg:gap-4 gap-3 w-full lg:w-[80%] xl:w-[70%]">
-        <div className='flex w-full mb-8 lg:gap-6 gap-4 cursor-pointer'>
-          <h2 className='text-2xl md:text-3xl lg:text-4xl font-semibold'>Edit Profile</h2>
-          <h2 className='text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-400' onClick={() =>setActiveTab('profile')}>Profile</h2>
-        </div>
+        <h2 className='text-2xl md:text-3xl lg:text-4xl font-semibold mb-8'>Edit Profile</h2>
         <div className="flex lg:gap-4 gap-3 items-center">
           <div className='w-fit'>
             <label htmlFor="profileImage" className='w-fit'>
@@ -212,18 +209,16 @@ const EditProfile = ({setActiveTab, user}:profileProps) => {
               placeholder={`your inspection fee (${nairaSign} per hour)`}
               onChange={onChangeAgentFee}
             />
+            <hr/>
+            <h2 className='text-xl lg:text-2xl mb-4'>Personal Bio</h2>
+            <TextArea
+              icon={HiOutlineSparkles}
+              value={agentBio}
+              onChange={(event) => setAgentBio(event.target.value)}
+              placeholder='describe yourself in not more than 500 characters.'
+            />
           </React.Fragment>
         }
-        <hr/>
-        <React.Fragment>
-          <h2 className='text-xl lg:text-2xl mb-4'>Personal Bio</h2>
-          <TextArea
-            icon={HiOutlineSparkles}
-            placeholder='Tell us about yourself'
-            value={bio}
-            onChange={(event) => setBio(event.target.value)}
-          />
-        </React.Fragment>
         <div className='mt-8 flex items-center'>
           <Button type='button' onClick={()=> console.log('update profile')}>
             Update Profile

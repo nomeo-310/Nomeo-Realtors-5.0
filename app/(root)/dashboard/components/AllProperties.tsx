@@ -13,7 +13,7 @@ const AllProperties = ({setActiveTab}:{setActiveTab: React.Dispatch<React.SetSta
           <h2 className='text-2xl md:text-3xl lg:text-4xl font-semibold'>All Properties</h2>
           <h2 className='text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-400' onClick={() =>setActiveTab('create-property')}>Create Property</h2>
         </div>
-        <AllRentProperties propertyList={properties}/>
+        <AllRentProperties propertyList={properties} useAgent={true}/>
       </div>
     </div>
   )

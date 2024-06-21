@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Image from 'next/image'
-import { HiBookmark, HiHeart, HiOutlineBookmark, HiOutlineMapPin } from "react-icons/hi2";
+import { HiBookmark, HiEllipsisHorizontalCircle, HiEllipsisVertical, HiHeart, HiMiniTrash, HiOutlineBookmark, HiOutlineMapPin } from "react-icons/hi2";
 import { SlSizeFullscreen } from "react-icons/sl"
 import { LuBed } from "react-icons/lu"
 import { LiaBathSolid, LiaToiletSolid } from "react-icons/lia"
@@ -10,12 +10,29 @@ import ImageAvatar from '@/components/shared/ImageAvatar'
 import { useRouter } from 'next/navigation'
 import { propertyProps } from '../data/constants';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { moneyFormat } from '@/hooks/moneyFormat';
+import { TbHomeX, TbHomeEdit } from "react-icons/tb"
 
-type propertyCardProps = Omit<propertyProps, 'mainFees'| 'optionalFees' | 'intro' | 'description'| 'verifiedamenities' | 'propertyImageList' | 'nearbyPlaces' > & { hideTag: boolean}
+type propertyCardProps = Omit<propertyProps, 'mainFees'| 'optionalFees' | 'intro' | 'description'| 'verifiedamenities' | 'propertyImageList' | 'nearbyPlaces' > & { hideTag: boolean, agentDisplay: boolean}
 
-const PropertyCard = ({hideTag, id, propertTag, propertyImage, propertySize, propertyCost, baths, beds, title, toilets, agentInCharge, agentInChargeImage, liked, location, saved, monthlyRent}:propertyCardProps) => {
+const PropertyCard = ({agentDisplay, hideTag, id, propertTag, propertyImage, propertySize, propertyCost, baths, beds, title, toilets, agentInCharge, agentInChargeImage, liked, location, saved, monthlyRent}:propertyCardProps) => {
   const nairaSign:string = String.fromCodePoint(8358);
   const router = useRouter();
+
+  const [showMenu, setShowMenu] = React.useState(false);
+
+  const handleOpenMenu = (event:React.MouseEvent) => {
+    event.stopPropagation()
+    setShowMenu((prevState) => !prevState);
+  }
+
+  const handleDelete = (event:React.MouseEvent) => {
+    event.stopPropagation()
+    console.log('item deleted')
+    setShowMenu(false)
+  }
+
+  console.log(showMenu)
 
   return (
     <div className="w-full flex flex-col gap-2 cursor-pointer group" onClick={() => router.push(`/property/${id}`)}>
@@ -46,20 +63,37 @@ const PropertyCard = ({hideTag, id, propertTag, propertyImage, propertySize, pro
             <p>{agentInCharge}</p>
           </div>
         </div>
-        <div className="right-3 top-3 absolute flex items-center gap-4">
-          {liked &&
-            <div className='relative hover:opacity-80 transition cursor-pointer mt-1'>
-              <AiOutlineHeart size={26} className='fill-white absolute -top-[2px] -right-[2px]'/>
-              <AiFillHeart size={22} className={`${liked ? 'fill-rose-500' : ''}`}/>
+        { agentDisplay ? 
+          <div className="right-1 top-1 absolute flex items-center gap-4 text-white">
+            <HiEllipsisHorizontalCircle size={25} onClick={(event) =>handleOpenMenu(event)}/>
+          </div> : 
+          <div className="right-3 top-3 absolute flex items-center gap-4">
+            {liked &&
+              <div className='relative hover:opacity-80 transition cursor-pointer mt-1'>
+                <AiOutlineHeart size={26} className='fill-white absolute -top-[2px] -right-[2px]'/>
+                <AiFillHeart size={22} className={`${liked ? 'fill-rose-500' : ''}`}/>
+              </div>
+            }
+            {saved &&
+              <div className='relative hover:opacity-80 transition cursor-pointer mt-1'>
+                <HiOutlineBookmark size={26} className='text-white absolute -top-[2px] -right-[2px]'/>
+                <HiBookmark size={22} className={`${saved ? 'text-blue-400' : ''}`}/>
+              </div>
+            }
+          </div>
+        }
+        { showMenu && 
+          <div className="right-3 top-8 absolute bg-white rounded w-[90px] overflow-hidden">
+            <div className='flex items-center justify-between hover:bg-neutral-600 hover:text-white py-1 px-2' onClick={(event) => handleDelete(event)}>
+              <TbHomeX size={20}/>
+              Delete
             </div>
-          }
-          {saved &&
-            <div className='relative hover:opacity-80 transition cursor-pointer mt-1'>
-              <HiOutlineBookmark size={26} className='text-white absolute -top-[2px] -right-[2px]'/>
-              <HiBookmark size={22} className={`${saved ? 'text-blue-400' : ''}`}/>
+            <div className='flex items-center justify-between hover:bg-neutral-600 hover:text-white py-1 px-2' onClick={(event) => handleDelete(event)}>
+              <TbHomeEdit size={20} />
+              Edit
             </div>
-          }
-        </div>
+          </div>
+        }
       </div>
       <div>
         <p className='text-lg line-clamp-1 mb-2 font-semibold'>{title}</p>
@@ -69,7 +103,7 @@ const PropertyCard = ({hideTag, id, propertTag, propertyImage, propertySize, pro
             <p>{location}.</p>
           </div>
           <div className='text-yellow-400'>
-            {nairaSign} { propertTag === 'rent' ? `${monthlyRent?.toLocaleString()}` : `${propertyCost?.toLocaleString()}`} {propertTag === 'rent' ? <span>per month</span> : '' }
+            {nairaSign}{ propertTag === 'rent' ? `${moneyFormat(monthlyRent as number)}` : `${moneyFormat(propertyCost as number)}`} {propertTag === 'rent' ? <span>monthly</span> : '' }
           </div>
         </div>
       </div>
