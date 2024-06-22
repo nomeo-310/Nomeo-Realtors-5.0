@@ -5,9 +5,11 @@ import { loggedIn, navBarList, navbarItem, userSurname } from '@/components/data
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { HiBars3, HiOutlineHomeModern, HiOutlineUser } from 'react-icons/hi2'
+import useLogin from '@/hooks/useLogin'
 
 
 const NavigationClient = () => {
+  const loginUser = useLogin();
 
   const router = useRouter();
   const path = usePathname();
@@ -78,7 +80,7 @@ const NavigationClient = () => {
                 <HiOutlineUser size={20} className='lg:mr-3 mr-2' />
                 <div className='border-l lg:text-lg lg:pl-3 pl-2'>{userSurname}</div>
               </button> :
-              <button onClick={() => router.push('/login')} className='flex lg:px-5 px-3 py-2 rounded-full bg-neutral-700 text-white items-center'>
+              <button onClick={() => loginUser.onOpen()} className='flex lg:px-5 px-3 py-2 rounded-full bg-neutral-700 text-white items-center'>
                 <HiOutlineUser size={20} className='lg:mr-3 mr-2' />
                 <div className='border-l lg:text-lg lg:pl-3 pl-2'>Login</div>
               </button>
@@ -93,7 +95,7 @@ const NavigationClient = () => {
               <HiOutlineUser size={18} className='lg:mr-3 mr-2' />
               <div className='border-l lg:text-lg lg:pl-3 pl-2'>{userSurname}</div>
             </div> :
-            <button onClick={() => router.push('/login')} className='flex lg:px-5 px-3 py-2 rounded-full bg-neutral-700 text-white items-center'>
+            <button onClick={() => loginUser.onOpen()} className='flex lg:px-5 px-3 py-2 rounded-full bg-neutral-700 text-white items-center'>
               <HiOutlineUser size={18} className='lg:mr-3 mr-2' />
               <div className='border-l lg:text-lg lg:pl-3 pl-2' >Login</div>
             </button>

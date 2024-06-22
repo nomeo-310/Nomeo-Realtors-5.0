@@ -21,7 +21,7 @@ const LandingPage = () => {
             <h2 className='text-white lg:text-3xl md:text-2xl text-lg lg:w-[78%] w-[80%] mx-auto text-center'>Discover the perfect property that suits your unique style and needs.</h2>
           </div>
         </div>
-        <div className='lg:w-[70%] w-[80%] mx-auto slide-in-top_3'>
+        <div className='lg:w-[70%] md:w-[80%] w-[92%] mx-auto slide-in-top_3'>
           <HomePageSearchBar />
         </div>
       </div>

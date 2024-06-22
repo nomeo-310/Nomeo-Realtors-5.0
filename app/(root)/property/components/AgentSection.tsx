@@ -12,17 +12,30 @@ import Button from '@/components/shared/Button';
 import { formatTime } from '@/hooks/formatTime';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
+import useLogin from '@/hooks/useLogin';
 
 const AgentSection = ({property}:{property:propertyProps}) => {
 
   const router = useRouter();
+  const loginUser = useLogin();
 
   const nairaSign:string = String.fromCodePoint(8358);
+  const isLoggedIn = false;
 
   const predefinedTimes = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00'];
 
   type inspectionScheduleProps = {
     startDate: Date
+  }
+
+  const checkoutProfile = () => {
+
+    if (!isLoggedIn) {
+      loginUser.onOpen();
+      return;
+    }
+
+    router.push(`/profile/user_1`);
   }
 
   const InspectionSchedule = ({startDate}:inspectionScheduleProps) => {
@@ -35,12 +48,19 @@ const AgentSection = ({property}:{property:propertyProps}) => {
     };
 
     const handleSchedule = () => {
+
+      if (!isLoggedIn) {
+        loginUser.onOpen();
+        return;
+      }
+
       if (selectedTime === '') {
-        toast.error('Select the time you will want to inspect property')
+        toast.error('Select the time you will want to inspect property');
+        return;
       }
       
       const message = formatTime({date: selectedDate, time: selectedTime});
-      toast.success(`You have successfull scheduled inspection of property for ${message}`);
+      toast.success(`You have successfully scheduled inspection of property for ${message}`);
     };
 
     return (
@@ -89,7 +109,7 @@ const AgentSection = ({property}:{property:propertyProps}) => {
             <p>Agency: PearlRealtors Agency Inc.</p>
             <div className='w-full mt-3'>
               <div>
-                <button className='underline' onClick={() =>router.push(`/profile/user_1`)}>Checkout profile</button>
+                <button className='underline' onClick={checkoutProfile}>Checkout profile</button>
               </div>
             </div>
           </div>

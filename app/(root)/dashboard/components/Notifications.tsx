@@ -14,7 +14,6 @@ type paymentCardNotificationProps = {
 
 type notificationCardProps = {
   user:string
-  userId:string
   propertyId: string
 }
 
@@ -72,13 +71,29 @@ const Notifications = () => {
     )
   };
 
-  const InspectionNotificationCard = ({user, userId, propertyId }:notificationCardProps) => {
+  const InspectionNotificationCard = ({user, propertyId }:notificationCardProps) => {
+    const [showUserDetails, setShowUserDetails] = React.useState(false);
+
     return (
       <div className="w-full bg-gray-200 rounded lg:p-4 p-3 flex gap-2 flex-col">
-        <div className="md:text-lg w-fit">{user} scheduled to inspect your <Link href={`/property/${propertyId}`} className='underline cursor-pointer'>property</Link> on 20 June 2024 by 5PM.</div>
+        <div className="md:text-lg w-fit">
+          {user} scheduled to inspect your <Link href={`/property/${propertyId}`} className='underline cursor-pointer'>property</Link> on 20 June 2024 by 5PM.
+        </div>
+        { showUserDetails &&
+          <React.Fragment>
+            <hr className='border border-black'/>
+            <div className='flex gap-2 lg:gap-3 flex-row'>
+              <ImageAvatar className='w-20 h-20 md:w-24 md:h-24'/>
+              <div className=''>
+                <p className='md:text-lg'>Fullname: Oladotun James</p>
+                <p className='md:text-lg'>Email: onomesalomi@gmail.com</p>
+                <p className='md:text-lg'>Phone: 0803456785412</p>
+              </div>
+            </div> 
+          </React.Fragment> }
         <div className='flex items-center justify-between mt-1 gap-5'>
-          <button className='text-neutral-600 hover:underline'>
-            show details
+          <button className='text-neutral-600 hover:underline' onClick={() => setShowUserDetails(prevState => !prevState)}>
+            {showUserDetails ? 'hide details of user' : 'show details of user'}
           </button>
           <button className='text-neutral-600 hover:underline'>
             dismiss notification
@@ -112,12 +127,10 @@ const Notifications = () => {
         />
         <NotificationCard
           user='James'
-          userId='user_1'
           propertyId='property_1'
         />
         <InspectionNotificationCard
           user='Salisu'
-          userId='user_3'
           propertyId='property_2'
         />
       </div>

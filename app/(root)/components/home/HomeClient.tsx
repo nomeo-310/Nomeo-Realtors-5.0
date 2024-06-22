@@ -7,6 +7,8 @@ import OurTestimonialSection from './OurTestimonialSection';
 import FrequentlyAskedQuestionsSection from './FrequentlyAskedQuestionsSection';
 import LatestBlogSection from './LatestBlogSection';
 import FeaturedPropertiesSection from './FeaturedPropertiesSection';
+import LoginModal from '../Login/LoginModal';
+import SignupModal from '../signUp/SignupModal';
 
 
 const HomeClient = () => {
