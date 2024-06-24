@@ -1,18 +1,19 @@
-'use client'
+"use client";
 
-import LoginModal from '@/app/(root)/components/Login/LoginModal'
-import SignupModal from '@/app/(root)/components/signUp/SignupModal'
-import React from 'react'
+import LoginModal from "@/app/(root)/components/Login/LoginModal";
+import AgentSignupModal from "@/app/(root)/components/signUp/AgentSignupModal";
+import SignupModal from "@/app/(root)/components/signUp/UserSignupModal";
+import React from "react";
 
-type Props = {}
 
-const ModalProvider = (props: Props) => {
+const ModalProvider = () => {
   return (
     <React.Fragment>
-      <LoginModal/>
-      <SignupModal/>
+      <LoginModal />
+      <SignupModal />
+      <AgentSignupModal/>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default ModalProvider
+export default ModalProvider;

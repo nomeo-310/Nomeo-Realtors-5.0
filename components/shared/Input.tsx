@@ -7,6 +7,7 @@ import { HiOutlineEye, HiOutlineEyeSlash } from 'react-icons/hi2';
 
 interface inputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: IconType
+  
 }
 
 const Input = React.forwardRef<HTMLButtonElement, inputProps>(({className, type, disabled, icon:Icon, ...props}) => {

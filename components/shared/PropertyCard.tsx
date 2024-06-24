@@ -32,8 +32,6 @@ const PropertyCard = ({agentDisplay, hideTag, id, propertTag, propertyImage, pro
     setShowMenu(false)
   }
 
-  console.log(showMenu)
-
   return (
     <div className="w-full flex flex-col gap-2 cursor-pointer group" onClick={() => router.push(`/property/${id}`)}>
       <div className="bg-gray-300 relative md:aspect-square aspect-video xl:h-[15rem] lg:h-[14rem] md:h-[13rem] h-[14rem] flex items-center justify-center overflow-hidden rounded">

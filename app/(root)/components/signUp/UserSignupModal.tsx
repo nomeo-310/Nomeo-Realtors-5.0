@@ -1,34 +1,49 @@
-import Button from '@/components/shared/Button';
-import Input from '@/components/shared/Input';
-import Modal from '@/components/shared/Modal'
-import useAgentSignUp from '@/hooks/useAgentSignUp';
-import useLogin from '@/hooks/useLogin';
-import useSignUp from '@/hooks/useSignUp';
 import React from 'react'
-import { BsGoogle } from 'react-icons/bs';
-import { HiOutlineEnvelope, HiOutlineLockClosed } from 'react-icons/hi2';
-import { toast } from 'sonner';
+import Modal from '@/components/shared/Modal'
+import useLogin from '@/hooks/useLogin'
+import useSignUp from '@/hooks/useSignUp'
+import Input from '@/components/shared/Input'
+import { HiOutlineEnvelope, HiOutlineLockClosed, HiOutlineUser } from 'react-icons/hi2'
+import { BsGoogle } from 'react-icons/bs'
+import Button from '@/components/shared/Button'
+import { toast } from 'sonner'
 
-const LoginModal = () => {
-  const loginUser = useLogin();
+const UserSignupModal = () => {
   const signUpUser = useSignUp();
-  const signUpAgent = useAgentSignUp();
+  const loginUser = useLogin();
 
+  const [surname, setSurname] = React.useState('');
+  const [lastname, setLastname] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
   const handleSubmission = () => {
-    if (email === '' || password === '') {
+    if (email === '' || password === '' || surname === '' || password === '') {
       toast.error('You cannot submit empty field(s)!! Fill them please');
 
       return;
     }
-    console.log(email, password)
+    
+    console.log(email, password, surname, lastname);
   }
-  
+
   return (
-    <Modal isOpen={loginUser.isOpen} title={'Log In'} onClose={loginUser.onClose}>
+    <Modal isOpen={signUpUser.isOpen} title={'User Registration'} onClose={signUpUser.onClose}>
       <div className="flex flex-col gap-3">
+        <Input
+          placeholder='enter your surname'
+          icon={HiOutlineUser}
+          type='text'
+          value={surname}
+          onChange={(event) => setSurname(event.target.value)}
+        />
+        <Input
+          placeholder='enter your lastname'
+          icon={HiOutlineUser}
+          type='text'
+          value={lastname}
+          onChange={(event) => setLastname(event.target.value)}
+        />
         <Input
           placeholder='enter your email address'
           icon={HiOutlineEnvelope}
@@ -45,7 +60,7 @@ const LoginModal = () => {
         />
         <div className="mt-6 md:mt-8">
           <Button type='submit' onClick={handleSubmission} className='text-lg'>
-            Login
+            Register
           </Button>
         </div>
         <hr/>
@@ -59,15 +74,9 @@ const LoginModal = () => {
         </Button>
         <div className="mt-6 md:mt-8 flex flex-col gap-2">
           <p className='md:text-lg'>
-            Don&apos;t have an account yet?
-            <button onClick={() => {loginUser.onClose(), signUpUser.onOpen()}} className='ml-1 underline'>
-              Create one
-            </button>
-          </p>
-          <p className='md:text-lg'>
-            Interested in being one of our agents? 
-            <button onClick={() => {loginUser.onClose(), signUpAgent.onOpen()}} className='ml-1 underline'>
-              Register here
+            Already have an account?
+            <button onClick={() => {loginUser.onOpen(), signUpUser.onClose()}} className='ml-1 underline'>
+              Login
             </button>
           </p>
         </div>
@@ -76,4 +85,4 @@ const LoginModal = () => {
   )
 }
 
-export default LoginModal
+export default UserSignupModal

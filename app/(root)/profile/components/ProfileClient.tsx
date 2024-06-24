@@ -8,7 +8,6 @@ import { HiOutlineBriefcase, HiOutlineCheckBadge, HiOutlineClock, HiOutlineDocum
 import AllBlogs from '../../blogs/components/AllBlogs'
 import LoadMoreButton from '@/components/shared/LoadMoreButton'
 import AllRentProperties from '../../rent/components/AllRentProperties'
-import { moneyFormat } from '@/hooks/moneyFormat'
 
 const ProfileClient = () => {
   const [mobileActiveTab, setMobileActiveTab] = React.useState('profile');
@@ -57,10 +56,6 @@ const ProfileClient = () => {
             <p className='lg:text-xl text-lg'>{user_2.mobileNumber}, {user_2.officeNumber}</p>
           </div>
           <div className='flex items-center gap-2 text-gray-400'>
-            <HiOutlineClock size={22}/>
-            <p className='lg:text-xl text-lg'>9:00am - 6:00pm</p>
-          </div>
-          <div className='flex items-center gap-2 text-gray-400'>
             <HiOutlineWallet size={22}/>
             <p className='lg:text-xl text-lg'>{nairaSign}{user_2.inspectionFee.toLocaleString()} per hour</p>
           </div>
@@ -74,7 +69,7 @@ const ProfileClient = () => {
           </div>
           <div className='flex items-center gap-2 text-gray-400'>
             <HiOutlineReceiptPercent size={22}/>
-            <p className='lg:text-xl text-lg'>   Sales</p>
+            <p className='lg:text-xl text-lg'>125  Sales</p>
           </div>
           <div className='flex items-center gap-2 text-gray-400'>
             <HiOutlineHome size={22}/>

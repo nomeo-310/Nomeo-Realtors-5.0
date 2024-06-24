@@ -1,7 +1,6 @@
 import React from "react";
-import ProfileClient from "../components/ProfileClient";
 import { Metadata } from "next";
-
+import ProfileClient from "../components/ProfileClient";
 
 type Props = {};
 

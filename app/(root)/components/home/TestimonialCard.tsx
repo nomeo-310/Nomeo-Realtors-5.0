@@ -16,7 +16,7 @@ type testimonyCardProps = {
 
 const TestimonialCard = ({testimony, profileImage, name, career, title}: testimonyCardProps) => {
   return (
-    <Card>
+    <Card className=''>
       <div className='lg:p-3 p-2 md:p-0 dark:text-white'>
         <h2 className='mb-5 font-semibold lg:text-xl text-lg capitalize'>{title}</h2>
         <div className='lg:mb-6 mb-5'>

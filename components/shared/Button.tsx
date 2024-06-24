@@ -5,7 +5,7 @@ import { cn } from '@/hooks/cn'
 
 type buttonProps = {
   type:"submit" | "button" | "reset"
-  onClick: () => void
+  onClick?: () => void
   disabled?: boolean
   className?: string
   children: React.ReactNode

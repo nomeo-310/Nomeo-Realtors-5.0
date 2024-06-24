@@ -36,8 +36,8 @@ const Modal = ({children, isOpen, title, onClose}: modalProps) => {
             <div className={`translate duration-300 h-full ${showModal ? 'translate-y-0' : 'translate-y-full'} ${showModal ? 'opacity-100' : 'opacity-0'}`}>
               <div className="translate h-full lg:h-auto md:h-auto border-0 rounded-md shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 <div className="flex items-center p-5 rounded-t justify-center relative">
-                  <button onClick={handleClose} className='p-1 border-0 hover:opacity-70 transition absolute left-5'>
-                    <HiXMark size={22}/>
+                  <button onClick={handleClose} className='p-1 border rounded hover:opacity-70 transition absolute left-5'>
+                    <HiXMark size={25}/>
                   </button>
                   <div className="text-2xl md:text-3xl lg:text-4xl font-semibold">{title}</div>
                 </div>
