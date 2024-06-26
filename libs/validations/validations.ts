@@ -1,7 +1,7 @@
 const isValidEmail = (email:string) => {
   const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   return emailRegex.test(email);
-}
+};
 
 const isValidPhoneNumber = (phoneNumber:string) => {
   let response:string;
@@ -23,6 +23,6 @@ const isValidPhoneNumber = (phoneNumber:string) => {
     response = 'isNotAValidPhoneNumber'
     return { response, phoneNumberStartValue };
   }
-}
+};
 
 export { isValidEmail, isValidPhoneNumber }

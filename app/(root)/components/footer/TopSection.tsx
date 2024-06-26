@@ -5,10 +5,12 @@ import { HiOutlineHomeModern } from 'react-icons/hi2'
 import { BsFacebook, BsInstagram, BsThreads, BsThreadsFill, BsTwitter } from 'react-icons/bs'
 import { toast } from 'sonner'
 import Link from 'next/link'
+import useTermsOfService from '@/hooks/useTermsOfService'
 
 type Props = {}
 
 const TopSection = () => {
+  const termsOfService = useTermsOfService();
 
   const Subscription = () => {
     const [email, setEmail] = React.useState('');
@@ -40,7 +42,7 @@ const TopSection = () => {
             </div>
           </form> 
           <div className="mt-1 text-sm lg:text-base">
-            By subscribing you agree to our terms and conditions.
+            By subscribing you agree to our <button className='underline' onClick={termsOfService.onOpen}>Terms And Conditions</button>.
           </div>
         </div>
         <div>

@@ -82,7 +82,7 @@ const PageOne = ({pageNumber, setPageNumber, formData, setFormData}:pageProps) =
         value={password}
         onChange={(event) => setFormData({...formData, password: event.target.value})}
       />
-      <div className="mt-6 md:mt-8">
+      <div className="mt-6">
         <Button type='submit' className='text-lg disabled:bg-neutral-500' disabled={disableNext}>
           Next
         </Button>

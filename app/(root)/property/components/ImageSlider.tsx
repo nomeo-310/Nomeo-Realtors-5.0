@@ -31,7 +31,7 @@ const ImageSlider = ({property, setOpenSlider}:{property:propertyProps, setOpenS
   };
 
   return (
-    <div className='slide-in-left fixed left-0 top-0 w-full h-full bg-black/70 z-[300000] overflow-hidden lg:p-8 md:p-12 p-6'>
+    <div className='slide-in-left fixed left-0 top-0 w-full h-full bg-neutral-800/70 z-[300000] overflow-hidden lg:p-8 md:p-12 p-6'>
       <div className='absolute right-6 top-6 lg:py-2.5 lg:px-5 p-2 flex gap-3 bg-white rounded-full items-center'>
         <div className='text-lg border-r pr-3 hidden lg:block'>{currentIndex + 1} of {propertyImageList?.length}</div>
         <button>

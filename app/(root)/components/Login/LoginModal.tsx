@@ -65,7 +65,7 @@ const LoginModal = () => {
             </button>
           </p>
           <p className='md:text-lg'>
-            Interested in being one of our agents? 
+            Interested in being an agent? 
             <button onClick={() => {loginUser.onClose(), signUpAgent.onOpen()}} className='ml-1 underline'>
               Register here
             </button>

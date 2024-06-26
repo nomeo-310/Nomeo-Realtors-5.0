@@ -3,6 +3,7 @@ import Modal from '@/components/shared/Modal'
 import useAgentSignUp from '@/hooks/useAgentSignUp'
 import PageOne from './PageOne';
 import PageTwo from './PageTwo';
+import PageThree from './PageThree';
 
 
 export type formDataType = {
@@ -10,7 +11,7 @@ export type formDataType = {
   lastname: string;
   email: string;
   password: string;
-  profileImage: {public_id:string, secure_url:string};
+  profileImage: { public_id:string, secure_url:string };
   image: string;
   city: string;
   state: string;
@@ -43,17 +44,27 @@ const AgentSignupModal = () => {
   };
 
   const [formData, setFormData] = React.useState<formDataType>(initialValues);
+  
+  const [pageNumber, setPageNumber] = React.useState(0);
+  
+  const handleOnclose = () => {
+    signUpAgent.onClose();
+    setFormData(initialValues)
+    setPageNumber(0);
+  }
+  
   const signUpAgent = useAgentSignUp();
 
-  const [pageNumber, setPageNumber] = React.useState(0);
-
   return (
-    <Modal isOpen={signUpAgent.isOpen} title={'Agent Registration'} onClose={signUpAgent.onClose}>
+    <Modal isOpen={signUpAgent.isOpen} title={'Agent Registration'} onClose={handleOnclose}>
       { pageNumber === 0 && 
         <PageOne pageNumber={pageNumber} setPageNumber={setPageNumber} formData={formData} setFormData={setFormData} />
       }
       { pageNumber === 1 && 
         <PageTwo pageNumber={pageNumber} setPageNumber={setPageNumber} formData={formData} setFormData={setFormData} />
+      }
+      { pageNumber === 2 &&
+        <PageThree pageNumber={pageNumber} setPageNumber={setPageNumber} formData={formData} setFormData={setFormData} />
       }
     </Modal>
   )

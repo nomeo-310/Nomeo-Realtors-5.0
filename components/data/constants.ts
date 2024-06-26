@@ -1,4 +1,4 @@
-import { TbBellRinging, TbFileText, TbHomeHeart, TbHomePlus, TbHomeRibbon, TbLockPlus, TbMessage, TbUserEdit } from 'react-icons/tb';
+import { TbBellRinging, TbFileText, TbHomeHeart, TbHomePlus, TbHomeRibbon, TbLockPlus, TbUserEdit } from 'react-icons/tb';
 
 
 export interface navbarItem {
@@ -66,7 +66,7 @@ export interface  propertyProps {
   verifiedamenities: string[]
 };
 
-export const loggedIn = false;
+export const loggedIn = true;
 export const userSurname = 'Salomi';
 
 export const nairaSign:string = String.fromCodePoint(8358);

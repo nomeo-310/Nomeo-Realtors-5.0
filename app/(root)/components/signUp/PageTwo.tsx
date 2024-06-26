@@ -128,42 +128,58 @@ const PageTwo = ({pageNumber, setPageNumber, formData, setFormData}:pageProps) =
   return (
     <form className='flex flex-col gap-3' onSubmit={onNext}>
       <h2 className='text-lg lg:text-2xl'>Profile Image & Agency Details</h2>
-      <div className='w-fit'>
-        <label htmlFor="profileImage" className='w-fit'>
-          <div className="aspect-square md:w-[7.5rem] w-[7rem] rounded overflow-hidden group bg-gray-200 flex items-center justify-center relative">
-            { profileImage.secure_url ?
-              <Image src={profileImage.secure_url} priority fill alt='profile_photo' className='object-cover'/> :
-              <Image src={'/images/default_user.png'} priority fill alt='profile_photo' className='object-cover'/>
-            }
-            <div className="z-[200] cursor-pointer w-full h-full bg-black/50 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 group-active:opacity-100 absolute left-0 top-0">
-            { profileImage.secure_url && !imageUploaded ? 
-              <div className='flex items-center gap-5 w-full justify-between p-2'>
-                <button className='p-2 rounded-full bg-green-600 text-white' onClick={uploadProfileImage}>
-                  <HiOutlineCloudArrowUp size={22} className='hidden md:block'/>
-                  <HiOutlineCloudArrowUp size={18} className='md:hidden'/>
-                </button>
-                <button className='p-2 rounded-full bg-red-400' onClick={resetImageFile}>
+      <div className="flex items-center gap-3">
+        <div className='w-fit'>
+          <label htmlFor="profileImage" className='w-fit'>
+            <div className="aspect-square md:w-[8.5rem] w-[7rem] rounded overflow-hidden group bg-gray-200 flex items-center justify-center relative">
+              { profileImage.secure_url ?
+                <Image src={profileImage.secure_url} priority fill alt='profile_photo' className='object-cover'/> :
+                <Image src={'/images/default_user.png'} priority fill alt='profile_photo' className='object-cover'/>
+              }
+              <div className="z-[200] cursor-pointer w-full h-full bg-black/50 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 group-active:opacity-100 absolute left-0 top-0">
+              { profileImage.secure_url && !imageUploaded ? 
+                <div className='flex items-center gap-5 w-full justify-between p-2'>
+                  <button className='p-2 rounded-full bg-green-600 text-white' onClick={uploadProfileImage}>
+                    <HiOutlineCloudArrowUp size={22} className='hidden md:block'/>
+                    <HiOutlineCloudArrowUp size={18} className='md:hidden'/>
+                  </button>
+                  <button className='p-2 rounded-full bg-red-400' onClick={resetImageFile}>
+                    <HiXMark size={22} className='hidden md:block'/>
+                    <HiXMark size={18} className='md:hidden'/>
+                  </button>
+                </div> :
+                profileImage.secure_url && imageUploaded ?
+                <button className='p-2 rounded-full bg-red-400' onClick={deleteImageFile}>
                   <HiXMark size={22} className='hidden md:block'/>
                   <HiXMark size={18} className='md:hidden'/>
-                </button>
-              </div> :
-              profileImage.secure_url && imageUploaded ?
-              <button className='p-2 rounded-full bg-red-400' onClick={deleteImageFile}>
-                <HiXMark size={22} className='hidden md:block'/>
-                <HiXMark size={18} className='md:hidden'/>
-              </button> :
-              <LuImagePlus size={60} className='cursor-pointer'/>
-            }
+                </button> :
+                <LuImagePlus size={60} className='cursor-pointer'/>
+              }
+              </div>
+              <Input type='file' id='profileImage' hidden accept=".png, .jpg, .jpeg" className="cursor-pointer" onChange={onChangeImageFile}/>
             </div>
-            <Input type='file' id='profileImage' hidden accept=".png, .jpg, .jpeg" className="cursor-pointer" onChange={onChangeImageFile}/>
-          </div>
-        </label>
+          </label>
+        </div>
+        <div className="flex flex-col gap-3 grow">
+          <Input
+            icon={HiOutlineBriefcase}
+            placeholder='enter name of agency'
+            value={agencyName}
+            onChange={(event) => setFormData({...formData, agencyName: event.target.value})}
+          />
+          <Input
+            icon={HiOutlinePhone}
+            placeholder='enter office number'
+            value={officeNumber}
+            onChange={(event) => setFormData({...formData, officeNumber: event.target.value})}
+          />
+        </div>
       </div>
       <Input
-        icon={HiOutlineBriefcase}
-        placeholder='enter name of agency'
-        value={agencyName}
-        onChange={(event) => setFormData({...formData, agencyName: event.target.value})}
+        icon={HiOutlinePhone}
+        placeholder='enter mobile number'
+        value={mobileNumber}
+        onChange={(event) => setFormData({...formData, mobileNumber: event.target.value})}
       />
       <Input
         icon={HiOutlineMapPin}
@@ -172,18 +188,18 @@ const PageTwo = ({pageNumber, setPageNumber, formData, setFormData}:pageProps) =
         onChange={(event) => setFormData({...formData, officeAddress: event.target.value})}
       />
       <Input
-        icon={HiOutlinePhone}
-        placeholder='enter office number'
-        value={officeNumber}
-        onChange={(event) => setFormData({...formData, officeNumber: event.target.value})}
+        icon={HiOutlineMapPin}
+        placeholder='enter city of location'
+        value={officeAddress}
+        onChange={(event) => setFormData({...formData, officeAddress: event.target.value})}
       />
       <Input
-        icon={HiOutlinePhone}
-        placeholder='enter mobile number'
-        value={mobileNumber}
-        onChange={(event) => setFormData({...formData, mobileNumber: event.target.value})}
+        icon={HiOutlineMapPin}
+        placeholder='enter state of location'
+        value={officeAddress}
+        onChange={(event) => setFormData({...formData, officeAddress: event.target.value})}
       />
-      <div className="mt-6 md:mt-8 flex items-center justify-between">
+      <div className="mt-6 flex items-center justify-between">
         <Button type='button' onClick={onPrevious} className='text-lg'>
           Previous
         </Button>
