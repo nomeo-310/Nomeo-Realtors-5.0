@@ -7,6 +7,7 @@ import { HiOutlineEnvelope, HiOutlineLockClosed, HiOutlineUser } from 'react-ico
 import { BsGoogle } from 'react-icons/bs'
 import Button from '@/components/shared/Button'
 import { toast } from 'sonner'
+import { isValidEmail } from '@/libs/validations/validations'
 
 const UserSignupModal = () => {
   const signUpUser = useSignUp();
@@ -17,19 +18,47 @@ const UserSignupModal = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  const handleSubmission = () => {
-    if (email === '' || password === '' || surname === '' || password === '') {
-      toast.error('You cannot submit empty field(s)!! Fill them please');
+
+  const noValue = email === '' && password === '' && surname === '' && password === '';
+  const [disableSubmit, setDisableSubmi] = React.useState(noValue);
+
+  React.useEffect(() => {
+    if (email !== '' && password !== '' && surname !== '' && password !== '') {
+      setDisableSubmi(false)
+    }
+  }, [email, password, surname]);
+
+  const handleSubmission = (event:React.FormEvent) => {
+    event.preventDefault();
+
+    const validEmail = isValidEmail(email);
+
+    if (email && !validEmail) {
+      toast.error('Invalid email address');
 
       return;
     }
+
+    if (surname && !Number.isNaN(Number(surname))) {
+      toast.error('Type a valid surname please');
+      
+      return;
+    }
+
+    if (lastname && !Number.isNaN(Number(lastname))) {
+      toast.error('Type a valid lastname please');
+      
+      return;
+    }
+
+
     
     console.log(email, password, surname, lastname);
   }
 
   return (
     <Modal isOpen={signUpUser.isOpen} title={'User Registration'} onClose={signUpUser.onClose}>
-      <div className="flex flex-col gap-3">
+      <form className="flex flex-col gap-3" onSubmit={handleSubmission}>
         <Input
           placeholder='enter your surname'
           icon={HiOutlineUser}
@@ -59,7 +88,7 @@ const UserSignupModal = () => {
           onChange={(event) => setPassword(event.target.value)}
         />
         <div className="mt-6 md:mt-8">
-          <Button type='submit' onClick={handleSubmission} className='text-lg'>
+          <Button type='submit' className='text-lg disabled:bg-neutral-500' disabled={disableSubmit}>
             Register
           </Button>
         </div>
@@ -80,7 +109,7 @@ const UserSignupModal = () => {
             </button>
           </p>
         </div>
-      </div>
+      </form>
     </Modal>
   )
 }

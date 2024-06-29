@@ -6,7 +6,7 @@ import HomePageSearchBar from './HomePageSearchBar'
 
 const LandingPage = () => {
   return (
-    <div className='h-screen w-full'>
+    <div className='h-svh w-full'>
       <div className="absolute left-0 top-0 w-full h-full flex items-center justify-center overflow-hidden">
         <Image src={'/images/desktop_banner.png'} className='object-cover hidden md:block' fill alt='banner' priority/>
         <Image src={'/images/mobile_banner.png'} className='object-cover md:hidden' fill alt='banner' priority/>

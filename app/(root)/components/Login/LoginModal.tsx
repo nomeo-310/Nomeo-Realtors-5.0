@@ -4,6 +4,7 @@ import Modal from '@/components/shared/Modal'
 import useAgentSignUp from '@/hooks/useAgentSignUp';
 import useLogin from '@/hooks/useLogin';
 import useSignUp from '@/hooks/useSignUp';
+import { isValidEmail } from '@/libs/validations/validations';
 import React from 'react'
 import { BsGoogle } from 'react-icons/bs';
 import { HiOutlineEnvelope, HiOutlineLockClosed } from 'react-icons/hi2';
@@ -17,18 +18,52 @@ const LoginModal = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  const handleSubmission = () => {
-    if (email === '' || password === '') {
-      toast.error('You cannot submit empty field(s)!! Fill them please');
+  const validEmail = isValidEmail(email);
+
+  const noValue = email === '' && password === '';
+  const [disableSubmit, setDisableSubmi] = React.useState(noValue);
+
+  React.useEffect(() => {
+    if (email !== '' && password !== '') {
+      setDisableSubmi(false)
+    }
+  }, [email, password]);
+
+  const handleSubmission = (event:React.FormEvent) => {
+    event.preventDefault();
+
+    if (email === '' && password === '') {
+      toast.error('Fields are emplty, please fill them');
+
+      return;
+    };
+
+    if (email && !validEmail) {
+      toast.error('Invalid email address');
+
+      return;
+    };
+
+    if (email && password === '') {
+      toast.error('Add your password');
 
       return;
     }
+
+    if (password && email === '') {
+      toast.error('Add your email address');
+
+      return;
+    }
+
     console.log(email, password)
   }
+
+
   
   return (
     <Modal isOpen={loginUser.isOpen} title={'Log In'} onClose={loginUser.onClose}>
-      <div className="flex flex-col gap-3">
+      <form className="flex flex-col gap-3" onSubmit={handleSubmission} autoComplete='off'>
         <Input
           placeholder='enter your email address'
           icon={HiOutlineEnvelope}
@@ -44,7 +79,7 @@ const LoginModal = () => {
           onChange={(event) => setPassword(event.target.value)}
         />
         <div className="mt-6 md:mt-8">
-          <Button type='submit' onClick={handleSubmission} className='text-lg'>
+          <Button type='submit' className='text-lg disabled:bg-neutral-500' disabled={disableSubmit}>
             Login
           </Button>
         </div>
@@ -60,18 +95,18 @@ const LoginModal = () => {
         <div className="mt-6 md:mt-8 flex flex-col gap-2">
           <p className='md:text-lg'>
             Don&apos;t have an account yet?
-            <button onClick={() => {loginUser.onClose(), signUpUser.onOpen()}} className='ml-1 underline'>
+            <button onClick={() => {loginUser.onClose(), signUpUser.onOpen()}} className='ml-1 underline' type='button'>
               Create one
             </button>
           </p>
           <p className='md:text-lg'>
             Interested in being an agent? 
-            <button onClick={() => {loginUser.onClose(), signUpAgent.onOpen()}} className='ml-1 underline'>
+            <button onClick={() => {loginUser.onClose(), signUpAgent.onOpen()}} className='ml-1 underline' type='button'>
               Register here
             </button>
           </p>
         </div>
-      </div>
+      </form>
     </Modal>
   )
 }

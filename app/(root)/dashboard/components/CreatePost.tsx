@@ -66,8 +66,6 @@ const CreatePost = ({setActiveTab}:{setActiveTab: React.Dispatch<React.SetStateA
     }
   };
 
-  console.log(postBanner);
-
   const modules = {
     toolbar: [
       [{header: '1'}, {header: '2'}, {font: []}],
@@ -141,14 +139,14 @@ const CreatePost = ({setActiveTab}:{setActiveTab: React.Dispatch<React.SetStateA
               </div>
             </label>
           </div>
-          <div className='w-full flex flex-col'>
+          <div className='w-full flex flex-col overflow-hidden'>
             <ReactQuill
               theme='snow'
               value={editorContent}
               onChange={(value) => setEditorContent(value)}
               modules={modules}
               placeholder='Create blog post...'
-              className='bg-gray-200'
+              className='bg-gray-200 w-full resize-none'
             />
           </div>
           <div className='mt-8 flex items-center'>

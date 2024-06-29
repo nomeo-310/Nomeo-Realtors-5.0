@@ -5,12 +5,14 @@ import React from 'react'
 import { MdOutlineCopyright } from "react-icons/md"
 import usePrivacyPolicy from '@/hooks/usePrivacyPolicy';
 import useTermsOfService from '@/hooks/useTermsOfService';
+import useCookies from '@/hooks/useCookies';
 
 
 const BottomSection = () => {
   const date:Date = new Date();
   const termsOfService = useTermsOfService();
   const privacyPolicy = usePrivacyPolicy();
+  const cookies = useCookies();
   
   return (
     <div className="flex flex-col md:flex-row md:justify-between gap-4 pt-10">
@@ -21,10 +23,10 @@ const BottomSection = () => {
       <div className="flex gap-4 text-white md:justify-start justify-center">
         <button className='hover:underline' onClick={termsOfService.onOpen}>Terms of Service</button>
         <button className='hover:underline' onClick={privacyPolicy.onOpen}>Privacy Policy</button>
-        <button className='hover:underline'>Cookies</button>
+        <button className='hover:underline' onClick={cookies.onOpen}>Cookies</button>
       </div>
     </div>
   )
 };
 
-export default BottomSection
+export default BottomSection;

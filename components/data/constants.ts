@@ -66,7 +66,7 @@ export interface  propertyProps {
   verifiedamenities: string[]
 };
 
-export const loggedIn = true;
+export const loggedIn = false;
 export const userSurname = 'Salomi';
 
 export const nairaSign:string = String.fromCodePoint(8358);

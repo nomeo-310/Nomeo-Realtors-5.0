@@ -34,21 +34,39 @@ const PageOne = ({pageNumber, setPageNumber, formData, setFormData}:pageProps) =
       toast.error('Surname should be minimum of 5 characters');
 
       return;
-    } else if (lastname && lastname.length < 5) {
+    }; 
+
+    if (surname && !Number.isNaN(Number(surname))) {
+      toast.error('Type a valid surname please');
+      
+      return;
+    };
+
+    if (lastname && lastname.length < 5) {
       toast.error('Lastname should be minimum of 5 characters');
 
       return;
-    }else if (email && !isValidEmail(email)) {
+    };
+
+    if (lastname && !Number.isNaN(Number(lastname))) {
+      toast.error('Type a valid lastname please');
+      
+      return;
+    };
+
+    if (email && !isValidEmail(email)) {
       toast.error('Invalid email address');
 
       return;
-    }else if (password && password.length < 8) {
+    };
+
+    if (password && password.length < 8) {
       toast.error('password should be minimum of 5 characters');
 
       return;
-    } else {
-      setPageNumber(pageNumber + 1);
-    }
+    };
+
+    setPageNumber(pageNumber + 1);
   };
 
   return (

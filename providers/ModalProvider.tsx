@@ -3,6 +3,7 @@
 import LoginModal from "@/app/(root)/components/login/LoginModal";
 import AgentSignupModal from "@/app/(root)/components/signUp/AgentSignupModal";
 import SignupModal from "@/app/(root)/components/signUp/UserSignupModal";
+import CookiesModal from "@/app/(root)/components/terms/CookiesModal";
 import PrivacyPolicy from "@/app/(root)/components/terms/PrivacyPolicy";
 import TermsAndConditionsModal from "@/app/(root)/components/terms/TermsAndConditionsModal";
 import TermsOfServiceModal from "@/app/(root)/components/terms/TermsOfServiceModal";
@@ -17,6 +18,7 @@ const ModalProvider = () => {
       <TermsAndConditionsModal />
       <PrivacyPolicy />
       <TermsOfServiceModal />
+      <CookiesModal />
     </React.Fragment>
   );
 };
