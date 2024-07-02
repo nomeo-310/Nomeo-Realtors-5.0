@@ -23,7 +23,7 @@ const ScrollToTopButton = () => {
   return (
     <React.Fragment>
       {showButton && 
-        <button className='fixed bottom-5 md:right-7 right-10 z-[10000] lg:p-3 p-2 rounded bg-neutral-700 text-white' onClick={handleScrollUp}>
+        <button className='fixed bottom-5 md:right-7 right-10 z-[10000] lg:p-3 p-2 rounded-full bg-neutral-700 text-white' onClick={handleScrollUp}>
           <HiChevronUp size={24}/>
         </button>}
     </React.Fragment>

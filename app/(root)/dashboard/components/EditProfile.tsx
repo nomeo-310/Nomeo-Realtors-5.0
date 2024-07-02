@@ -50,7 +50,8 @@ const EditProfile = ({user}:profileProps) => {
   const [agencyAddress, setAgencyAddress] = React.useState(user.officeAddress);
 
   const [agentFee, setAgentFee] = React.useState(user.inspectionFee);
-  const [agentBio, setAgentBio] = React.useState('')
+  const [agentBio, setAgentBio] = React.useState('');
+  const [occupation, setOccupation] = React.useState('');
 
   const onChangeAgentFee = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value) || 0;
@@ -175,9 +176,18 @@ const EditProfile = ({user}:profileProps) => {
               placeholder='your current state'
               onChange={(event) => setCurrentState(event.target.value)}
             />
+            {!user.isAgent &&
+              <Input
+                type='text'
+                icon={HiOutlineBriefcase}
+                value={occupation}
+                placeholder='your occupation'
+                onChange={(event) => setOccupation(event.target.value)}
+              />
+            }
           </div>
         </React.Fragment>
-        {user.isAgent &&
+        { user.isAgent &&
           <React.Fragment>
             <hr/>
             <h2 className='text-xl lg:text-2xl mb-4'>Agent & Agency Details</h2>

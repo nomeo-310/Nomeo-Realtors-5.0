@@ -22,6 +22,17 @@ const LoginModal = () => {
 
   const noValue = email === '' && password === '';
   const [disableSubmit, setDisableSubmi] = React.useState(noValue);
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const resetField = () => {
+    setEmail('');
+    setPassword('');
+  }
+
+  const handleClose = () => {
+    resetField();
+    loginUser.onClose();
+  }
 
   React.useEffect(() => {
     if (email !== '' && password !== '') {
@@ -56,13 +67,14 @@ const LoginModal = () => {
       return;
     }
 
+    setIsLoading(true)
     console.log(email, password)
   }
 
 
   
   return (
-    <Modal isOpen={loginUser.isOpen} title={'Log In'} onClose={loginUser.onClose}>
+    <Modal isOpen={loginUser.isOpen} title={'Log In'} onClose={handleClose}>
       <form className="flex flex-col gap-3" onSubmit={handleSubmission} autoComplete='off'>
         <Input
           placeholder='enter your email address'
@@ -80,7 +92,7 @@ const LoginModal = () => {
         />
         <div className="mt-6 md:mt-8">
           <Button type='submit' className='text-lg disabled:bg-neutral-500' disabled={disableSubmit}>
-            Login
+            { isLoading ? 'Logging In...' : 'Login' }
           </Button>
         </div>
         <hr/>
@@ -111,4 +123,4 @@ const LoginModal = () => {
   )
 }
 
-export default LoginModal
+export default LoginModal;
