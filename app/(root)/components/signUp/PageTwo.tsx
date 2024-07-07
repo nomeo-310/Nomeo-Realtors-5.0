@@ -9,6 +9,7 @@ import { uploadImage } from '@/hooks/uploadImages';
 import { deleteCloudinaryImages } from '@/libs/actions/deleteCloudinaryImage';
 import Button from '@/components/shared/Button';
 import { isValidPhoneNumber } from '@/libs/validations/validations';
+import { AiFillAlipaySquare } from 'react-icons/ai';
 
 type pageProps = {
   pageNumber: number
@@ -22,25 +23,20 @@ const PageTwo = ({pageNumber, setPageNumber, formData, setFormData}:pageProps) =
   const [imageFile, setImageFile] = React.useState<File | null>(null);
   const [imageUploaded, setImageUploaded] = React.useState(false);
 
-  const { profileImage, agencyName, officeAddress, officeNumber, mobileNumber, image } = formData;
+  const { profileImage, agencyName, officeAddress, officeNumber, mobileNumber, image, city, state } = formData;
   const noValue = agencyName === '' && officeAddress === '' && mobileNumber === '' && image === '' && officeNumber === '' ;
 
   const [disableNext, setDisAbleNext] = React.useState(noValue);
 
-  const uploadProfileImage = async() => {
-    let loadingImageToast = toast.loading("...Uploading");
-    const data = {image: imageFile, uploadPreset: 'profileImages'}
-    try {
-      const imageData = await uploadImage(data)
-      const imageUrls = {public_id: imageData?.public_id, secure_url: imageData?.secure_url};
-      setFormData({...formData, profileImage: imageUrls});
-      setFormData({...formData, image: imageUrls.secure_url});
-      toast.dismiss(loadingImageToast);
-      toast.success("Image successfully uploaded");
-      setImageUploaded(true);
-    } catch (error) {
-      toast.dismiss(loadingImageToast);
-      toast.error("Error uploading image");
+  const onChangeImageFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setImageFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData({...formData, profileImage:{...profileImage, secure_url: reader.result as string}});
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -53,20 +49,25 @@ const PageTwo = ({pageNumber, setPageNumber, formData, setFormData}:pageProps) =
   const deleteImageFile = () => {
     if (formData.profileImage.public_id !== '') {
       deleteCloudinaryImages(formData.profileImage.public_id)
-      setImageFile(null)
-      setFormData({...formData, profileImage: {...profileImage, secure_url: ''}})
+      setImageFile(null);
+      setImageUploaded(false)
+      setFormData({...formData, profileImage: {...profileImage, secure_url: '', public_id: ''}, image: ''})
     }
   };
 
-  const onChangeImageFile = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      setImageFile(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData({...formData, profileImage:{...profileImage, secure_url: reader.result as string}});
-      };
-      reader.readAsDataURL(file);
+  const uploadProfileImage = async() => {
+    let loadingImageToast = toast.loading("...Uploading");
+    const data = {image: imageFile, uploadPreset: 'profileImages'}
+    try {
+      const imageData = await uploadImage(data)
+      const imageUrls = {public_id: imageData?.public_id, secure_url: imageData?.secure_url};
+      setFormData({...formData, profileImage:imageUrls, image: imageUrls.secure_url});
+      toast.dismiss(loadingImageToast);
+      toast.success("Image successfully uploaded");
+      setImageUploaded(true);
+    } catch (error) {
+      toast.dismiss(loadingImageToast);
+      toast.error("Error uploading image");
     }
   };
 
@@ -91,7 +92,7 @@ const PageTwo = ({pageNumber, setPageNumber, formData, setFormData}:pageProps) =
       toast.error('As an agent profile Image is required');
 
       return;
-    } else if (!profileImage.public_id && !imageUploaded) {
+    } else if (!profileImage.public_id && imageFile) {
       toast.error('Upload the selected profile Image');
 
       return;
@@ -137,19 +138,19 @@ const PageTwo = ({pageNumber, setPageNumber, formData, setFormData}:pageProps) =
                 <Image src={'/images/default_user.png'} priority fill alt='profile_photo' className='object-cover'/>
               }
               <div className="z-[200] cursor-pointer w-full h-full bg-black/50 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 group-active:opacity-100 absolute left-0 top-0">
-              { profileImage.secure_url && !imageUploaded ? 
+              { profileImage.secure_url && !profileImage.public_id && !imageUploaded ? 
                 <div className='flex items-center gap-5 w-full justify-between p-2'>
-                  <button className='p-2 rounded-full bg-green-600 text-white' onClick={uploadProfileImage}>
+                  <button className='p-2 rounded-full bg-green-600 text-white' onClick={uploadProfileImage} type='button'>
                     <HiOutlineCloudArrowUp size={22} className='hidden md:block'/>
                     <HiOutlineCloudArrowUp size={18} className='md:hidden'/>
                   </button>
-                  <button className='p-2 rounded-full bg-red-400' onClick={resetImageFile}>
+                  <button className='p-2 rounded-full bg-red-400' onClick={resetImageFile} type='button'>
                     <HiXMark size={22} className='hidden md:block'/>
                     <HiXMark size={18} className='md:hidden'/>
                   </button>
                 </div> :
-                profileImage.secure_url && imageUploaded ?
-                <button className='p-2 rounded-full bg-red-400' onClick={deleteImageFile}>
+                profileImage.secure_url && profileImage.public_id ?
+                <button className='p-2 rounded-full bg-red-400' onClick={deleteImageFile} type='button'>
                   <HiXMark size={22} className='hidden md:block'/>
                   <HiXMark size={18} className='md:hidden'/>
                 </button> :
@@ -190,14 +191,14 @@ const PageTwo = ({pageNumber, setPageNumber, formData, setFormData}:pageProps) =
       <Input
         icon={HiOutlineMapPin}
         placeholder='enter city of location'
-        value={officeAddress}
-        onChange={(event) => setFormData({...formData, officeAddress: event.target.value})}
+        value={city}
+        onChange={(event) => setFormData({...formData, city: event.target.value})}
       />
       <Input
         icon={HiOutlineMapPin}
         placeholder='enter state of location'
-        value={officeAddress}
-        onChange={(event) => setFormData({...formData, officeAddress: event.target.value})}
+        value={state}
+        onChange={(event) => setFormData({...formData, state: event.target.value})}
       />
       <div className="mt-6 flex items-center justify-between">
         <Button type='button' onClick={onPrevious} className='text-lg'>
@@ -211,4 +212,4 @@ const PageTwo = ({pageNumber, setPageNumber, formData, setFormData}:pageProps) =
   )
 }
 
-export default PageTwo
+export default PageTwo;

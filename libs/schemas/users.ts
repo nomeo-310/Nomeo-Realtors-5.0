@@ -2,12 +2,11 @@ import mongoose from "mongoose"
 import { Schema } from "mongoose"
 
 const UserSchema = new Schema({
-  surname: {type: String, default: ""},
-  lastname: {type: String, default: ""},
-  email:{ type: String, default: "" },
+  name: {type: String, default: ""},
+  email:{ type: String, default: ""},
   hashedPassword: { type: String, default: "" },
   isAgent: {type: Boolean, default: false},
-  profileImage: {type: Object, default: { public_id: {type: String, default: ""}, secure_url: {type: String, default: "" }}},
+  profileImage: {type: Object, default: { public_id: "", secure_url: ""}},
   image: { type: String, default: "" },
   mobileNumber: {type: String, default: ""},
   officeNumber: {type: String, default: ""},

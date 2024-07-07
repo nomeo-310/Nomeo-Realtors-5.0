@@ -8,6 +8,7 @@ import { BsGoogle } from 'react-icons/bs'
 import Button from '@/components/shared/Button'
 import { toast } from 'sonner'
 import { isValidEmail } from '@/libs/validations/validations'
+import { createUser } from '@/libs/actions/user.action'
 
 const UserSignupModal = () => {
   const signUpUser = useSignUp();
@@ -18,17 +19,26 @@ const UserSignupModal = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
+  const [isLoading, setIsLoading] = React.useState(false)
+
 
   const noValue = email === '' && password === '' && surname === '' && password === '';
-  const [disableSubmit, setDisableSubmi] = React.useState(noValue);
+  const [disableSubmit, setDisableSubmit] = React.useState(noValue);
 
   React.useEffect(() => {
     if (email !== '' && password !== '' && surname !== '' && password !== '') {
-      setDisableSubmi(false)
+      setDisableSubmit(false)
     }
   }, [email, password, surname]);
 
-  const handleSubmission = (event:React.FormEvent) => {
+  const resetFields = () => {
+    setEmail('');
+    setSurname('');
+    setLastname('');
+    setPassword('');
+  }
+
+  const handleSubmission = async (event:React.FormEvent) => {
     event.preventDefault();
 
     const validEmail = isValidEmail(email);
@@ -39,11 +49,23 @@ const UserSignupModal = () => {
       return;
     }
 
+    if (surname && surname.length < 4) {
+      toast.error('Surname should be minimum of 4 characters');
+
+      return;
+    }; 
+
     if (surname && !Number.isNaN(Number(surname))) {
       toast.error('Type a valid surname please');
       
       return;
     }
+
+    if (lastname && lastname.length < 4) {
+      toast.error('Lastname should be minimum of 4 characters');
+
+      return;
+    };
 
     if (lastname && !Number.isNaN(Number(lastname))) {
       toast.error('Type a valid lastname please');
@@ -51,9 +73,31 @@ const UserSignupModal = () => {
       return;
     }
 
+    try {
+      const userData = { email, password, surname, lastname }
+      setIsLoading(true);
+      setDisableSubmit(true)
+      await createUser(userData)
+      .then((response) => {
 
-    
-    console.log(email, password, surname, lastname);
+        if (response.success) {
+          toast.success(response.success);
+          setIsLoading(false);
+          setDisableSubmit(false);
+          signUpUser.onClose();
+          resetFields();
+          loginUser.onOpen();
+        }
+
+        if (response.error) {
+          toast.error(response.error);
+          setIsLoading(false);
+          setDisableSubmit(false);
+        }
+      })
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -89,7 +133,7 @@ const UserSignupModal = () => {
         />
         <div className="mt-6 md:mt-8">
           <Button type='submit' className='text-lg disabled:bg-neutral-500' disabled={disableSubmit}>
-            Register
+            {isLoading ? 'Creating account ...' : 'Register'}
           </Button>
         </div>
         <hr/>

@@ -10,12 +10,12 @@ interface inputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   
 }
 
-const Input = React.forwardRef<HTMLButtonElement, inputProps>(({className, type, disabled, icon:Icon, ...props}) => {
+const Input = React.forwardRef<HTMLInputElement, inputProps>(({className, type, disabled, icon:Icon, ...props}, ref) => {
   const [inputType, setInputType] = React.useState('password')
 
   return (
     <div className={cn('rounded bg-gray-200 text-neutral-600 w-full relative', className)}>
-      <input type={ type === 'password' ? inputType : type } className={`cursor-pointer rounded bg-inherit w-full md:p-4 p-3.5 focus:outline-none lg:text-lg ${Icon ? 'pl-10 md:pl-12 lg:pl-12' : ''}`} disabled={disabled} {...props} />
+      <input type={ type === 'password' ? inputType : type } className={`cursor-pointer rounded bg-inherit w-full md:p-4 p-3.5 focus:outline-none lg:text-lg ${Icon ? 'pl-10 md:pl-12 lg:pl-12' : ''}`} disabled={disabled} {...props} ref={ref}/>
       {Icon && <Icon size={22} className='md:hidden absolute left-2.5 top-1/2 -translate-y-1/2'/>}
       {Icon && <Icon size={25} className='hidden md:block absolute left-3.5 top-1/2 -translate-y-1/2'/>}
       {type === 'password' && 

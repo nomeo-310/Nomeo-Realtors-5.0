@@ -30,8 +30,8 @@ const PageOne = ({pageNumber, setPageNumber, formData, setFormData}:pageProps) =
   const onNext = (event:React.FormEvent) => {
     event.preventDefault();
 
-    if (surname && surname.length < 5) {
-      toast.error('Surname should be minimum of 5 characters');
+    if (surname && surname.length < 4) {
+      toast.error('Surname should be minimum of 4 characters');
 
       return;
     }; 
@@ -42,8 +42,8 @@ const PageOne = ({pageNumber, setPageNumber, formData, setFormData}:pageProps) =
       return;
     };
 
-    if (lastname && lastname.length < 5) {
-      toast.error('Lastname should be minimum of 5 characters');
+    if (lastname && lastname.length < 4) {
+      toast.error('Lastname should be minimum of 4 characters');
 
       return;
     };

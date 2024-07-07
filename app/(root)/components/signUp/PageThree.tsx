@@ -10,6 +10,8 @@ import Input from '@/components/shared/Input';
 import TextArea from '@/components/shared/TextArea';
 import useTermsAndConditions from '@/hooks/useTermsAndConditions';
 import useAgentSignUp from '@/hooks/useAgentSignUp';
+import { createAgent } from '@/libs/actions/user.action';
+import useLogin from '@/hooks/useLogin';
 
 type pageProps = {
   pageNumber: number
@@ -19,7 +21,9 @@ type pageProps = {
 };
 
 const PageThree = ({pageNumber, setPageNumber, formData, setFormData}:pageProps) => {
+
   const agentSignUp = useAgentSignUp();
+  const loginUser = useLogin();
   const termsAndConditions = useTermsAndConditions();
   
   const [agreed, setAgreed] = React.useState(false);
@@ -27,14 +31,15 @@ const PageThree = ({pageNumber, setPageNumber, formData, setFormData}:pageProps)
   const { inspectionFee, bio, agencyWebsite } = formData;
 
   const novalue = inspectionFee === 0 && bio === '' && agreed === false;
-  const [disableNext, setDisableNext] = React.useState(novalue)
+  const [disableSubmit, setDisableSubmit] = React.useState(novalue);
+  const [isLoading, setIsLoading] = React.useState(false);
   const nairaSign:string = String.fromCodePoint(8358);
 
   const onPrevious = () => {
     setPageNumber(pageNumber - 1);
   };
 
-  const submitData = (event:React.FormEvent) => {
+  const submitData = async (event:React.FormEvent) => {
     event.preventDefault();
 
     if (bio && bio.length < 100) {
@@ -43,7 +48,30 @@ const PageThree = ({pageNumber, setPageNumber, formData, setFormData}:pageProps)
       return;
     }
 
-    console.log(formData)
+    setIsLoading(true);
+    setDisableSubmit(true);
+    try {
+      await createAgent(formData)
+      .then((response) => {
+
+        if (response.success) {
+          toast.success(response.success);
+          setIsLoading(false);
+          setDisableSubmit(false);
+          agentSignUp.onClose();
+          loginUser.onOpen();
+        }
+
+        if (response.error) {
+          toast.error(response.error);
+          setIsLoading(false);
+          setDisableSubmit(false);
+        }
+
+      })
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const onChangeInspectionFee = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,7 +86,7 @@ const PageThree = ({pageNumber, setPageNumber, formData, setFormData}:pageProps)
 
   React.useEffect(() => {
     if (inspectionFee !== 0 && agreed === true && bio !== '') {
-      setDisableNext(false);
+      setDisableSubmit(false);
     }
   },[agreed, bio, inspectionFee]);
 
@@ -95,7 +123,7 @@ const PageThree = ({pageNumber, setPageNumber, formData, setFormData}:pageProps)
           checked={agreed}
           onChange={(event) => setAgreed(event.target.checked)}
         />
-        <button className='underline' onClick={onOpenTermsAndConditions}>
+        <button className='underline' onClick={onOpenTermsAndConditions} type='button'>
           I agree to the terms and conditions of Nomeo Suites
         </button>
       </div>
@@ -103,8 +131,8 @@ const PageThree = ({pageNumber, setPageNumber, formData, setFormData}:pageProps)
         <Button type='button' onClick={onPrevious} className='text-lg'>
           Previous
         </Button>
-        <Button type='submit' className='text-lg disabled:bg-neutral-500' disabled={disableNext}>
-          Submit
+        <Button type='submit' className='text-lg disabled:bg-neutral-500' disabled={disableSubmit}>
+          {isLoading ? 'Creating agent account...' : 'Register'}
         </Button>
       </div>
     </form>

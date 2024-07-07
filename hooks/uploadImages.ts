@@ -9,7 +9,7 @@ export const uploadImage = async ({image, uploadPreset}:{image: File | null, upl
     method: 'POST',
     body: formData
   })
-  .then((response) => response.json())
+  .then((response) => response.json());
 
   return data;
 }

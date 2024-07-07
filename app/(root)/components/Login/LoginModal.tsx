@@ -1,3 +1,4 @@
+import React from 'react'
 import Button from '@/components/shared/Button';
 import Input from '@/components/shared/Input';
 import Modal from '@/components/shared/Modal'
@@ -5,10 +6,10 @@ import useAgentSignUp from '@/hooks/useAgentSignUp';
 import useLogin from '@/hooks/useLogin';
 import useSignUp from '@/hooks/useSignUp';
 import { isValidEmail } from '@/libs/validations/validations';
-import React from 'react'
 import { BsGoogle } from 'react-icons/bs';
 import { HiOutlineEnvelope, HiOutlineLockClosed } from 'react-icons/hi2';
 import { toast } from 'sonner';
+import { signIn } from 'next-auth/react'
 
 const LoginModal = () => {
   const loginUser = useLogin();
@@ -21,7 +22,7 @@ const LoginModal = () => {
   const validEmail = isValidEmail(email);
 
   const noValue = email === '' && password === '';
-  const [disableSubmit, setDisableSubmi] = React.useState(noValue);
+  const [disableSubmit, setDisableSubmit] = React.useState(noValue);
   const [isLoading, setIsLoading] = React.useState(false);
 
   const resetField = () => {
@@ -36,12 +37,14 @@ const LoginModal = () => {
 
   React.useEffect(() => {
     if (email !== '' && password !== '') {
-      setDisableSubmi(false)
+      setDisableSubmit(false)
     }
   }, [email, password]);
 
   const handleSubmission = (event:React.FormEvent) => {
     event.preventDefault();
+
+    const loginData = { email: email, password: password }
 
     if (email === '' && password === '') {
       toast.error('Fields are emplty, please fill them');
@@ -67,8 +70,24 @@ const LoginModal = () => {
       return;
     }
 
-    setIsLoading(true)
-    console.log(email, password)
+    setIsLoading(true);
+    setDisableSubmit(true);
+    signIn("credentials", {...loginData, redirect: false})
+    .then((callback) => {
+
+      if (callback?.ok) {
+        toast.success('Succesfully Logged In');
+        resetField();
+        loginUser.onClose();
+      }
+
+      if (callback?.error) {
+        toast.error(callback.error);
+      }
+
+      setIsLoading(false);
+      setDisableSubmit(false);
+    })
   }
 
 

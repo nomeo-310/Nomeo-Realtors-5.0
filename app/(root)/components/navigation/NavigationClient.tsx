@@ -1,17 +1,22 @@
 'use client'
 
 import React from 'react'
-import { loggedIn, navBarList, navbarItem, userSurname } from '@/components/data/constants'
+import { navBarList, navbarItem } from '@/components/data/constants'
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { HiBars3, HiOutlineHomeModern, HiOutlineUser } from 'react-icons/hi2'
 import useLogin from '@/hooks/useLogin'
+import { currentUserProps } from '@/types/types'
+import { splitName } from '@/hooks/splitName'
+
+type navigationProps = {
+  currentUser: currentUserProps
+};
 
 
-const NavigationClient = () => {
+const NavigationClient = ({currentUser}:navigationProps) => {
   const loginUser = useLogin();
 
-  const router = useRouter();
   const path = usePathname();
 
   const [navbarTextColor, setNavbarTextColor] = React.useState('text-black');
@@ -75,10 +80,10 @@ const NavigationClient = () => {
 
           {/* user logged in indicator for desktop & login link */}
           <div>
-            { loggedIn ? 
+            { currentUser ? 
               <button onClick={() => setShowLoggedInMenu((prevState) => !prevState)} className='flex lg:px-5 px-3 py-2 rounded-full bg-neutral-700 text-white items-center'>
                 <HiOutlineUser size={20} className='lg:mr-3 mr-2' />
-                <div className='border-l lg:text-lg lg:pl-3 pl-2'>{userSurname}</div>
+                <div className='border-l lg:text-lg lg:pl-3 pl-2'>{splitName(currentUser.name)}</div>
               </button> :
               <button onClick={() => loginUser.onOpen()} className='flex lg:px-5 px-3 py-2 rounded-full bg-neutral-700 text-white items-center'>
                 <HiOutlineUser size={20} className='lg:mr-3 mr-2' />
@@ -90,10 +95,10 @@ const NavigationClient = () => {
 
         {/* user logged in indicator for mobile & login link */}
         <div className='md:hidden'>
-          { loggedIn ? 
+          { currentUser ? 
             <div className='flex lg:px-5 px-3 py-2 rounded-full bg-neutral-700 text-white items-center'>
               <HiOutlineUser size={18} className='lg:mr-3 mr-2' />
-              <div className='border-l lg:text-lg lg:pl-3 pl-2'>{userSurname}</div>
+              <div className='border-l lg:text-lg lg:pl-3 pl-2'>{splitName(currentUser.name)}</div>
             </div> :
             <button onClick={() => loginUser.onOpen()} className='flex lg:px-5 px-3 py-2 rounded-full bg-neutral-700 text-white items-center'>
               <HiOutlineUser size={18} className='lg:mr-3 mr-2' />
@@ -111,7 +116,7 @@ const NavigationClient = () => {
               <Link key={index} href={item.path} className={`capitalize py-2 pl-4 ${item.path === path ? 'bg-neutral-700 text-white hover:bg-neutral-700 hover:text-white active:bg-neutral-700 active:text-white' : 'hover:bg-neutral-500 hover:text-white active:bg-neutral-500 active:text-white'}`} onClick={() => setShowMobileNav(false)}>{item.label}</Link>
             ))}
           </div>
-          {loggedIn && 
+          {currentUser && 
             <React.Fragment>
               <hr/>
               <Link className='px-3 py-2 lg:text-lg block hover:bg-neutral-500 hover:text-white active:bg-neutral-500 active:text-white' href={'/dashboard'} onClick={() => setShowMobileNav(false)}>

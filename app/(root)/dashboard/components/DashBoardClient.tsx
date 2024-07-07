@@ -10,12 +10,15 @@ import ChangePassword from './ChangePassword';
 import PropertyClient from './PropertyClient';
 import ProfileClient from './ProfileClient';
 import PostClient from './PostClient';
+import { currentUserProps } from '@/types/types';
 
 
-type Props = {}
+type dashboardProps = {
+  currentUser: currentUserProps
+}
 
-const DashBoardClient = (props: Props) => {
-  const agentLoggedIn = true;
+const DashBoardClient = ({currentUser}: dashboardProps) => {
+  const agentLoggedIn = currentUser.isAgent
 
   const [activeTab, setActiveTab] = React.useState(agentLoggedIn ? 'property': 'notifications');
   
