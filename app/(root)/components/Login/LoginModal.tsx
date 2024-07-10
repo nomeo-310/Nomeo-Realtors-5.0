@@ -10,11 +10,14 @@ import { BsGoogle } from 'react-icons/bs';
 import { HiOutlineEnvelope, HiOutlineLockClosed } from 'react-icons/hi2';
 import { toast } from 'sonner';
 import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation';
 
 const LoginModal = () => {
   const loginUser = useLogin();
   const signUpUser = useSignUp();
   const signUpAgent = useAgentSignUp();
+
+  const router = useRouter();
 
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -79,6 +82,7 @@ const LoginModal = () => {
         toast.success('Succesfully Logged In');
         resetField();
         loginUser.onClose();
+        router.refresh();
       }
 
       if (callback?.error) {

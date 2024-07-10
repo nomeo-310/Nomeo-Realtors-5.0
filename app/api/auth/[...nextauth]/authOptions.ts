@@ -4,6 +4,7 @@ import bcryptjs from 'bcryptjs'
 import { MongoDBAdapter } from '@auth/mongodb-adapter'
 import { getUserByEmail } from '@/libs/actions/data.action'
 import clientPromise from '@/libs/utils/mongoDBClient'
+import { revalidatePath } from 'next/cache'
 
 
 export const authOptions:AuthOptions = {
@@ -34,6 +35,7 @@ export const authOptions:AuthOptions = {
           throw new Error('Wrong Password');
         }
 
+        revalidatePath('/');
         return user
       }
     })

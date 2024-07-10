@@ -2,6 +2,7 @@ import React from "react";
 import DashBoardClient from "./components/DashBoardClient";
 import { Metadata } from "next";
 import { getCurrentUser } from "@/libs/actions/data.action";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Nomeo Suites | Dashboard",
@@ -10,6 +11,10 @@ export const metadata: Metadata = {
 
 const Dashboard = async () => {
   const currentUser = await getCurrentUser();
+
+  if (!currentUser) {
+    redirect('/')
+  }
 
   return <DashBoardClient currentUser={currentUser}/>;
 };

@@ -8,6 +8,7 @@ import { HiBars3, HiOutlineHomeModern, HiOutlineUser } from 'react-icons/hi2'
 import useLogin from '@/hooks/useLogin'
 import { currentUserProps } from '@/types/types'
 import { splitName } from '@/hooks/splitName'
+import { signOut } from 'next-auth/react'
 
 type navigationProps = {
   currentUser: currentUserProps
@@ -52,6 +53,7 @@ const NavigationClient = ({currentUser}:navigationProps) => {
     
     window.addEventListener('scroll', toggleNavbarState)
   }, [toggleNavbarState]);
+  
 
   return (
     <div className={navbarState}>
@@ -119,10 +121,10 @@ const NavigationClient = ({currentUser}:navigationProps) => {
           {currentUser && 
             <React.Fragment>
               <hr/>
-              <Link className='px-3 py-2 lg:text-lg block hover:bg-neutral-500 hover:text-white active:bg-neutral-500 active:text-white' href={'/dashboard'} onClick={() => setShowMobileNav(false)}>
+              <Link className={`px-3 py-2 lg:text-lg block ${path === '/dashboard' ? 'bg-neutral-700 text-white hover:bg-neutral-700 hover:text-white active:bg-neutral-700 active:text-white': 'hover:bg-neutral-500 hover:text-white active:bg-neutral-500 active:text-white'}`} href={'/dashboard'} onClick={() => setShowMobileNav(false)}>
                 Dashboard
               </Link>
-              <button className='px-3 py-2 lg:text-lg capitalize hover:bg-neutral-500 hover:text-white w-full text-left active:bg-neutral-500 active:text-white' onClick={() => setShowMobileNav(false)}>
+              <button className='px-3 py-2 lg:text-lg capitalize hover:bg-neutral-500 hover:text-white w-full text-left active:bg-neutral-500 active:text-white' onClick={() => {  signOut(); setShowMobileNav(false); }}>
                 sign out
               </button>
             </React.Fragment>
@@ -133,11 +135,11 @@ const NavigationClient = ({currentUser}:navigationProps) => {
       {/* sign out & link to dashboard */}
       { showLoggedInMenu &&
         <div className='slide-in-left absolute right-[3%] bg-white text-black rounded top-[75px] lg:top-[80px] min-w-[140px] overflow-hidden hidden md:block drop-shadow-md'>
-          <Link className='px-3 py-2 block hover:bg-neutral-500 hover:text-white' href={'/dashboard'} onClick={() => setShowLoggedInMenu(false)}>
+          <Link className={`px-3 py-2 block ${path === '/dashboard' ? 'bg-neutral-700 text-white hover:bg-neutral-700 hover:text-white active:bg-neutral-700 active:text-white': 'hover:bg-neutral-500 hover:text-white'}`} href={'/dashboard'} onClick={() => setShowLoggedInMenu(false)}>
             Dashboard
           </Link>
           <hr/>
-          <button className='px-3 py-2 capitalize hover:bg-neutral-500 hover:text-white w-full text-left' onClick={() => setShowLoggedInMenu(false)}>
+          <button className='px-3 py-2 capitalize hover:bg-neutral-500 hover:text-white w-full text-left' onClick={() => { signOut(); setShowLoggedInMenu(false);}}>
             sign out
           </button>
         </div>

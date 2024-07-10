@@ -3,13 +3,15 @@
 import React from "react";
 import Profile from "./Profile";
 import EditProfile from "./EditProfile";
-import { user, user_2 } from "@/components/data/constants";
+import { currentUserProps } from "@/types/types";
 
-type Props = {};
+type profileProps = {
+  currentUser: currentUserProps
+};
 
-const ProfileClient = (props: Props) => {
+const ProfileClient = ({currentUser}: profileProps) => {
   
-  return <EditProfile user={user_2} />;
+  return <EditProfile user={currentUser} />;
 };
 
 export default ProfileClient;
