@@ -28,4 +28,63 @@ export type currentUserProps = {
   createdAt: string,
   updatedAt: string,
   ratings: number,
+};
+
+type mainFeeProps = {
+  mainFeeName: string;
+  mainFeeAmount: number
+};
+
+type optionalFeeProps = {
+  optFeeName: string;
+  optFeeAmount: number
+};
+
+type closeLandmarkProps = {
+  landmarkName: string;
+  distance: string
+};
+
+type imageProps = {
+  public_id: string;
+  secure_url: string
+}
+
+
+export type featuredPropertiesProps = {
+  _id: string
+  title: string,
+  address: string,
+  state: string,
+  city: string,
+  description: string,
+  furnitureStatus: string,
+  propertyTag: string,
+  annualMortgage: number,
+  fullPropertyPrice: number,
+  annualRent: number,
+  monthlyRent: number,
+  verifiableAmenities: string[],
+  mainFees: mainFeeProps[],
+  optionalFees: optionalFeeProps[],
+  closestLandmark: closeLandmarkProps[],
+  bedNumber: number,
+  toiletNumber: number,
+  bathNumber: number,
+  apartmentArea: number,
+  images: imageProps[],
+  availabilityTag: boolean,
+  agentInCharge: {
+    _id: string
+    name: string
+    image: string
+    agencyName: string
+    agencyFee: number
+  },
+  likes: string[],
+  bookmarks: string[],
+  totalLikes: number,
+  totalBookmarks: number,
+  createdAt: string,
+  updatedAt: string
 }

@@ -22,7 +22,7 @@ const PropertiesSchema = new Schema({
   toiletNumber: {type: Number, default: 0},
   bathNumber: {type: Number, default: 0},
   apartmentArea: {type: Number, default: 0},
-  images: [{public_id:{type: String, default: ""}, secure_url: {type: String, default: ""}}],
+  images: {type: Array, default:{public_id:"", secure_url: ""}},
   agentInCharge: { type: mongoose.Schema.ObjectId, ref: "User" },
   likes: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
   totalLikes: {type: Number, default: 0},

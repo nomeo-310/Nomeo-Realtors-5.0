@@ -2,16 +2,16 @@
 
 
 import React from 'react'
-import { propertyProps } from '@/components/data/constants';
 import LikeButton from '@/components/shared/LikeButton';
 import SaveButton from '@/components/shared/SaveButton';
 import { HiOutlineMapPin } from 'react-icons/hi2';
+import { featuredPropertiesProps } from '@/types/types';
 
 interface Props {
   
 }
 
-const TopHeader = ({property}:{property:propertyProps}) => {
+const TopHeader = ({property}:{property:featuredPropertiesProps}) => {
   return (
     <div className='lg:mb-5 mb-4'>
       <h2 className='lg:text-3xl md:text-2xl text-xl'>{property.title}.</h2>
@@ -20,11 +20,11 @@ const TopHeader = ({property}:{property:propertyProps}) => {
           <div className='flex items-center gap-2 border-r border-black pr-2'>
             <HiOutlineMapPin size={24} className='hidden md:block'/>
             <HiOutlineMapPin size={20} className='md:hidden'/>
-            <p className='lg:text-lg'>{property.location}</p>
+            <p className='lg:text-lg'>{property.city}, {property.state}</p>
           </div>
           <div className='flex items-center gap-2 font-semibold'>
-            <p className='lg:text-lg capitalize border-r border-black px-2'>for {property.propertTag}</p>
-            <p  className='lg:text-lg capitalize'>{property.furnitureTag}</p>
+            <p className='lg:text-lg capitalize border-r border-black px-2'>for {property.propertyTag}</p>
+            <p  className='lg:text-lg capitalize'>{property.furnitureStatus}</p>
           </div>
         </div>
         <div className='flex items-center gap-5 justify-end'>

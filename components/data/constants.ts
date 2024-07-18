@@ -57,7 +57,8 @@ export interface  propertyProps {
   monthlyRent?: number
   propertyCost?: number
   title: string
-  location: string
+  city: string
+  state: string
   mainFees: {name: string, amount: number}[]
   optionalFees: {name: string, amount: number}[]
   nearbyPlaces: {name:string, distance: string}[]

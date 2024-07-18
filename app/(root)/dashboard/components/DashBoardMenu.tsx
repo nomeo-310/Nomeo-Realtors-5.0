@@ -47,4 +47,4 @@ const DashBoardMenu = ({agentLoggedIn, activeTab, setActiveTab}: menuProps) => {
   )
 }
 
-export default DashBoardMenu
+export default DashBoardMenu;

@@ -15,6 +15,8 @@ import { PiBathtub, PiBed, PiMapPinArea, PiToilet } from 'react-icons/pi'
 import Image from 'next/image'
 import { CldUploadWidget } from 'next-cloudinary'
 import { deleteCloudinaryImages } from '@/libs/actions/deleteCloudinaryImage'
+import { createProperty } from '@/libs/actions/properties.action'
+import { usePathname } from 'next/navigation'
 
 type propertyImageProps = {
   public_id:string,
@@ -23,8 +25,12 @@ type propertyImageProps = {
 
 const CreateProperty = ({setActiveTab}:{setActiveTab: React.Dispatch<React.SetStateAction<string>>}) => {
 
-  const maxLimit = 450;
+  const path = usePathname();
+
+  const maxLimit = 600;
   const maxAmenities = 10;
+
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const [title, setTitle] = React.useState('');
   const [address, setAddress] = React.useState('');
@@ -242,9 +248,54 @@ const CreateProperty = ({setActiveTab}:{setActiveTab: React.Dispatch<React.SetSt
     )
   };
 
+  const propertyData = {
+    title: title,
+    address: address,
+    state: state,
+    city: city,
+    description: description,
+    furnitureStatus: furnitureStatus,
+    propertyTag: propertyTag,
+    annualMortgage: annualMortgage,
+    fullPropertyPrice: fullPropertyPrice,
+    annualRent: annualRent,
+    monthlyRent: monthlyRent,
+    verifiableAmenities: verifiableAmenities,
+    mainFees: mainFee,
+    optionalFees: optFee,
+    closestLandmark: closestLandmark,
+    bedNumber: bedNumber,
+    toiletNumber: toiletNumber,
+    bathNumber: bathNumber,
+    apartmentArea: apartmentArea,
+    images: uploadedImages,
+    availabilityTag: true,
+    path: path
+  };
+
+  const handleCreateProperty = async (event:React.FormEvent) => {
+    event.preventDefault();
+
+    setIsLoading(true);
+
+    await createProperty(propertyData).then((response) => {
+
+      if (response?.success) {
+        toast.success(response.success);
+        setActiveTab('all-properties');
+        setIsLoading(false);
+      };
+
+      if (response?.error) {
+        toast.error(response.error);
+        setIsLoading(false);
+      };
+    })
+  }
+
   return (
     <div className='w-full h-full flex slide-in-left'>
-      <div className="flex flex-col lg:gap-4 gap-3 w-full lg:w-[80%] xl:w-[70%]">
+      <form className="flex flex-col lg:gap-4 gap-3 w-full lg:w-[80%] xl:w-[70%]" onSubmit={handleCreateProperty}>
         <div className='flex gap-4 mb-8 lg:gap-6 cursor-pointer'>
           <h2 className='text-2xl md:text-3xl lg:text-4xl font-semibold'>Create Property</h2>
           <h2 className='text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-400' onClick={() =>setActiveTab('all-properties')}>All Properties</h2>
@@ -525,12 +576,12 @@ const CreateProperty = ({setActiveTab}:{setActiveTab: React.Dispatch<React.SetSt
           </React.Fragment>
           <hr/>
           <div className='mt-8 flex items-center'>
-            <Button onClick={() => {}} type='button'>
-              Create Property
+            <Button type='submit' disabled={isLoading}>
+              { isLoading ? 'Creating property...' : 'Create property' }
             </Button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   )
 }

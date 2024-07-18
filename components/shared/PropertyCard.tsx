@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Image from 'next/image'
-import { HiBookmark, HiEllipsisHorizontalCircle, HiEllipsisVertical, HiHeart, HiMiniTrash, HiOutlineBookmark, HiOutlineMapPin } from "react-icons/hi2";
+import { HiBookmark, HiEllipsisHorizontalCircle, HiOutlineBookmark, HiOutlineMapPin } from "react-icons/hi2";
 import { SlSizeFullscreen } from "react-icons/sl"
 import { LuBed } from "react-icons/lu"
 import { LiaBathSolid, LiaToiletSolid } from "react-icons/lia"
@@ -15,7 +15,7 @@ import { TbHomeX, TbHomeEdit } from "react-icons/tb"
 
 type propertyCardProps = Omit<propertyProps, 'mainFees'| 'optionalFees' | 'intro' | 'description'| 'verifiedamenities' | 'propertyImageList' | 'nearbyPlaces' > & { hideTag: boolean, agentDisplay: boolean}
 
-const PropertyCard = ({agentDisplay, hideTag, id, propertTag, propertyImage, propertySize, propertyCost, baths, beds, title, toilets, agentInCharge, agentInChargeImage, liked, location, saved, monthlyRent}:propertyCardProps) => {
+const PropertyCard = ({agentDisplay, hideTag, id, propertTag, propertyImage, propertySize, propertyCost, baths, beds, title, toilets, agentInCharge, agentInChargeImage, liked, city, state, saved, monthlyRent}:propertyCardProps) => {
   const nairaSign:string = String.fromCodePoint(8358);
   const router = useRouter();
 
@@ -98,7 +98,7 @@ const PropertyCard = ({agentDisplay, hideTag, id, propertTag, propertyImage, pro
         <div className="flex items-center justify-between lg:text-lg">
           <div className="flex items-center gap-2">
             <HiOutlineMapPin size={22}/>
-            <p>{location}.</p>
+            <p>{city}, {state}.</p>
           </div>
           <div className='text-yellow-400'>
             {nairaSign}{ propertTag === 'rent' ? `${moneyFormat(monthlyRent as number)}` : `${moneyFormat(propertyCost as number)}`} {propertTag === 'rent' ? <span>monthly</span> : '' }
