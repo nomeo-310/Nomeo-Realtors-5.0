@@ -27,6 +27,8 @@ const UserSchema = new Schema({
   blogs: [{ type: mongoose.Schema.ObjectId, ref: "Blog" }],
   profileCreated: {type: Boolean, default: false},
   properties: [{ type: mongoose.Schema.ObjectId, ref: "Properties" }],
+  liked: [{ type: mongoose.Schema.ObjectId, ref: "Properties" }],
+  saved: [{ type: mongoose.Schema.ObjectId, ref: "Properties" }],
   createdAt: {type: Date, default: Date.now()},
   updatedAt: {type: Date, default: Date.now()},
   ratings: {type: Number, default: 0},

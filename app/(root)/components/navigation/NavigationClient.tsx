@@ -3,7 +3,7 @@
 import React from 'react'
 import { navBarList, navbarItem } from '@/components/data/constants'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { HiBars3, HiOutlineHomeModern, HiOutlineUser } from 'react-icons/hi2'
 import useLogin from '@/hooks/useLogin'
 import { currentUserProps } from '@/types/types'
@@ -19,6 +19,7 @@ const NavigationClient = ({currentUser}:navigationProps) => {
   const loginUser = useLogin();
 
   const path = usePathname();
+  const router = useRouter();
 
   const [navbarTextColor, setNavbarTextColor] = React.useState('text-black');
   const [showMobileNav, setShowMobileNav] = React.useState(false);
@@ -53,6 +54,12 @@ const NavigationClient = ({currentUser}:navigationProps) => {
     
     window.addEventListener('scroll', toggleNavbarState)
   }, [toggleNavbarState]);
+
+  const handleSignOut = () => {
+    signOut();
+    setShowLoggedInMenu(false);
+    setShowMobileNav(false);
+  }
   
 
   return (
@@ -124,7 +131,7 @@ const NavigationClient = ({currentUser}:navigationProps) => {
               <Link className={`px-3 py-2 lg:text-lg block ${path === '/dashboard' ? 'bg-neutral-700 text-white hover:bg-neutral-700 hover:text-white active:bg-neutral-700 active:text-white': 'hover:bg-neutral-500 hover:text-white active:bg-neutral-500 active:text-white'}`} href={'/dashboard'} onClick={() => setShowMobileNav(false)}>
                 Dashboard
               </Link>
-              <button className='px-3 py-2 lg:text-lg capitalize hover:bg-neutral-500 hover:text-white w-full text-left active:bg-neutral-500 active:text-white' onClick={() => {  signOut(); setShowMobileNav(false); }}>
+              <button className='px-3 py-2 lg:text-lg capitalize hover:bg-neutral-500 hover:text-white w-full text-left active:bg-neutral-500 active:text-white' onClick={handleSignOut}>
                 sign out
               </button>
             </React.Fragment>
@@ -139,7 +146,7 @@ const NavigationClient = ({currentUser}:navigationProps) => {
             Dashboard
           </Link>
           <hr/>
-          <button className='px-3 py-2 capitalize hover:bg-neutral-500 hover:text-white w-full text-left' onClick={() => { signOut(); setShowLoggedInMenu(false);}}>
+          <button className='px-3 py-2 capitalize hover:bg-neutral-500 hover:text-white w-full text-left' onClick={handleSignOut}>
             sign out
           </button>
         </div>

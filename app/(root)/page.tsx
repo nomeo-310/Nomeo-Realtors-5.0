@@ -7,19 +7,19 @@ import FeaturedPropertiesSection from "./components/home/FeaturedPropertiesSecti
 import LatestBlogSection from "./components/home/LatestBlogSection";
 import OurTestimonialSection from "./components/home/OurTestimonialSection";
 import FrequentlyAskedQuestionsSection from "./components/home/FrequentlyAskedQuestionsSection";
+import { getFeaturedBlogs } from "@/libs/actions/blogs.action";
 
 const Home = async () => {
   const featuredProperties = await getFeaturedProperties();
   const currentUser = await getCurrentUser();
-
-  console.log(featuredProperties[0]);
+  const featuredBlogs = await getFeaturedBlogs();
 
   return (
     <React.Fragment>
       <LandingPage />
       <OurServiceSection />
       <FeaturedPropertiesSection featuredProperties={featuredProperties} currentUser={currentUser}/>
-      <LatestBlogSection />
+      <LatestBlogSection featuredBlogs={featuredBlogs}/>
       <OurTestimonialSection />
       <FrequentlyAskedQuestionsSection />
     </React.Fragment>

@@ -2,38 +2,47 @@
 
 import React from 'react'
 import Box from '@/components/shared/Box'
-import { blogList, nairaSign, propertyList, user_2 } from '@/components/data/constants'
+import { blogList, nairaSign, user_2 } from '@/components/data/constants'
 import Image from 'next/image'
-import { HiOutlineBriefcase, HiOutlineCheckBadge, HiOutlineClock, HiOutlineDocumentText, HiOutlineEnvelope, HiOutlineHome, HiOutlineLink, HiOutlineMapPin, HiOutlinePhone, HiOutlineReceiptPercent, HiOutlineStar, HiOutlineUser, HiOutlineUserGroup, HiOutlineWallet } from 'react-icons/hi2'
+import { HiOutlineBriefcase, HiOutlineCheckBadge, HiOutlineDocumentText, HiOutlineEnvelope, HiOutlineHome, HiOutlineLink, HiOutlineMapPin, HiOutlinePhone, HiOutlineReceiptPercent, HiOutlineStar, HiOutlineUser, HiOutlineUserGroup, HiOutlineWallet } from 'react-icons/hi2'
 import AllBlogs from '../../blogs/components/AllBlogs'
 import LoadMoreButton from '@/components/shared/LoadMoreButton'
-import AllRentProperties from '../../rent/components/AllRentProperties'
+import { currentUserProps, featuredPropertiesProps } from '@/types/types'
+import PropertiesContent from './PropertiesContent'
+import { formatDate } from '@/hooks/formatTime'
 
-const ProfileClient = () => {
+
+type profileClientProps = {
+  user: currentUserProps
+  properties: featuredPropertiesProps[]
+}
+
+const ProfileClient = ({user, properties}:profileClientProps) => {
   const [mobileActiveTab, setMobileActiveTab] = React.useState('profile');
   const [activeTab, setActiveTab] = React.useState('posts');
 
   const ProfileContent = () => {
+
     return (
       <div className="flex flex-col gap-3">
         <div className="flex lg:gap-4 gap-3 items-center">
           <div className='w-fit'>
             <div className="aspect-square lg:w-28 w-[6rem] rounded overflow-hidden group bg-gray-200 flex items-center justify-center relative">
-              <Image src={user_2.image ? user_2.image : '/images/default_user.png'} priority fill alt='profile_photo' className='object-cover'/>
+              <Image src={user.image ? user.image : '/images/default_user.png'} priority fill alt='profile_photo' className='object-cover'/>
             </div>
           </div>
           <div className="flex flex-col text-gray-400 gap-1 lg:gap-2">
             <div className="flex items-center gap-2">
               <HiOutlineUser size={22}/>
-              <p className='lg:text-xl text-lg'>{user_2.name}</p>
+              <p className='lg:text-lg'>{user.name}</p>
             </div>
             <div className="flex items-center gap-2">
               <HiOutlineEnvelope size={22}/>
-              <p className='lg:text-xl text-lg line-clamp-1'>{user_2.email}</p>
+              <p className='lg:text-lg line-clamp-1'>{user.email}</p>
             </div>
             <div className="flex items-center gap-2">
               <HiOutlineMapPin size={22}/>
-              <p className='lg:text-xl text-lg'>{user_2.city}, {user_2.state}</p>
+              <p className='lg:text-lg'>{user.city}, {user.state}</p>
             </div>
           </div>
         </div>
@@ -41,52 +50,52 @@ const ProfileClient = () => {
         <div className='flex flex-col gap-1 lg:gap-2 w-full overflow-hidden'>
           <div className='flex items-center gap-2 text-gray-400'>
             <HiOutlineBriefcase size={22}/>
-            <p className='lg:text-xl text-lg'>{user_2.agencyName}</p>
+            <p className='lg:text-lg'>{user.agencyName}</p>
           </div>
           <div className='flex items-center gap-2 text-gray-400'>
             <HiOutlineCheckBadge size={22}/>
-            <p className='lg:text-xl text-lg'>Verified</p>
+            <p className='lg:text-lg'>Verified</p>
           </div>
           <div className='flex items-center gap-2 text-gray-400'>
             <HiOutlineMapPin size={22}/>
-            <p className='lg:text-xl text-lg line-clamp-1'>{user_2.officeAddress}</p>
+            <p className='lg:text-lg line-clamp-1'>{user.agencyAddress}</p>
           </div>
           <div className='flex items-center gap-2 text-gray-400'>
             <HiOutlinePhone size={22}/>
-            <p className='lg:text-xl text-lg'>{user_2.mobileNumber}, {user_2.officeNumber}</p>
+            <p className='lg:text-lg'>{user_2.mobileNumber}, {user_2.officeNumber}</p>
           </div>
           <div className='flex items-center gap-2 text-gray-400'>
             <HiOutlineWallet size={22}/>
-            <p className='lg:text-xl text-lg'>{nairaSign}{user_2.inspectionFee.toLocaleString()} per hour</p>
+            <p className='lg:text-lg'>{nairaSign}{user.agencyFee.toLocaleString()} per hour</p>
           </div>
           <div className='flex items-center gap-2 text-gray-400'>
             <HiOutlineUserGroup size={22}/>
-            <p className='lg:text-xl text-lg'>45 Happy clients</p>
+            <p className='lg:text-lg'>45 Happy clients</p>
           </div>
           <div className='flex items-center gap-2 text-gray-400'>
             <HiOutlineDocumentText size={22}/>
-            <p className='lg:text-xl text-lg'>20 Blogposts</p>
+            <p className='lg:text-lg'>20 Blogposts</p>
           </div>
           <div className='flex items-center gap-2 text-gray-400'>
             <HiOutlineReceiptPercent size={22}/>
-            <p className='lg:text-xl text-lg'>125  Sales</p>
+            <p className='lg:text-lg'>125  Sales</p>
           </div>
           <div className='flex items-center gap-2 text-gray-400'>
             <HiOutlineHome size={22}/>
-            <p className='lg:text-xl text-lg'>128 Well managed properties</p>
+            <p className='lg:text-lg'>128 Well managed properties</p>
           </div>
           <div className='flex items-center gap-2 text-gray-400'>
             <HiOutlineLink size={22}/>
-            <p className='lg:text-xl text-lg'>https://www.balticrealtorsinc.com</p>
+            <p className='lg:text-lg'>https://www.balticrealtorsinc.com</p>
           </div>
           <div className='flex items-center gap-2 text-gray-400'>
             <HiOutlineStar size={22}/>
-            <p className='lg:text-xl text-lg'>4.5 / 5</p>
+            <p className='lg:text-lg'>4.5 / 5</p>
           </div>
         </div>
         <hr/>
-        <p className='lg:text-xl text-lg text-gray-400'>{user_2.bio}</p>
-        <p className='lg:text-xl text-lg text-gray-400 mt-4'>Joined: 28 Nov, 2020</p>
+        <p className='lg:text-lg text-gray-400'>{user.agentBio}</p>
+        <p className='lg:text-lg text-gray-400 mt-4'>Joined: {formatDate(user.createdAt)}</p>
       </div>
     );
   };
@@ -96,14 +105,6 @@ const ProfileClient = () => {
       <React.Fragment>
         <AllBlogs blogList={blogList} useAsAllPost />
         <LoadMoreButton label="Load more" loadmoreFunction={() => {}}/>
-      </React.Fragment>
-    )
-  };
-
-  const PropertiesContent = () => {
-    return (
-      <React.Fragment>
-        <AllRentProperties propertyList={propertyList} useAgent={false}/>
       </React.Fragment>
     )
   };
@@ -125,7 +126,7 @@ const ProfileClient = () => {
           <div className='md:hidden'>
             { mobileActiveTab === 'profile' && <ProfileContent/> }
             { mobileActiveTab === 'posts' && <PostContent/> }
-            { mobileActiveTab === 'properties' && <PropertiesContent/> }
+            { mobileActiveTab === 'properties' && <PropertiesContent properties={properties} user={user}/> }
           </div>
 
         </div>
@@ -137,7 +138,7 @@ const ProfileClient = () => {
         </div>
         <div>
           { activeTab === 'posts' && <PostContent/> }
-          { activeTab === 'properties' && <PropertiesContent/> }
+          { activeTab === 'properties' && <PropertiesContent properties={properties} user={user} /> }
         </div>
       </div>
     </Box>

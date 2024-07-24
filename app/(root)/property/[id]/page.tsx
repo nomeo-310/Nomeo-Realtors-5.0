@@ -1,6 +1,5 @@
 import React from "react";
 import PropertyClient from "../components/PropertyClient";
-import { propertyList } from "@/components/data/constants";
 import { Metadata } from "next";
 import { getSingleProperty } from "@/libs/actions/properties.action";
 import { getCurrentUser } from "@/libs/actions/data.action";

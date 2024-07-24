@@ -23,6 +23,8 @@ export type currentUserProps = {
   agencyWebsite: string,
   clients: string[],
   blogs: string[],
+  liked: string[],
+  saved: string[],
   profileCreated: boolean,
   properties: string[],
   createdAt: string,
@@ -48,7 +50,7 @@ type closeLandmarkProps = {
 type imageProps = {
   public_id: string;
   secure_url: string
-}
+};
 
 
 export type featuredPropertiesProps = {
@@ -85,6 +87,29 @@ export type featuredPropertiesProps = {
   bookmarks: string[],
   totalLikes: number,
   totalBookmarks: number,
+  createdAt: string,
+  updatedAt: string
+};
+
+export type featuredBlogProps = {
+  _id: string
+  blogTitle: string,
+  blogIntro: string,
+  content: string,
+  blogpostBanner: {public_id: string, secure_url: string},
+  blogAuthor: {
+    _id: string 
+    name: string
+    image: string
+    agentBio: string
+  },
+  likes: string[],
+  totalLikes: number,
+  reads: string[],
+  totalReads: number,
+  comments: string[],
+  totalComments: number,
+  totalReadingTime: number,
   createdAt: string,
   updatedAt: string
 }

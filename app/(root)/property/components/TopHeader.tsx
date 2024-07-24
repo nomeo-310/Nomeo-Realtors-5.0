@@ -5,13 +5,14 @@ import React from 'react'
 import LikeButton from '@/components/shared/LikeButton';
 import SaveButton from '@/components/shared/SaveButton';
 import { HiOutlineMapPin } from 'react-icons/hi2';
-import { featuredPropertiesProps } from '@/types/types';
+import { currentUserProps, featuredPropertiesProps } from '@/types/types';
 
-interface Props {
-  
+type topHeaderProps = {
+  property:featuredPropertiesProps
+  currentUser: currentUserProps
 }
 
-const TopHeader = ({property}:{property:featuredPropertiesProps}) => {
+const TopHeader = ({property, currentUser}:topHeaderProps) => {
   return (
     <div className='lg:mb-5 mb-4'>
       <h2 className='lg:text-3xl md:text-2xl text-xl'>{property.title}.</h2>
@@ -28,8 +29,8 @@ const TopHeader = ({property}:{property:featuredPropertiesProps}) => {
           </div>
         </div>
         <div className='flex items-center gap-5 justify-end'>
-          <LikeButton/>
-          <SaveButton/>
+          <LikeButton property={property} user={currentUser}/>
+          <SaveButton property={property} user={currentUser}/>
         </div>
       </div>
     </div>

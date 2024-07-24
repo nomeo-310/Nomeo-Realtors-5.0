@@ -1,23 +1,48 @@
 'use client'
 
-import useLogin from '@/hooks/useLogin';
 import React from 'react'
+import useLogin from '@/hooks/useLogin';
 import { HiBookmark, HiOutlineBookmark } from 'react-icons/hi2';
+import { currentUserProps, featuredPropertiesProps } from '@/types/types';
+import { usePathname } from 'next/navigation';
+import { bookmarkProperty } from '@/libs/actions/properties.action';
+import { toast } from 'sonner';
+
+type saveButtonProps = {
+  property: featuredPropertiesProps
+  user: currentUserProps
+}
 
 
-const SaveButton = () => {
-  const saved = false;
-  const isLoggedIn = false;
+const SaveButton = ({user, property}:saveButtonProps) => {
+  const path = usePathname();
   const loginUser = useLogin();
 
-  const handleSave = () => {
-    if (!isLoggedIn) {
+  const saved = property.bookmarks.includes(user._id)
+
+  const handleSave = async () => {
+    if (!user) {
       loginUser.onOpen();
 
       return;
     }
 
-    console.log('saved the property')
+    const saveData = {id: property._id, path: path}
+
+    try {
+      await bookmarkProperty(saveData)
+      .then((response) => {
+        if (response?.success) {
+          toast.success(response.success)
+        };
+
+        if (response?.error) {
+          toast.error(response.error)
+        };
+      })
+    } catch (error) {
+      toast.error('Something went wrong, try again later')
+    };
   };
 
   return (

@@ -60,7 +60,7 @@ const PropertyFeatures = ({property, currentUser}:propertyFeatureProp) => {
         <h2 className='text-xl lg:text-2xl'>Nearby Places</h2>
         <div className="flex flex-wrap gap-2 mt-3">
           {property.closestLandmark.map((item, index:number) => (
-            <p className='border rounded-full py-2 px-4 capitalize' key={index}>{item.landmarkName}: {item.distance} <span className='lowercase'>away</span></p>
+            <p className='border rounded-full py-2 px-4 capitalize' key={index}>{item.landmarkName}: {item.distance}km <span className='lowercase'>away</span></p>
           ))}
         </div>
       </div>

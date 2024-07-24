@@ -85,6 +85,15 @@ div::-webkit-scrollbar-track {
   background: inherit !important;
 }
 
+.blog-content p span {
+  color: black !important;
+}
+
+.blog-content blockquote em {
+  color: black !important;
+}
+
+
 @media (min-width: 1024px) {
   .rdrCalendarWrapper {
     font-size: 1.1rem !important;
@@ -169,4 +178,28 @@ div::-webkit-scrollbar-track {
   body {
     @apply bg-gray-50 font-barlow;
   }
+
+  .blog-content p {
+    @apply lg:text-lg text-black text-base;
+  }
+
+  .blog-content span {
+    @apply text-black;
+  }
+
+  .blog-content blockquote {
+    @apply rounded p-4 lg:p-5 bg-gray-300;
+  }
+  .blog-content blockquote em {
+    @apply lg:text-xl text-lg;
+  }
+
+  .blog-content blockquote strong {
+    @apply lg:text-xl text-lg lg:float-right;
+  }
+
+  .blog-content h2 {
+    @apply lg:text-xl text-lg;
+  }
+
 }

@@ -24,7 +24,7 @@ const PropertyClient = ({property, currentUser}:propertyClientProps) => {
   return (
     <React.Fragment>
       <Box className='pt-20'>
-        <TopHeader property={property} />
+        <TopHeader property={property} currentUser={currentUser}/>
         <ImageGallery property={property} setOpenSlider={setOpenSlider}/>
         <hr/>
         <PropertyDescription description={property.description}/>

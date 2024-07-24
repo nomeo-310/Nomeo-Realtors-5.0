@@ -213,3 +213,12 @@ export const updatePassword = async ({currentPassword, newPassword, path}:update
     return {error: 'Internal server error, try again later'}
   };
 };
+
+export const getUserById = async (id:string) => {
+  await connectToDatabase();
+
+  const user = await User.findById(id);
+  const singleUser = JSON.parse(JSON.stringify(user));
+
+  return singleUser;
+};

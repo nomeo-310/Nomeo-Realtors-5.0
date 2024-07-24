@@ -1,26 +1,47 @@
 'use client'
 
 import useLogin from '@/hooks/useLogin';
+import { likeProperty } from '@/libs/actions/properties.action';
+import { currentUserProps, featuredPropertiesProps } from '@/types/types';
+import { usePathname } from 'next/navigation';
 import React from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
+import { toast } from 'sonner';
 
-interface Props {
-  
+
+type likeButtonProps = {
+  property: featuredPropertiesProps
+  user: currentUserProps
 }
 
-const LikeButton = (props: Props) => {
-  const liked = false;
-  const isLoggedIn = false;
+const LikeButton = ({user, property}:likeButtonProps) => {
+  const path = usePathname();
   const loginUser = useLogin();
 
-  const handleLike = () => {
-    if (!isLoggedIn) {
+  const liked = property.likes.includes(user._id);
+
+  const handleLike = async () => {
+    if (!user) {
       loginUser.onOpen();
-
       return;
-    }
+    };
 
-    console.log('liked the property')
+    const likeData = {id: property._id, path: path}
+
+    try {
+      await likeProperty(likeData)
+      .then((response) => {
+        if (response?.success) {
+          toast.success(response.success)
+        };
+
+        if (response?.error) {
+          toast.error(response.error)
+        };
+      })
+    } catch (error) {
+      toast.error('Something went wrong, try again later')
+    };
   };
 
   return (

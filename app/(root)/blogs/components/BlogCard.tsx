@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { HiMiniArrowRight } from 'react-icons/hi2'
 import ImageAvatar from '@/components/shared/ImageAvatar'
+import { formatDate } from '@/hooks/formatTime'
 
 type blogCardProps = {
   author: string
@@ -25,7 +26,7 @@ const BlogCard = ({author, createdAt, title, description, id, blogBanner, author
           <div className="absolute bottom-0 left-0 w-full bg-black/30 p-4 text-white flex items-center justify-between">
             <div>
               <h2 className='lg:text-xl text-lg'>{author}</h2>
-              <p>{createdAt}</p>
+              <p>{formatDate(createdAt)}</p>
             </div>
             <div>
               <ImageAvatar className='rounded overflow-hidden lg:w-11 lg:h-11 w-10 h-10' src={authorImage}/>
