@@ -26,7 +26,7 @@ const PostClient = ({blogs}: postClientProps) => {
               { blogs.length < 1 ?
                 <EmptyState message='You have noblog posts yet, create some'/>  :
                 <React.Fragment>
-                  <AllBlogs blogList={blogs} useAsAllPost/>
+                  <AllBlogs blogList={blogs} useAsAllPost useAgent/>
                   <LoadMoreButton label="Load more" loadmoreFunction={() => {}}/>
                 </React.Fragment>
               }

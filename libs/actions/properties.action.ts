@@ -26,7 +26,7 @@ type closeLandmarkProps = {
 type imageProps = {
   public_id: string;
   secure_url: string
-}
+};
 
 
 type createPropertyProps = {
@@ -213,6 +213,32 @@ export const likeProperty = async ({id, path}:{id:string, path:string}) => {
   } catch (error) {
     return {error: 'Internal server error, try again later'}
   };
+};
+
+export const getRentProperties = async () => {
+  await connectToDatabase();
+
+  const properties = await Properties.find({propertyTag: 'rent'})
+  .populate("agentInCharge", "_id name image agencyName agencyFee")
+  .limit(6)
+  .sort({createdAt: -1});
+
+  const rentProperties = JSON.parse(JSON.stringify(properties));
+
+  return rentProperties;
+};
+
+export const getsaleProperties = async () => {
+  await connectToDatabase();
+
+  const properties = await Properties.find({propertyTag: 'sale'})
+  .populate("agentInCharge", "_id name image agencyName agencyFee")
+  .limit(6)
+  .sort({createdAt: -1});
+
+  const saleProperties = JSON.parse(JSON.stringify(properties));
+
+  return saleProperties;
 };
  
 

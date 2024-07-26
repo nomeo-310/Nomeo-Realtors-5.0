@@ -9,7 +9,7 @@ import EmptyState from "@/components/shared/EmptyState";
 type propertiesContentProps = {
   properties: featuredPropertiesProps[]
   user: currentUserProps
-}
+};
 
 
 const PropertiesContent = ({user, properties}:propertiesContentProps) => {

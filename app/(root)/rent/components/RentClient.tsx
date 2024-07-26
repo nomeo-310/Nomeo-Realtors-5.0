@@ -3,19 +3,26 @@
 import React from "react";
 import Box from "@/components/shared/Box";
 import AllRentProperties from "./AllRentProperties";
-import { propertyList, states } from "@/components/data/constants";
+import { states } from "@/components/data/constants";
 import CustomSelectComponent from "@/components/shared/CustomSelectComponent";
 import { getLocalGovernment } from "@/hooks/getLocalGovernment";
 import NumberInput from "../../components/home/NumberInput";
 import { useRouter, useSearchParams } from "next/navigation";
 import qs from 'query-string'
+import { currentUserProps, featuredPropertiesProps } from "@/types/types";
 
-const RentClient = () => {
+type rentClientProps = {
+  rentProperties: featuredPropertiesProps[]
+  currentUser: currentUserProps
+}
+
+const RentClient = ({rentProperties, currentUser}:rentClientProps) => {
+  const [propertyList, setPropertyList] = React.useState<featuredPropertiesProps[]>(rentProperties);
+
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const search = false;
-  const allRents = propertyList.filter((item) => item.propertTag === 'rent');
+  const [search, setSearch] = React.useState(false)
 
   const [state, setState] = React.useState("");
   const localGovernmentAreas = getLocalGovernment(state)
@@ -121,7 +128,7 @@ const RentClient = () => {
         <div className="lg:w-[78%] md:w-[68%] pt-1">
           {search && <h2 className="mb-3 lg:text-xl text-lg">search result for lagos</h2>}
           <div className="">
-            <AllRentProperties propertyList={allRents}/>
+            <AllRentProperties propertyList={propertyList} currentUser={currentUser}/>
           </div>
         </div>
       </div>

@@ -2,22 +2,24 @@
 
 import React from 'react'
 import Box from '@/components/shared/Box'
-import { blogList, nairaSign, user_2 } from '@/components/data/constants'
+import { nairaSign} from '@/components/data/constants'
 import Image from 'next/image'
 import { HiOutlineBriefcase, HiOutlineCheckBadge, HiOutlineDocumentText, HiOutlineEnvelope, HiOutlineHome, HiOutlineLink, HiOutlineMapPin, HiOutlinePhone, HiOutlineReceiptPercent, HiOutlineStar, HiOutlineUser, HiOutlineUserGroup, HiOutlineWallet } from 'react-icons/hi2'
 import AllBlogs from '../../blogs/components/AllBlogs'
 import LoadMoreButton from '@/components/shared/LoadMoreButton'
-import { currentUserProps, featuredPropertiesProps } from '@/types/types'
+import { currentUserProps, featuredBlogProps, featuredPropertiesProps } from '@/types/types'
 import PropertiesContent from './PropertiesContent'
 import { formatDate } from '@/hooks/formatTime'
+import EmptyState from '@/components/shared/EmptyState'
 
 
 type profileClientProps = {
   user: currentUserProps
   properties: featuredPropertiesProps[]
+  blogs: featuredBlogProps[]
 }
 
-const ProfileClient = ({user, properties}:profileClientProps) => {
+const ProfileClient = ({user, properties, blogs}:profileClientProps) => {
   const [mobileActiveTab, setMobileActiveTab] = React.useState('profile');
   const [activeTab, setActiveTab] = React.useState('posts');
 
@@ -62,7 +64,7 @@ const ProfileClient = ({user, properties}:profileClientProps) => {
           </div>
           <div className='flex items-center gap-2 text-gray-400'>
             <HiOutlinePhone size={22}/>
-            <p className='lg:text-lg'>{user_2.mobileNumber}, {user_2.officeNumber}</p>
+            <p className='lg:text-lg'>{user.mobileNumber}, {user.officeNumber}</p>
           </div>
           <div className='flex items-center gap-2 text-gray-400'>
             <HiOutlineWallet size={22}/>
@@ -103,8 +105,13 @@ const ProfileClient = ({user, properties}:profileClientProps) => {
   const PostContent = () => {
     return (
       <React.Fragment>
-        <AllBlogs blogList={blogList} useAsAllPost />
-        <LoadMoreButton label="Load more" loadmoreFunction={() => {}}/>
+        { blogs.length < 1 ?
+          <EmptyState message='No blog posts yet, let us hope create some soon'/>  :
+          <React.Fragment>
+            <AllBlogs blogList={blogs} useAsAllPost useAgent/>
+            <LoadMoreButton label="Load more" loadmoreFunction={() => {}}/>
+          </React.Fragment>
+        }
       </React.Fragment>
     )
   };

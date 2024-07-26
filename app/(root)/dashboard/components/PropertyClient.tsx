@@ -49,7 +49,7 @@ const PropertyClient = ({properties, user}:propertyClientProps) => {
                       liked={property.likes.includes(user._id)}
                       saved={property.bookmarks.includes(user._id)} 
                       hideTag={true}
-                      agentDisplay={false}
+                      agentDisplay
                       hideAgentInCharge={true}       
                     />
                   ))}

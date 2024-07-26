@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import ProfileClient from "../components/ProfileClient";
 import { getUserById } from "@/libs/actions/user.action";
 import { getSingleUserProperty } from "@/libs/actions/properties.action";
+import { getUsersBlogs } from "@/libs/actions/blogs.action";
 
 interface pageProps {
   params: {id: string}
@@ -16,8 +17,9 @@ export const metadata: Metadata = {
 const ProfilePage = async({params}:pageProps) => {
   const singleUser = await getUserById(params.id);
   const singleUserProperty = await getSingleUserProperty(params.id);
+  const singleUserBlogs = await getUsersBlogs(params.id);
 
-  return <ProfileClient user={singleUser} properties={singleUserProperty}/>;
+  return <ProfileClient user={singleUser} properties={singleUserProperty} blogs={singleUserBlogs}/>;
 };
 
 export default ProfilePage;

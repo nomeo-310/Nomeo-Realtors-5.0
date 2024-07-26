@@ -1,6 +1,8 @@
 import React from "react";
 import RentClient from "./components/RentClient";
 import { Metadata } from "next";
+import { getCurrentUser } from "@/libs/actions/data.action";
+import { getRentProperties } from "@/libs/actions/properties.action";
 
 
 export const metadata: Metadata = {
@@ -9,10 +11,12 @@ export const metadata: Metadata = {
 };
 
 
-const page = ({searchParams}: {searchParams: { [key: string]: string | undefined }}) => {
-  console.log(searchParams);
+const page = async ({searchParams}: {searchParams: { [key: string]: string | undefined }}) => {
+  const currentUser = await getCurrentUser();
+  const rentProperties = await getRentProperties();
 
-  return <RentClient />;
+
+  return <RentClient rentProperties={rentProperties} currentUser={currentUser}/>;
 };
 
 export default page;

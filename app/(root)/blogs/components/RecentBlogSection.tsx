@@ -16,7 +16,7 @@ const RecentBlogSection = ({blogList}:recentBlogProps) => {
   return (
     <div className="w-full h-fit grid md:grid-cols-2 xl:gap-4 gap-3 grid-cols-1">
       <div className="w-full mb-2 md:mb-0">
-        <div className="w-full aspect-video lg:h-[18rem] h-[15rem] rounded relative overflow-hidden flex items-center justify-center mb-4">
+        <div className="w-full aspect-video lg:h-[18rem] h-[15rem] rounded relative overflow-hidden flex items-center justify-center mb-4 bg-neutral-600">
           <Image src={blogList[0].blogpostBanner.secure_url} alt='banner_1' priority fill className='object-cover'/>
           <div className="absolute bottom-0 left-0 w-full bg-black/30 p-4 text-white flex items-center justify-between">
             <div>
@@ -38,7 +38,7 @@ const RecentBlogSection = ({blogList}:recentBlogProps) => {
         </div>
       </div>
       <div className="w-full md:hidden mb-2">
-        <div className="w-full aspect-video lg:h-[18rem] h-[15rem] rounded relative overflow-hidden flex items-center justify-center mb-4">
+        <div className="w-full aspect-video lg:h-[18rem] h-[15rem] rounded relative overflow-hidden flex items-center justify-center mb-4 bg-neutral-600">
           <Image src={blogList[1].blogpostBanner.secure_url} alt='banner_1' priority fill className='object-cover'/>
           <div className="absolute bottom-0 left-0 w-full bg-black/30 p-4 text-white flex items-center justify-between">
             <div>
@@ -60,7 +60,7 @@ const RecentBlogSection = ({blogList}:recentBlogProps) => {
         </div>
       </div>
       <div className="w-full md:hidden mb-2">
-        <div className="w-full aspect-video lg:h-[18rem] h-[15rem] rounded relative overflow-hidden flex items-center justify-center mb-4">
+        <div className="w-full aspect-video lg:h-[18rem] h-[15rem] rounded relative overflow-hidden flex items-center justify-center mb-4 bg-neutral-600">
           <Image src={blogList[2].blogpostBanner.secure_url} alt='banner_1' priority fill className='object-cover'/>
           <div className="absolute bottom-0 left-0 w-full bg-black/30 p-4 text-white flex items-center justify-between">
             <div>
@@ -83,7 +83,7 @@ const RecentBlogSection = ({blogList}:recentBlogProps) => {
       </div>
       <div className="md:grid w-full grid-rows-2 xl:gap-4 gap-3 hidden">
         <div className="w-full flex gap-3">
-          <div className="w-[40%] h-full relative rounded overflow-hidden flex items-center justify-center">
+          <div className="w-[40%] h-full relative rounded overflow-hidden flex items-center justify-center bg-neutral-600">
             <Image src={blogList[1].blogpostBanner.secure_url} alt='banner_image' fill priority className='object-cover'/>
             <div className="absolute bottom-0 left-0 w-full bg-black/30 p-4 text-white flex items-center justify-between">
               <div>
@@ -105,7 +105,7 @@ const RecentBlogSection = ({blogList}:recentBlogProps) => {
           </div>
         </div>
         <div className="w-full flex gap-3">
-          <div className="w-[40%] h-full relative rounded overflow-hidden flex items-center justify-center">
+          <div className="w-[40%] h-full relative rounded overflow-hidden flex items-center justify-center bg-neutral-600">
             <Image src={blogList[2].blogpostBanner.secure_url} alt='banner_image' fill priority className='object-cover'/>
             <div className="absolute bottom-0 left-0 w-full bg-black/30 p-4 text-white flex items-center justify-between">
               <div>

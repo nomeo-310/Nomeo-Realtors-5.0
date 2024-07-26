@@ -3,16 +3,25 @@
 import React from "react";
 import Box from "@/components/shared/Box";
 import AllBuyingProperties from "./AllBuyingProperties";
-import { propertyList, states } from "@/components/data/constants";
+import { states } from "@/components/data/constants";
 import { getLocalGovernment } from "@/hooks/getLocalGovernment";
 import CustomSelectComponent from "@/components/shared/CustomSelectComponent";
 import NumberInput from "../../components/home/NumberInput";
 import { useRouter, useSearchParams } from "next/navigation";
 import qs from 'query-string'
+import { currentUserProps, featuredPropertiesProps } from "@/types/types";
 
-const BuyPropertiesClient = () => {
+
+type buyPropertiesProps = {
+  buyProperties: featuredPropertiesProps[]
+  currentUser: currentUserProps
+}
+
+const BuyPropertiesClient = ({buyProperties, currentUser}:buyPropertiesProps) => {
+  
+  const [propertyList, setPropertyList] = React.useState<featuredPropertiesProps[]>(buyProperties);
+
   const search = false;
-  const allRents = propertyList.filter((item) => item.propertTag === 'sale');
 
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -121,7 +130,7 @@ const BuyPropertiesClient = () => {
         <div className="lg:w-[78%] md:w-[68%] pt-1">
           {search && <h2 className="mb-3 lg:text-xl text-lg">search result for lagos</h2>}
           <div className="">
-            <AllBuyingProperties propertyList={allRents}/>
+            <AllBuyingProperties propertyList={propertyList} currentUser={currentUser}/>
           </div>
         </div>
       </div>
