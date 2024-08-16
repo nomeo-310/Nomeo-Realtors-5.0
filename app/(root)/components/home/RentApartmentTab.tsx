@@ -44,7 +44,7 @@ const RentApartmentTab = () => {
       currentQuery = qs.parse(searchParams.toString());
     }
 
-    const updatedQuery:any = {...currentQuery, state: state, city: city, minRent: minimumRent, maxRent: maximumRent };
+    const updatedQuery:any = {...currentQuery, state: state, city: city, minimumRent: minimumRent, maximumRent: maximumRent };
 
     const url = qs.stringifyUrl({url: '/search', query: updatedQuery}, {skipNull: true});
 
@@ -88,7 +88,8 @@ const RentApartmentTab = () => {
         />
       </div>
       <div className="mt-5 p-2.5 lg:p-3 w-full flex justify-end">
-        <button className='w-1/2 bg-neutral-700 p-3 text-white lg:text-xl rounded-md hover:opacity-80' onClick={handleSearch}>
+        <button className='w-1/2 bg-neutral-700 p-3 text-white lg:text-xl rounded-md hover:opacity-80 disabled:bg-neutral-400' 
+          onClick={handleSearch} disabled={state === "" && city === ""}>
           Search
         </button>
       </div>

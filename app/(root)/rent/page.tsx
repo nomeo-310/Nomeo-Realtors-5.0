@@ -2,21 +2,25 @@ import React from "react";
 import RentClient from "./components/RentClient";
 import { Metadata } from "next";
 import { getCurrentUser } from "@/libs/actions/data.action";
-import { getRentProperties } from "@/libs/actions/properties.action";
+import Footer from "../components/footer/Footer";
 
 
 export const metadata: Metadata = {
-  title: "Nomeo Suites | Rent Properties",
-  description: "A real estate webapp built with nextjs. A webapp designed by Salomi Afolabi of Nomeo Consults. The app was initially intended as a real estate application to help in leasing and purchasing apartments but it will now serve as an app that advertise and monitors a certain real estate.",
+  title: "Rent Properties",
 };
 
 
-const page = async ({searchParams}: {searchParams: { [key: string]: string | undefined }}) => {
+const page = async () => {
   const currentUser = await getCurrentUser();
-  const rentProperties = await getRentProperties();
 
 
-  return <RentClient rentProperties={rentProperties} currentUser={currentUser}/>;
+  return (
+    <React.Fragment>
+      <RentClient currentUser={currentUser}/>
+      <Footer/>
+    </React.Fragment>
+
+  );
 };
 
 export default page;

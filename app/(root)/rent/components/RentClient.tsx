@@ -9,20 +9,17 @@ import { getLocalGovernment } from "@/hooks/getLocalGovernment";
 import NumberInput from "../../components/home/NumberInput";
 import { useRouter, useSearchParams } from "next/navigation";
 import qs from 'query-string'
-import { currentUserProps, featuredPropertiesProps } from "@/types/types";
+import { currentUserProps } from "@/types/types";
 
 type rentClientProps = {
-  rentProperties: featuredPropertiesProps[]
   currentUser: currentUserProps
 }
 
-const RentClient = ({rentProperties, currentUser}:rentClientProps) => {
-  const [propertyList, setPropertyList] = React.useState<featuredPropertiesProps[]>(rentProperties);
+const RentClient = ({currentUser}:rentClientProps) => {
 
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const [search, setSearch] = React.useState(false)
 
   const [state, setState] = React.useState("");
   const localGovernmentAreas = getLocalGovernment(state)
@@ -68,9 +65,9 @@ const RentClient = ({rentProperties, currentUser}:rentClientProps) => {
       currentQuery = qs.parse(searchParams.toString());
     }
 
-    const updatedQuery:any = {...currentQuery, state: state, city: city, minRent: minimumRent, maxRent: maximumRent, numberOfBaths: numberOfBaths, numberOfBeds: numberOfBeds };
+    const updatedQuery:any = {...currentQuery, state: state, city: city, minimumRent: minimumRent, maximumRent: maximumRent, numberOfBaths: numberOfBaths, numberOfBeds: numberOfBeds, propertyTag: 'rent' };
 
-    const url = qs.stringifyUrl({url: '/rent', query: updatedQuery}, {skipNull: true});
+    const url = qs.stringifyUrl({url: '/search', query: updatedQuery}, {skipNull: true});
 
     router.push(url);
   };
@@ -119,16 +116,16 @@ const RentClient = ({rentProperties, currentUser}:rentClientProps) => {
             onChange={onChangeBeds}
           />
           <div className="mt-4 w-full">
-            <button className="text-lg lg:text-xl capitalize py-2 px-6 rounded-md bg-neutral-700 text-white w-full" onClick={handleSearch}>
+            <button className="text-lg lg:text-xl capitalize py-2 px-6 rounded-md bg-neutral-700 text-white w-full disabled:bg-neutral-400" 
+              onClick={handleSearch} disabled={state === "" && city === ""}>
               search
             </button>
           </div>
         </div>
         <hr className="my-6 md:hidden"/>
         <div className="lg:w-[78%] md:w-[68%] pt-1">
-          {search && <h2 className="mb-3 lg:text-xl text-lg">search result for lagos</h2>}
           <div className="">
-            <AllRentProperties propertyList={propertyList} currentUser={currentUser}/>
+            <AllRentProperties user={currentUser}/>
           </div>
         </div>
       </div>

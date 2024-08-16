@@ -1,15 +1,13 @@
 import React from 'react'
 import CreatePost from './CreatePost';
-import { featuredBlogProps } from '@/types/types';
-import EmptyState from '@/components/shared/EmptyState';
-import AllBlogs from '../../blogs/components/AllBlogs';
-import LoadMoreButton from '@/components/shared/LoadMoreButton';
+import { currentUserProps } from '@/types/types';
+import AllAgentBlogs from '../../profile/components/AllAgentBlogs';
 
 type postClientProps = {
-  blogs: featuredBlogProps[]
+  currentUser:currentUserProps
 }
 
-const PostClient = ({blogs}: postClientProps) => {
+const PostClient = ({currentUser}: postClientProps) => {
   const [activeTab, setActiveTab] = React.useState('create-post');
 
   return (
@@ -22,15 +20,7 @@ const PostClient = ({blogs}: postClientProps) => {
               <h2 className='text-2xl md:text-3xl lg:text-4xl font-semibold'>All Posts</h2>
               <h2 className='text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-400' onClick={() =>setActiveTab('create-post')}>Create Post</h2>
             </div>
-            <React.Fragment>
-              { blogs.length < 1 ?
-                <EmptyState message='You have noblog posts yet, create some'/>  :
-                <React.Fragment>
-                  <AllBlogs blogList={blogs} useAsAllPost useAgent/>
-                  <LoadMoreButton label="Load more" loadmoreFunction={() => {}}/>
-                </React.Fragment>
-              }
-            </React.Fragment>
+            <AllAgentBlogs user={currentUser} useAsAllPost useAgent/>
           </div>
         </div>
       }

@@ -1,22 +1,20 @@
 "use client";
 
 import React from "react";
-import { currentUserProps, featuredBlogProps, featuredPropertiesProps } from "@/types/types";
+import { currentUserProps, featuredPropertiesProps } from "@/types/types";
 import InfiniteScrollClient from "@/components/shared/InfiniteScrollClient";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { LuLoader2 } from "react-icons/lu";
-import BlogLoadingSkeletons from "../../blogs/components/BlogLoadingSkeletons";
-import BlogCard from "../../blogs/components/BlogCard";
 import FeaturedPropertiesLoading from "../../components/home/FeaturedPropertiesLoading";
 import PropertyCard from "@/components/shared/PropertyCard";
 
 type allBlogsProps = {
   useAsAllPost?:boolean
-  useAgent?: boolean
   user: currentUserProps
+  hideAgentInCharge?: boolean
 }
 
-const AllAgentProperties = ({ user, useAgent, useAsAllPost }: allBlogsProps) => {
+const AllAgentProperties = ({ user, useAsAllPost, hideAgentInCharge }: allBlogsProps) => {
 
   const fetchApiData = async ({pageParam}: {pageParam: number}) => {
 
@@ -41,7 +39,7 @@ const AllAgentProperties = ({ user, useAgent, useAsAllPost }: allBlogsProps) => 
     getNextPageParam: (lastPage) => lastPage.nextPage
   });
 
-  const properties:featuredPropertiesProps[] = data?.pages.flatMap(page => page.blogs) || [];
+  const properties:featuredPropertiesProps[] = data?.pages.flatMap(page => page.properties) || [];
 
   if (status === 'pending') {
     return <FeaturedPropertiesLoading/>
@@ -89,6 +87,7 @@ const AllAgentProperties = ({ user, useAgent, useAsAllPost }: allBlogsProps) => 
           saved={property.bookmarks.includes(user?._id)}
           hideTag={false}
           agentDisplay={false}
+          hideAgentInCharge={hideAgentInCharge}
         />
       ))}
       { isFetchingNextPage && <LuLoader2 className='mx-auto animate-spin my-3'/> }

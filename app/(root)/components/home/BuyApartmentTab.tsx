@@ -88,7 +88,8 @@ const BuyApartmentTab = () => {
         />
       </div>
       <div className="mt-5 p-2.5 lg:p-3 flex justify-end">
-        <button className='w-1/2 bg-neutral-700 p-2 lg:p-2.5 text-white lg:text-xl rounded-md' onClick={handleSearch}>
+        <button className='w-1/2 bg-neutral-700 p-2 lg:p-2.5 text-white lg:text-xl rounded-md disabled:bg-neutral-400' 
+        onClick={handleSearch} disabled={state === "" && city === ""}>
           Search
         </button>
       </div>

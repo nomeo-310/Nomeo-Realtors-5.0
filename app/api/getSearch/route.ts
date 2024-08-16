@@ -8,6 +8,8 @@ import { FilterQuery } from "mongoose";
 type searchQueryProps = {
   minimumCost: string;
   maximumCost: string;
+  minimumRent: string;
+  maximumRent: string;
   numberOfBeds: string
   numberOfBaths: string;
   state: string;
@@ -19,8 +21,6 @@ export const POST = async (request:Request) => {
   await connectToDatabase();
 
   const { page, query } = await request.json();
-
-  console.log(query);
 
   const value = page || undefined;
   const pageNumber = parseInt(value as string);
@@ -42,6 +42,15 @@ export const POST = async (request:Request) => {
     if (parseInt(filters.maximumCost) > 0) {
       query.fullPropertyPrice = query.fullPropertyPrice || {};
       query.fullPropertyPrice.$lte = filters.maximumCost;
+    }
+    
+    if (parseInt(filters.minimumRent) > 0 ) {
+      query.annualRent = { $gte: filters.minimumRent };
+    }
+
+    if (parseInt(filters.maximumRent) > 0) {
+      query.annualRent = query.annualRent || {};
+      query.annualRent.$lte = filters.maximumRent;
     }
     if (filters.state) {
       query.state = filters.state;

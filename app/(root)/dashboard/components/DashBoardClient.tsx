@@ -15,19 +15,17 @@ import { currentUserProps, featuredBlogProps, featuredPropertiesProps } from '@/
 
 type dashboardProps = {
   currentUser: currentUserProps
-  properties: featuredPropertiesProps[]
-  blogs: featuredBlogProps[]
 }
 
-const DashBoardClient = ({currentUser, properties, blogs}: dashboardProps) => {
+const DashBoardClient = ({currentUser}: dashboardProps) => {
   const agentLoggedIn = currentUser && currentUser.isAgent
 
   const [activeTab, setActiveTab] = React.useState(agentLoggedIn ? 'property': 'notifications');
   
   return (
     <DashBoardLayout agentLoggedIn={agentLoggedIn} activeTab={activeTab} setActiveTab={setActiveTab}>
-      { activeTab === 'property' && <PropertyClient user={currentUser} properties={properties}/> }
-      { activeTab === 'post' && <PostClient blogs={blogs}/> }
+      { activeTab === 'property' && <PropertyClient user={currentUser} /> }
+      { activeTab === 'post' && <PostClient currentUser={currentUser}/> }
       { activeTab === 'notifications' && <Notifications /> }
       { activeTab === 'likes' && <LikedProperties /> }
       { activeTab === 'saves' && <SavedProperties /> }

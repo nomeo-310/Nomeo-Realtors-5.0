@@ -31,7 +31,7 @@ export const POST = async (request:Request) => {
     const nextPage = properties.length > pageSize ? pageNumber + 1 : undefined;
 
     const data = {
-      allRentProperties: properties.slice(0, pageSize),
+      properties: properties.slice(0, pageSize),
       nextPage: nextPage
     };
 
