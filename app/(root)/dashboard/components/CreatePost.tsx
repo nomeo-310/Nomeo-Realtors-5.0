@@ -78,7 +78,6 @@ const CreatePost = ({setActiveTab}:{setActiveTab: React.Dispatch<React.SetStateA
     toolbar: [
       [{header: '1'}, {header: '2'}, {font: []}],
       [{size: []}],
-      [{color: []}],
       ['bold', 'italic', 'underline', 'strike', 'blockquote'],
       ['link', 'image', 'video', 'direction'],
       ['clean'],
@@ -168,7 +167,7 @@ const CreatePost = ({setActiveTab}:{setActiveTab: React.Dispatch<React.SetStateA
 
   return (
     <div className='w-full h-full flex slide-in-left'>
-      <div className="flex flex-col lg:gap-4 gap-3 w-full lg:w-[80%] xl:w-[70%]">
+      <div className="flex flex-col lg:gap-4 gap-3 w-full lg:w-[85%] xl:w-[75%]">
         <div className='flex gap-4 mb-8 lg:gap-6 cursor-pointer'>
           <h2 className='text-2xl md:text-3xl lg:text-4xl font-semibold'>Create Post</h2>
           <h2 className='text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-400' onClick={() => setActiveTab('all-posts')}>All Posts</h2>

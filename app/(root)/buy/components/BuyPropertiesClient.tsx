@@ -9,19 +9,14 @@ import CustomSelectComponent from "@/components/shared/CustomSelectComponent";
 import NumberInput from "../../components/home/NumberInput";
 import { useRouter, useSearchParams } from "next/navigation";
 import qs from 'query-string'
-import { currentUserProps, featuredPropertiesProps } from "@/types/types";
+import { currentUserProps } from "@/types/types";
 
 
 type buyPropertiesProps = {
-  buyProperties: featuredPropertiesProps[]
   currentUser: currentUserProps
 }
 
-const BuyPropertiesClient = ({buyProperties, currentUser}:buyPropertiesProps) => {
-  
-  const [propertyList, setPropertyList] = React.useState<featuredPropertiesProps[]>(buyProperties);
-
-  const search = false;
+const BuyPropertiesClient = ({currentUser}:buyPropertiesProps) => {
 
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -69,10 +64,10 @@ const BuyPropertiesClient = ({buyProperties, currentUser}:buyPropertiesProps) =>
     if (searchParams) {
       currentQuery = qs.parse(searchParams.toString());
     }
+    
+    const updatedQuery:any = {...currentQuery, state: state, city: city, minCost: minimumCost, maxCost: maximumCost, numberOfBaths: numberOfBaths, numberOfBeds: numberOfBeds, propertyTag: 'sale' };
 
-    const updatedQuery:any = {...currentQuery, state: state, city: city, minCost: minimumCost, maxCost: maximumCost, numberOfBaths: numberOfBaths, numberOfBeds: numberOfBeds };
-
-    const url = qs.stringifyUrl({url: '/buy', query: updatedQuery}, {skipNull: true});
+    const url = qs.stringifyUrl({url: '/search', query: updatedQuery}, {skipNull: true});
 
     router.push(url);
   };
@@ -121,16 +116,16 @@ const BuyPropertiesClient = ({buyProperties, currentUser}:buyPropertiesProps) =>
             onChange={onChangeBeds}
           />
           <div className="mt-4 w-full">
-            <button className="text-lg lg:text-xl capitalize py-2 px-6 rounded-md bg-neutral-700 text-white w-full" onClick={handleSearch}>
+            <button className="text-lg lg:text-xl capitalize py-2 px-6 rounded-md bg-neutral-700 text-white w-full disabled:bg-neutral-400" 
+            onClick={handleSearch} disabled={state === "" && city === ""}>
               search
             </button>
           </div>
         </div>
         <hr className="my-6 md:hidden"/>
         <div className="lg:w-[78%] md:w-[68%] pt-1">
-          {search && <h2 className="mb-3 lg:text-xl text-lg">search result for lagos</h2>}
           <div className="">
-            <AllBuyingProperties propertyList={propertyList} currentUser={currentUser}/>
+            <AllBuyingProperties user={currentUser}/>
           </div>
         </div>
       </div>

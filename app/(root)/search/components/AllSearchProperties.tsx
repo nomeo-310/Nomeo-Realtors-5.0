@@ -6,24 +6,25 @@ import { currentUserProps, featuredPropertiesProps } from "@/types/types";
 import PropertyCard from "@/components/shared/PropertyCard";
 import EmptyState from "@/components/shared/EmptyState";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import FeaturedPropertiesLoading from "../../components/home/FeaturedPropertiesLoading";
 import { LuLoader2 } from "react-icons/lu";
 import InfiniteScrollClient from "@/components/shared/InfiniteScrollClient";
+import PropertiesLoading from "../../buy/components/PropertiesLoading";
 
 
 type propertiesContentProps = {
   user: currentUserProps
+  query: { [key: string]: string | undefined }
 };
 
 
-const PropertiesContent = ({user}:propertiesContentProps) => {
+const AllSearchProperties = ({user, query}:propertiesContentProps) => {
 
   const fetchApiData = async ({pageParam}: {pageParam: number}) => {
 
-    const response = await fetch('/api/getAgentProperties', {
+    const response = await fetch('/api/getSearch', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', },
-      body: JSON.stringify({ page: pageParam})
+      body: JSON.stringify({ page: pageParam, query: query})
     });
     
     if (!response.ok) {
@@ -35,7 +36,7 @@ const PropertiesContent = ({user}:propertiesContentProps) => {
   };
 
   const {data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } = useInfiniteQuery({
-    queryKey: ['all-agent-properties', user._id],
+    queryKey: ['search-properties', user._id],
     queryFn: fetchApiData,
     initialPageParam: 1,
     getNextPageParam: (lastPage) => lastPage.nextPage
@@ -44,11 +45,11 @@ const PropertiesContent = ({user}:propertiesContentProps) => {
   const properties:featuredPropertiesProps[] = data?.pages.flatMap(page => page.properties) || [];
 
   if (status === 'pending') {
-    return <FeaturedPropertiesLoading/>
+    return <PropertiesLoading/>
   };
 
   if (status === 'success' && !properties.length && !hasNextPage) {
-    return  <EmptyState message="Agent has not added any properties yet" /> 
+    return  <EmptyState message="No property fits into the data you just searched. Try again another time" /> 
   };
 
   if (status === 'error') {
@@ -91,4 +92,4 @@ const PropertiesContent = ({user}:propertiesContentProps) => {
   )
 };
 
-export default PropertiesContent;
+export default AllSearchProperties;

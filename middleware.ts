@@ -8,7 +8,7 @@ export default withAuth(
     const isProtectedRoute = protectedRoutes.some(route => req.nextUrl.pathname.startsWith(route));
 
     if (isProtectedRoute && !req.nextauth.token) {
-      return NextResponse.redirect(new URL('/login', req.url));
+      return NextResponse.redirect(new URL('/', req.url));
     }
 
     return NextResponse.next();

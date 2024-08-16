@@ -1,22 +1,22 @@
-'use client'
-
+"use client";
 
 import React from "react";
-import { currentUserProps, featuredPropertiesProps } from "@/types/types";
-import PropertyCard from "@/components/shared/PropertyCard";
-import EmptyState from "@/components/shared/EmptyState";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import FeaturedPropertiesLoading from "../../components/home/FeaturedPropertiesLoading";
-import { LuLoader2 } from "react-icons/lu";
+import { currentUserProps, featuredBlogProps, featuredPropertiesProps } from "@/types/types";
 import InfiniteScrollClient from "@/components/shared/InfiniteScrollClient";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { LuLoader2 } from "react-icons/lu";
+import BlogLoadingSkeletons from "../../blogs/components/BlogLoadingSkeletons";
+import BlogCard from "../../blogs/components/BlogCard";
+import FeaturedPropertiesLoading from "../../components/home/FeaturedPropertiesLoading";
+import PropertyCard from "@/components/shared/PropertyCard";
 
-
-type propertiesContentProps = {
+type allBlogsProps = {
+  useAsAllPost?:boolean
+  useAgent?: boolean
   user: currentUserProps
-};
+}
 
-
-const PropertiesContent = ({user}:propertiesContentProps) => {
+const AllAgentProperties = ({ user, useAgent, useAsAllPost }: allBlogsProps) => {
 
   const fetchApiData = async ({pageParam}: {pageParam: number}) => {
 
@@ -41,15 +41,19 @@ const PropertiesContent = ({user}:propertiesContentProps) => {
     getNextPageParam: (lastPage) => lastPage.nextPage
   });
 
-  const properties:featuredPropertiesProps[] = data?.pages.flatMap(page => page.properties) || [];
+  const properties:featuredPropertiesProps[] = data?.pages.flatMap(page => page.blogs) || [];
 
   if (status === 'pending') {
     return <FeaturedPropertiesLoading/>
-  };
+  }
 
   if (status === 'success' && !properties.length && !hasNextPage) {
-    return  <EmptyState message="Agent has not added any properties yet" /> 
-  };
+    return  (
+      <p className='text-base lg:text-lg text-center text-muted-foreground'>
+        Agent has not added any properties yet.
+      </p>
+    )
+  }
 
   if (status === 'error') {
     return (
@@ -60,10 +64,12 @@ const PropertiesContent = ({user}:propertiesContentProps) => {
   }
 
   return (
-    <InfiniteScrollClient  className="w-full grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-x-4 md:gap-x-3 gap-y-6 md:gap-y-8" 
-    onBottomReached={() => hasNextPage && !isFetching && fetchNextPage()}>
-      { properties.map((property) => (
-        <PropertyCard key={property._id}
+    <InfiniteScrollClient 
+      className={`w-full grid ${useAsAllPost ? 'xl:grid-cols-3 md:grid-cols-2': 'xl:grid-cols-4 md:grid-cols-3'} grid-cols-1 mt-8 lg:mt-10 xl:gap-x-4 md:gap-x-3 gap-y-6`}
+      onBottomReached={() => hasNextPage && !isFetching && fetchNextPage()}>
+      { properties.map((property, index: number) => (
+        <PropertyCard 
+          key={index}
           id={property._id}
           propertTag={property.propertyTag}
           furnitureTag={property.furnitureStatus}
@@ -79,16 +85,15 @@ const PropertiesContent = ({user}:propertiesContentProps) => {
           city={property.city}
           propertyCost={property.fullPropertyPrice}
           monthlyRent={property.monthlyRent}
-          liked={property.likes.includes(user._id)}
-          saved={property.bookmarks.includes(user._id)} 
-          hideTag={true}
+          liked={property.likes.includes(user?._id)}
+          saved={property.bookmarks.includes(user?._id)}
+          hideTag={false}
           agentDisplay={false}
-          hideAgentInCharge={true}       
         />
       ))}
       { isFetchingNextPage && <LuLoader2 className='mx-auto animate-spin my-3'/> }
     </InfiniteScrollClient>
-  )
+  );
 };
 
-export default PropertiesContent;
+export default AllAgentProperties;

@@ -1,4 +1,5 @@
 import Properties from "@/libs/schemas/properties";
+import User from "@/libs/schemas/users";
 import connectToDatabase from "@/libs/utils/connectToDatabase"
 
 export const GET = async () => {
@@ -6,7 +7,11 @@ export const GET = async () => {
 
   try {
     const properties = await Properties.find()
-    .populate("agentInCharge", "_id name image agencyName agencyFee")
+    .populate({
+      path: "agentInCharge",
+      model: User, 
+      select: "_id name image agencyName agencyFee"
+    })
     .limit(6)
     .sort({createdAt: -1});
 

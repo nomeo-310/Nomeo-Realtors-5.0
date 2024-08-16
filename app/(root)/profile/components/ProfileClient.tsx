@@ -5,12 +5,11 @@ import Box from '@/components/shared/Box'
 import { nairaSign} from '@/components/data/constants'
 import Image from 'next/image'
 import { HiOutlineBriefcase, HiOutlineCheckBadge, HiOutlineDocumentText, HiOutlineEnvelope, HiOutlineHome, HiOutlineLink, HiOutlineMapPin, HiOutlinePhone, HiOutlineReceiptPercent, HiOutlineStar, HiOutlineUser, HiOutlineUserGroup, HiOutlineWallet } from 'react-icons/hi2'
-import AllBlogs from '../../blogs/components/AllBlogs'
-import LoadMoreButton from '@/components/shared/LoadMoreButton'
 import { currentUserProps, featuredBlogProps, featuredPropertiesProps } from '@/types/types'
 import PropertiesContent from './PropertiesContent'
 import { formatDate } from '@/hooks/formatTime'
 import EmptyState from '@/components/shared/EmptyState'
+import AllAgentBlogs from './AllAgentBlogs'
 
 
 type profileClientProps = {
@@ -24,7 +23,6 @@ const ProfileClient = ({user, properties, blogs}:profileClientProps) => {
   const [activeTab, setActiveTab] = React.useState('posts');
 
   const ProfileContent = () => {
-
     return (
       <div className="flex flex-col gap-3">
         <div className="flex lg:gap-4 gap-3 items-center">
@@ -108,8 +106,7 @@ const ProfileClient = ({user, properties, blogs}:profileClientProps) => {
         { blogs.length < 1 ?
           <EmptyState message='No blog posts yet, let us hope create some soon'/>  :
           <React.Fragment>
-            <AllBlogs blogList={blogs} useAsAllPost useAgent/>
-            <LoadMoreButton label="Load more" loadmoreFunction={() => {}}/>
+            <AllAgentBlogs user={user} useAsAllPost useAgent/>
           </React.Fragment>
         }
       </React.Fragment>
@@ -133,9 +130,8 @@ const ProfileClient = ({user, properties, blogs}:profileClientProps) => {
           <div className='md:hidden'>
             { mobileActiveTab === 'profile' && <ProfileContent/> }
             { mobileActiveTab === 'posts' && <PostContent/> }
-            { mobileActiveTab === 'properties' && <PropertiesContent properties={properties} user={user}/> }
+            { mobileActiveTab === 'properties' && <PropertiesContent user={user}/> }
           </div>
-
         </div>
       </div>
       <div className="lg:w-[65%] md:w-[57%] h-full hidden md:block">
@@ -145,7 +141,7 @@ const ProfileClient = ({user, properties, blogs}:profileClientProps) => {
         </div>
         <div>
           { activeTab === 'posts' && <PostContent/> }
-          { activeTab === 'properties' && <PropertiesContent properties={properties} user={user} /> }
+          { activeTab === 'properties' && <PropertiesContent user={user} /> }
         </div>
       </div>
     </Box>
