@@ -1,19 +1,19 @@
 "use client";
 
-import LoginModal from "@/app/(root)/components/login/LoginModal";
-import AgentSignupModal from "@/app/(root)/components/signUp/AgentSignupModal";
-import SignupModal from "@/app/(root)/components/signUp/UserSignupModal";
-import CookiesModal from "@/app/(root)/components/terms/CookiesModal";
-import PrivacyPolicy from "@/app/(root)/components/terms/PrivacyPolicy";
-import TermsAndConditionsModal from "@/app/(root)/components/terms/TermsAndConditionsModal";
-import TermsOfServiceModal from "@/app/(root)/components/terms/TermsOfServiceModal";
 import React from "react";
+import LoginModal from "../(root)/components/login/LoginModal";
+import AgentSignupModal from "../(root)/components/signUp/AgentSignupModal";
+import TermsAndConditionsModal from "../(root)/components/terms/TermsAndConditionsModal";
+import PrivacyPolicy from "../(root)/components/terms/PrivacyPolicy";
+import UserSignupModal from "../(root)/components/signUp/UserSignupModal";
+import TermsOfServiceModal from "../(root)/components/terms/TermsOfServiceModal";
+import CookiesModal from "../(root)/components/terms/CookiesModal";
 
 const ModalProvider = () => {
   return (
     <React.Fragment>
       <LoginModal />
-      <SignupModal />
+      <UserSignupModal />
       <AgentSignupModal />
       <TermsAndConditionsModal />
       <PrivacyPolicy />
