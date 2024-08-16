@@ -1,5 +1,4 @@
 import React from "react";
-import { getFeaturedProperties } from "@/libs/actions/properties.action";
 import { getCurrentUser } from "@/libs/actions/data.action";
 import LandingPage from "./components/home/LandingPage";
 import OurServiceSection from "./components/home/OurServiceSection";
@@ -7,21 +6,23 @@ import FeaturedPropertiesSection from "./components/home/FeaturedPropertiesSecti
 import LatestBlogSection from "./components/home/LatestBlogSection";
 import OurTestimonialSection from "./components/home/OurTestimonialSection";
 import FrequentlyAskedQuestionsSection from "./components/home/FrequentlyAskedQuestionsSection";
-import { getFeaturedBlogs } from "@/libs/actions/blogs.action";
+import { LuLoader2 } from "react-icons/lu";
+import Footer from "./components/footer/Footer";
 
 const Home = async () => {
-  const featuredProperties = await getFeaturedProperties();
   const currentUser = await getCurrentUser();
-  const featuredBlogs = await getFeaturedBlogs();
 
   return (
     <React.Fragment>
       <LandingPage />
       <OurServiceSection />
-      <FeaturedPropertiesSection featuredProperties={featuredProperties} currentUser={currentUser}/>
-      <LatestBlogSection featuredBlogs={featuredBlogs}/>
+      <React.Suspense fallback={ <LuLoader2 className='mx-auto animate-spin'/>}>
+        <FeaturedPropertiesSection currentUser={currentUser}/>
+      </React.Suspense>
+      <LatestBlogSection />
       <OurTestimonialSection />
       <FrequentlyAskedQuestionsSection />
+      <Footer/>
     </React.Fragment>
   )
 }

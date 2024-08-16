@@ -89,8 +89,13 @@ div::-webkit-scrollbar-track {
   color: black !important;
 }
 
+.blog-content blockquote {
+  white-space: pre-line;
+}
+
 .blog-content blockquote em {
   color: black !important;
+  white-space: pre-line;
 }
 
 
@@ -201,5 +206,4 @@ div::-webkit-scrollbar-track {
   .blog-content h2 {
     @apply lg:text-xl text-lg;
   }
-
 }

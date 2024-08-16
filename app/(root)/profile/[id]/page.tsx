@@ -4,6 +4,7 @@ import ProfileClient from "../components/ProfileClient";
 import { getUserById } from "@/libs/actions/user.action";
 import { getSingleUserProperty } from "@/libs/actions/properties.action";
 import { getUsersBlogs } from "@/libs/actions/blogs.action";
+import Footer from "../../components/footer/Footer";
 
 interface pageProps {
   params: {id: string}
@@ -19,7 +20,12 @@ const ProfilePage = async({params}:pageProps) => {
   const singleUserProperty = await getSingleUserProperty(params.id);
   const singleUserBlogs = await getUsersBlogs(params.id);
 
-  return <ProfileClient user={singleUser} properties={singleUserProperty} blogs={singleUserBlogs}/>;
+  return (
+    <React.Fragment>
+      <ProfileClient user={singleUser} properties={singleUserProperty} blogs={singleUserBlogs}/>
+      <Footer/>
+    </React.Fragment>
+  );
 };
 
 export default ProfilePage;

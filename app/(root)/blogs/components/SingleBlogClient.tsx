@@ -14,7 +14,6 @@ type Props = {
 }
 
 const SingleBlogClient = ({blog}: Props) => {
-  console.log(blog.content);
 
   return (
     <Box className="pt-16 lg:pt-20">

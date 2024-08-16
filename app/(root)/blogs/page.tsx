@@ -1,7 +1,7 @@
 import React from "react";
 import BlogClient from "./components/BlogClient";
 import { Metadata } from "next";
-import { getAllBlogs } from "@/libs/actions/blogs.action";
+import Footer from "../components/footer/Footer";
 
 export const metadata: Metadata = {
   title: "Nomeo Suites | Blogs",
@@ -10,9 +10,13 @@ export const metadata: Metadata = {
 
 
 const BlogsPage = async () => {
-  const blogs = await getAllBlogs();
 
-  return <BlogClient blogs={blogs} />;
+  return (
+    <React.Fragment>
+      <BlogClient />
+      <Footer/>
+    </React.Fragment>
+  );
 };
 
 export default BlogsPage;

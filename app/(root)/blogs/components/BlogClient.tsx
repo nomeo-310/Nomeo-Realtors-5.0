@@ -5,14 +5,10 @@ import Box from "@/components/shared/Box";
 import { blogData } from "@/components/data/constants";
 import RecentBlogSection from "./RecentBlogSection";
 import AllBlogs from "./AllBlogs";
-import LoadMoreButton from "@/components/shared/LoadMoreButton";
-import { featuredBlogProps } from "@/types/types";
 
-type blogsClientProps = {
-  blogs: featuredBlogProps[]
-}
 
-const BlogClient = ({blogs}:blogsClientProps) => {
+const BlogClient = () => {
+
   return (
     <Box className="pt-16 lg:pt-20">
       <div className="pt-10">
@@ -20,12 +16,11 @@ const BlogClient = ({blogs}:blogsClientProps) => {
         <p className="lg:text-xl md:text-lg mt-5 mb-2">{blogData.mainTitle}</p>
         <div className="w-full mt-8 lg:mt-10">
           <h2 className="lg:text-2xl text-xl mb-8 lg:mb-10">Recent blog posts</h2>
-          <RecentBlogSection blogList={blogs} />
+          <RecentBlogSection />
         </div>
         <div className="w-full mt-8 lg:mt-10">
           <h2 className="lg:text-2xl text-xl">All blog posts</h2>
-          <AllBlogs blogList={blogs} />
-          <LoadMoreButton label="Load more" loadmoreFunction={() => {}}/>
+          <AllBlogs />
         </div>
       </div>
     </Box>

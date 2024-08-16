@@ -24,10 +24,6 @@ const Modal = ({children, isOpen, title, onClose}: modalProps) => {
     }, 300)
   }, [onClose]);
 
-  const handleSubmit = () => {
-
-  }
-
   return (
     <React.Fragment>
       { isOpen &&

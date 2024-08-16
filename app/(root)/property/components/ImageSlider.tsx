@@ -5,6 +5,7 @@ import React from 'react'
 import { HiXMark } from 'react-icons/hi2';
 import { LiaArrowLeftSolid, LiaArrowRightSolid } from 'react-icons/lia';
 import { featuredPropertiesProps } from '@/types/types';
+import Image from 'next/image';
 
 const ImageSlider = ({property, setOpenSlider}:{property:featuredPropertiesProps, setOpenSlider: React.Dispatch<React.SetStateAction<boolean>>}) => {
 
@@ -46,8 +47,8 @@ const ImageSlider = ({property, setOpenSlider}:{property:featuredPropertiesProps
             </button>
           }
         </div>
-        <div className="h-full text-white items-center justify-center flex overflow-hidden">
-          <img src={images && images[currentIndex].secure_url} alt="" className='h-full w-full object-contain'/>
+        <div className="h-full text-white overflow-hidden flex items-center justify-center relative w-full">
+          <Image src={images && images[currentIndex].secure_url} alt={`image_one`} fill className='size-fit object-contain rounded-md'/>
         </div>
         <div>
           {currentIndex < lastImageIndex! &&

@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import localFont from 'next/font/local'
 import "../globals.css";
 import Navigation from "./components/navigation/Navigation";
-import Footer from "./components/footer/Footer";
 import ToastProvider from "@/providers/ToastProvider";
 import ScrollToTopButton from "@/components/shared/ScrollToTopButton";
 import ModalProvider from "@/providers/ModalProvider";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
 
 export const metadata: Metadata = {
-  title: "Nomeo Suites | Home",
-  description: "A real estate webapp built with nextjs. A webapp designed by Salomi Afolabi of Nomeo Consults. The app was initially intended as a real estate application to help in leasing and purchasing apartments but it will now serve as an app that advertise and monitors a certain real estate.",
+  title: {template: "%s | Nomeo Suites", default: "Home Page | Nomeo Suites"},
+  description: "A real estate webapp built with ReactJs bootsrapped in NextJS, styled with TailwindCSS. A WebApp designed by Salomi Afolabi of Nomeo Consults. The app was initially intended as a real estate application to help in leasing and purchasing apartments but in the future will include investment opportunities as well other types of real estate adverts."
 };
 
 const urbanist = localFont({
@@ -27,12 +27,13 @@ export default function RootLayout({children}:{children: React.ReactNode}) {
   return (
     <html lang="en">
       <body className={`${urbanist.variable} ${barlow.variable}`}>
-        <ToastProvider/>
-        <ModalProvider/>
-        <Navigation/>
-        <ScrollToTopButton/>
-        {children}
-        <Footer/>
+        <ReactQueryProvider>
+          <ToastProvider/>
+          <ModalProvider/>
+          <Navigation/>
+          <ScrollToTopButton/>
+          {children}
+        </ReactQueryProvider>
       </body>
     </html>
   );

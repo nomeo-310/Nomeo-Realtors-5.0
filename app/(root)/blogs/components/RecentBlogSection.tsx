@@ -1,3 +1,5 @@
+'use client'
+
 
 import React from 'react'
 import ImageAvatar from '@/components/shared/ImageAvatar'
@@ -6,13 +8,40 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { HiMiniArrowRight } from 'react-icons/hi2'
 import { formatDate } from '@/hooks/formatTime'
+import { useQuery } from '@tanstack/react-query'
+import RecentBlogsLoading from './RecentBlogsLoading'
 
 
-type recentBlogProps = {
-  blogList: featuredBlogProps[]
-}
 
-const RecentBlogSection = ({blogList}:recentBlogProps) => {
+const RecentBlogSection = () => {
+
+  const { data, status } = useQuery({
+    queryKey: ['featured-blogs'],
+    queryFn: () => fetch('/api/getLatestBlogs').then((res) => res.json()),
+  });
+
+  if (status === 'pending') {
+    return <RecentBlogsLoading/>
+  };
+
+  if (status === 'error') {
+    return (
+      <p className='lg:text-xl md:text-lg text-center text-red-400 mt-8 lg:mt-10 font-semibold w-full'>
+        Error while loading latest blogs. Reload page.
+      </p>
+    )
+  };
+
+  const blogList:featuredBlogProps[] = data;
+
+
+  if (status === 'success' && !blogList.length ) {
+    return (
+      <p className='lg:text-xl md:text-lg text-center text-red-400 mt-8 lg:mt-10 w-full'>
+        Error while loading recent blog posts. Reload page.
+      </p>
+    )
+  };
   return (
     <div className="w-full h-fit grid md:grid-cols-2 xl:gap-4 gap-3 grid-cols-1">
       <div className="w-full mb-2 md:mb-0">
@@ -37,7 +66,7 @@ const RecentBlogSection = ({blogList}:recentBlogProps) => {
           </Link>
         </div>
       </div>
-      <div className="w-full md:hidden mb-2">
+      <div className="w-full sm:hidden mb-2">
         <div className="w-full aspect-video lg:h-[18rem] h-[15rem] rounded relative overflow-hidden flex items-center justify-center mb-4 bg-neutral-600">
           <Image src={blogList[1].blogpostBanner.secure_url} alt='banner_1' priority fill className='object-cover'/>
           <div className="absolute bottom-0 left-0 w-full bg-black/30 p-4 text-white flex items-center justify-between">
@@ -59,7 +88,7 @@ const RecentBlogSection = ({blogList}:recentBlogProps) => {
           </Link>
         </div>
       </div>
-      <div className="w-full md:hidden mb-2">
+      <div className="w-full sm:hidden mb-2">
         <div className="w-full aspect-video lg:h-[18rem] h-[15rem] rounded relative overflow-hidden flex items-center justify-center mb-4 bg-neutral-600">
           <Image src={blogList[2].blogpostBanner.secure_url} alt='banner_1' priority fill className='object-cover'/>
           <div className="absolute bottom-0 left-0 w-full bg-black/30 p-4 text-white flex items-center justify-between">

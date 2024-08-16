@@ -1,8 +1,8 @@
 import React from "react";
 import SingleBlogClient from "../components/SingleBlogClient";
 import { Metadata } from "next";
-import { blogList } from "@/components/data/constants";
 import { getSingleBlog } from "@/libs/actions/blogs.action";
+import Footer from "../../components/footer/Footer";
 
 interface pageProps {
   params: {id: string}
@@ -15,12 +15,13 @@ export const metadata: Metadata = {
 
 const SingleBlogPage = async ({params}: pageProps) => {
   const blog = await getSingleBlog(params.id);
-
-  if (!blog) {
-    return;
-  }
-
-  return <SingleBlogClient blog={blog} />;
+  
+  return (
+    <React.Fragment>
+      <SingleBlogClient blog={blog} />
+      <Footer/>
+    </React.Fragment>
+  );
 };
 
 export default SingleBlogPage;
