@@ -49,49 +49,18 @@ export const createBlogPost = async ({blogTitle, blogIntro, blogpostBanner, cont
 
 };
 
-export const getFeaturedBlogs = async () => {
-  await connectToDatabase();
-
-  const blogs = await Blogs.find()
-  .populate("blogAuthor", "_id name image agentBio ")
-  .limit(3)
-  .sort({createdAt: -1});
-
-  const featuredBlogs = JSON.parse(JSON.stringify(blogs));
-
-  return featuredBlogs;
-};
 
 export const getSingleBlog = async (id: string) => {
   await connectToDatabase();
 
   const blog = await Blogs.findById(id)
-  .populate("blogAuthor", "_id name image agentBio ");
+  .populate({
+    path: "blogAuthor",
+    model: User,
+    select: "_id name image agentBio"      
+  })
 
   const singleBlog = JSON.parse(JSON.stringify(blog));
 
   return singleBlog;
-};
-
-export const getUsersBlogs = async (id: string) => {
-  await connectToDatabase();
-
-  const blogs = await Blogs.find({blogAuthor: id})
-  .populate("blogAuthor", "_id name image agentBio ");
-
-  const allBlogs = JSON.parse(JSON.stringify(blogs));
-
-  return allBlogs;
-};
-
-
-export const getAllBlogs = async () => {
-  await connectToDatabase();
-
-  const blogs = await Blogs.find()
-  .populate("blogAuthor", "_id name image agentBio ");
-
-  const allBlogs = JSON.parse(JSON.stringify(blogs));
-
-  return allBlogs;
 };

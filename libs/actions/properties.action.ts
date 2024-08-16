@@ -2,7 +2,7 @@
 
 import connectToDatabase from "../utils/connectToDatabase"
 import Properties from "../schemas/properties"
-import { getCurrentUserRawData, getPropertyById, getUserByEmail } from "./data.action"
+import { getCurrentUserRawData, getPropertyById } from "./data.action"
 import { revalidatePath } from "next/cache"
 import { ObjectId } from "mongodb"
 import User from "../schemas/users"
@@ -122,7 +122,11 @@ export const getSingleProperty = async (id:string) => {
   
 
   const property = await Properties.findById(id)
-  .populate("agentInCharge", "_id name image agencyName agencyFee");
+  .populate({
+    path: "agentInCharge", 
+    model: User,
+    select:"_id name image agencyName agencyFee"}
+  );
   const singleProperty = JSON.parse(JSON.stringify(property));
 
   return singleProperty;
@@ -132,7 +136,11 @@ export const getSingleUserProperty = async (id:string) => {
   await connectToDatabase();
 
   const property = await Properties.find({agentInCharge: id})
-  .populate("agentInCharge", "_id name image agencyName agencyFee");
+  .populate({
+    path: "agentInCharge", 
+    model: User,
+    select:"_id name image agencyName agencyFee"}
+  );
   const singleUserProperty = JSON.parse(JSON.stringify(property));
 
   return singleUserProperty;
@@ -215,30 +223,5 @@ export const likeProperty = async ({id, path}:{id:string, path:string}) => {
   };
 };
 
-export const getRentProperties = async () => {
-  await connectToDatabase();
-
-  const properties = await Properties.find({propertyTag: 'rent'})
-  .populate("agentInCharge", "_id name image agencyName agencyFee")
-  .limit(6)
-  .sort({createdAt: -1});
-
-  const rentProperties = JSON.parse(JSON.stringify(properties));
-
-  return rentProperties;
-};
-
-export const getsaleProperties = async () => {
-  await connectToDatabase();
-
-  const properties = await Properties.find({propertyTag: 'sale'})
-  .populate("agentInCharge", "_id name image agencyName agencyFee")
-  .limit(6)
-  .sort({createdAt: -1});
-
-  const saleProperties = JSON.parse(JSON.stringify(properties));
-
-  return saleProperties;
-};
  
 
