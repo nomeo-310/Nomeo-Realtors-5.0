@@ -5,20 +5,17 @@ import Box from '@/components/shared/Box'
 import { nairaSign} from '@/components/data/constants'
 import Image from 'next/image'
 import { HiOutlineBriefcase, HiOutlineCheckBadge, HiOutlineDocumentText, HiOutlineEnvelope, HiOutlineHome, HiOutlineLink, HiOutlineMapPin, HiOutlinePhone, HiOutlineReceiptPercent, HiOutlineStar, HiOutlineUser, HiOutlineUserGroup, HiOutlineWallet } from 'react-icons/hi2'
-import { currentUserProps, featuredBlogProps, featuredPropertiesProps } from '@/types/types'
+import { currentUserProps } from '@/types/types'
 import PropertiesContent from './PropertiesContent'
 import { formatDate } from '@/hooks/formatTime'
-import EmptyState from '@/components/shared/EmptyState'
 import AllAgentBlogs from './AllAgentBlogs'
 
 
 type profileClientProps = {
   user: currentUserProps
-  properties: featuredPropertiesProps[]
-  blogs: featuredBlogProps[]
 }
 
-const ProfileClient = ({user, properties, blogs}:profileClientProps) => {
+const ProfileClient = ({user}:profileClientProps) => {
   const [mobileActiveTab, setMobileActiveTab] = React.useState('profile');
   const [activeTab, setActiveTab] = React.useState('posts');
 
@@ -103,12 +100,7 @@ const ProfileClient = ({user, properties, blogs}:profileClientProps) => {
   const PostContent = () => {
     return (
       <React.Fragment>
-        { blogs.length < 1 ?
-          <EmptyState message='No blog posts yet, let us hope create some soon'/>  :
-          <React.Fragment>
-            <AllAgentBlogs user={user} useAsAllPost useAgent/>
-          </React.Fragment>
-        }
+        <AllAgentBlogs user={user} useAsAllPost useAgent/>
       </React.Fragment>
     )
   };

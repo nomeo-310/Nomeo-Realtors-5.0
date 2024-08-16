@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import localFont from 'next/font/local'
 import "../globals.css";
 import Navigation from "./components/navigation/Navigation";
-import ToastProvider from "@/providers/ToastProvider";
+import ToastProvider from "@/app/providers/ToastProvider";
 import ScrollToTopButton from "@/components/shared/ScrollToTopButton";
-import ModalProvider from "@/providers/ModalProvider";
-import ReactQueryProvider from "@/providers/ReactQueryProvider";
+import ReactQueryProvider from "../providers/ReactQueryProvider";
+import ModalProvider from "../providers/ModalProvider";
 
 export const metadata: Metadata = {
   title: {template: "%s | Nomeo Suites", default: "Home Page | Nomeo Suites"},
