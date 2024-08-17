@@ -7,19 +7,18 @@ import OurTestimonialSection from "./OurTestimonialSection";
 import FrequentlyAskedQuestionsSection from "./FrequentlyAskedQuestionsSection";
 import LatestBlogSection from "./LatestBlogSection";
 import FeaturedPropertiesSection from "./FeaturedPropertiesSection";
-import { currentUserProps, featuredPropertiesProps } from "@/types/types";
+import { currentUserProps } from "@/types/types";
 
 type homeClientProps = {
-  featuredProperties: featuredPropertiesProps[]
   currentUser: currentUserProps
 }
 
-const HomeClient = ({featuredProperties, currentUser}:homeClientProps) => {
+const HomeClient = ({currentUser}:homeClientProps) => {
   return (
     <React.Fragment>
       <LandingPage />
       <OurServiceSection />
-      <FeaturedPropertiesSection featuredProperties={featuredProperties} currentUser={currentUser}/>
+      <FeaturedPropertiesSection currentUser={currentUser}/>
       <LatestBlogSection />
       <OurTestimonialSection />
       <FrequentlyAskedQuestionsSection />
