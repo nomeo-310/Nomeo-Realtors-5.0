@@ -12,7 +12,6 @@ import { uploadImage } from '@/hooks/uploadImages';
 import { deleteCloudinaryImages } from '@/libs/actions/deleteCloudinaryImage';
 import Button from '@/components/shared/Button';
 import { isValidPhoneNumber } from '@/libs/validations/validations';
-import { AiFillAlipaySquare } from 'react-icons/ai';
 
 type pageProps = {
   pageNumber: number

@@ -1,13 +1,14 @@
 "use client";
 
 import React from "react";
-import LoginModal from "../(root)/components/login/LoginModal";
-import AgentSignupModal from "../(root)/components/signUp/AgentSignupModal";
-import TermsAndConditionsModal from "../(root)/components/terms/TermsAndConditionsModal";
-import PrivacyPolicy from "../(root)/components/terms/PrivacyPolicy";
-import UserSignupModal from "../(root)/components/signUp/UserSignupModal";
-import TermsOfServiceModal from "../(root)/components/terms/TermsOfServiceModal";
-import CookiesModal from "../(root)/components/terms/CookiesModal";
+import LoginModal from "../components/login/LoginModal";
+import UserSignupModal from "../components/signUp/UserSignupModal";
+import AgentSignupModal from "../components/signUp/AgentSignupModal";
+import TermsAndConditionsModal from "../components/terms/TermsAndConditionsModal";
+import PrivacyPolicy from "../components/terms/PrivacyPolicy";
+import TermsOfServiceModal from "../components/terms/TermsOfServiceModal";
+import CookiesModal from "../components/terms/CookiesModal";
+
 
 const ModalProvider = () => {
   return (

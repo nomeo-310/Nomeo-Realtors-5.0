@@ -8,7 +8,6 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import qs from 'query-string'
 import { states } from '@/components/data/constants';
 
-type Props = {}
 
 const BuyApartmentTab = () => {
   const router = useRouter();

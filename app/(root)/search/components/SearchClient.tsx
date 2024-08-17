@@ -5,27 +5,24 @@ import CustomSelectComponent from "@/components/shared/CustomSelectComponent";
 import { getLocalGovernment } from "@/hooks/getLocalGovernment";
 import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
-import NumberInput from "../../components/home/NumberInput";
-import qs from 'query-string'
+import NumberInput from "../../../components/home/NumberInput";
+import qs from "query-string";
 import { currentUserProps } from "@/types/types";
 import { states } from "@/components/data/constants";
 import AllSearchProperties from "./AllSearchProperties";
 
-
-
 type searchClientProps = {
-  query: { [key: string]: string | undefined }
-  user: currentUserProps
-}
+  query: { [key: string]: string | undefined };
+  user: currentUserProps;
+};
 
-const SearchClient = ({query, user}:searchClientProps) => {
-
+const SearchClient = ({ query, user }: searchClientProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
   const [state, setState] = React.useState("");
-  const localGovernmentAreas = getLocalGovernment(state)
-  const [city, setCity] = React.useState('');
+  const localGovernmentAreas = getLocalGovernment(state);
+  const [city, setCity] = React.useState("");
 
   const [minimumCost, setMinimumCost] = React.useState(0);
   const [maximumCost, setMaximumCost] = React.useState(0);
@@ -52,11 +49,11 @@ const SearchClient = ({query, user}:searchClientProps) => {
     setNumberOfBeds(value);
   };
 
-  const nairaSign:string = String.fromCodePoint(8358);
+  const nairaSign: string = String.fromCodePoint(8358);
 
   React.useEffect(() => {
     if (state) {
-      setCity(localGovernmentAreas ? localGovernmentAreas[0] : '')
+      setCity(localGovernmentAreas ? localGovernmentAreas[0] : "");
     }
   }, [localGovernmentAreas, state]);
 
@@ -66,10 +63,22 @@ const SearchClient = ({query, user}:searchClientProps) => {
     if (searchParams) {
       currentQuery = qs.parse(searchParams.toString());
     }
-    
-    const updatedQuery:any = {...currentQuery, state: state, city: city, minCost: minimumCost, maxCost: maximumCost, numberOfBaths: numberOfBaths, numberOfBeds: numberOfBeds, propertyTag: 'sale' };
 
-    const url = qs.stringifyUrl({url: '/search', query: updatedQuery}, {skipNull: true});
+    const updatedQuery: any = {
+      ...currentQuery,
+      state: state,
+      city: city,
+      minCost: minimumCost,
+      maxCost: maximumCost,
+      numberOfBaths: numberOfBaths,
+      numberOfBeds: numberOfBeds,
+      propertyTag: "sale",
+    };
+
+    const url = qs.stringifyUrl(
+      { url: "/search", query: updatedQuery },
+      { skipNull: true }
+    );
 
     router.push(url);
   };
@@ -81,52 +90,55 @@ const SearchClient = ({query, user}:searchClientProps) => {
           <CustomSelectComponent
             selected={state}
             setSelected={setState}
-            placeholder='state'
+            placeholder="state"
             data={states}
             flowTop={false}
           />
           <CustomSelectComponent
             selected={city}
             setSelected={setCity}
-            placeholder='city'
+            placeholder="city"
             data={localGovernmentAreas}
             flowTop={false}
           />
           <NumberInput
-            id='minimumRent'
+            id="minimumRent"
             placeholder={`minimum cost (${nairaSign})`}
-            value={minimumCost || ''}
+            value={minimumCost || ""}
             onChange={onChangeMini}
           />
           <NumberInput
-            id='maximumRent'
+            id="maximumRent"
             placeholder={`maximum cost (${nairaSign})`}
-            value={maximumCost|| ''}
+            value={maximumCost || ""}
             onChange={onChangeMaxi}
           />
           <NumberInput
-            id='numberOfBaths'
-            placeholder='number of bathrooms'
-            value={numberOfBaths || ''}
+            id="numberOfBaths"
+            placeholder="number of bathrooms"
+            value={numberOfBaths || ""}
             onChange={onChangeBaths}
           />
           <NumberInput
-            id='numberOfBeds'
-            placeholder='number of bedrooms'
-            value={numberOfBeds || ''}
+            id="numberOfBeds"
+            placeholder="number of bedrooms"
+            value={numberOfBeds || ""}
             onChange={onChangeBeds}
           />
           <div className="mt-4 w-full">
-            <button className="text-lg lg:text-xl capitalize py-2 px-6 rounded-md bg-neutral-700 text-white w-full disabled:bg-neutral-400" 
-              onClick={handleSearch} disabled={state === "" && city === ""} >
+            <button
+              className="text-lg lg:text-xl capitalize py-2 px-6 rounded-md bg-neutral-700 text-white w-full disabled:bg-neutral-400"
+              onClick={handleSearch}
+              disabled={state === "" && city === ""}
+            >
               search
             </button>
           </div>
         </div>
-        <hr className="my-6 md:hidden"/>
+        <hr className="my-6 md:hidden" />
         <div className="lg:w-[78%] md:w-[68%] pt-1">
           <div className="">
-            <AllSearchProperties user={user} query={query}/>
+            <AllSearchProperties user={user} query={query} />
           </div>
         </div>
       </div>

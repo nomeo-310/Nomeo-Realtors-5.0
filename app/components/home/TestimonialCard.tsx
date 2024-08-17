@@ -4,7 +4,7 @@
 import React from 'react'
 import Card from '@/components/shared/Card'
 import ImageAvatar from '@/components/shared/ImageAvatar'
-import { LiaQuoteLeftSolid, LiaQuoteRightSolid } from 'react-icons/lia'
+import { LiaQuoteLeftSolid } from 'react-icons/lia'
 
 type testimonyCardProps = {
   testimony:string

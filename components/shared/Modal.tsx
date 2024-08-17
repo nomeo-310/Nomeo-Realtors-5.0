@@ -1,6 +1,7 @@
+'use client'
+
 import React from 'react'
 import { HiXMark } from 'react-icons/hi2'
-import Button from './Button'
 
 type modalProps = {
   children: React.ReactNode

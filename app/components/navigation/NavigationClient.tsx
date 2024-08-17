@@ -3,7 +3,7 @@
 import React from 'react'
 import { navBarList, navbarItem } from '@/components/data/constants'
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { HiBars3, HiOutlineHomeModern, HiOutlineUser } from 'react-icons/hi2'
 import useLogin from '@/hooks/useLogin'
 import { currentUserProps } from '@/types/types'
@@ -19,7 +19,7 @@ const NavigationClient = ({currentUser}:navigationProps) => {
   const loginUser = useLogin();
 
   const path = usePathname();
-  const router = useRouter();
+
 
   const [navbarTextColor, setNavbarTextColor] = React.useState('text-black');
   const [showMobileNav, setShowMobileNav] = React.useState(false);
