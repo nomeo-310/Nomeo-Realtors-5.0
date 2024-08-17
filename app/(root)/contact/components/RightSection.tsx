@@ -27,9 +27,6 @@ const RightSection = () => {
   const [disableSubmit, setDisableSubmit] = React.useState(noValue);
 
 
-  const testName = !Number.isNaN(Number(fullName))
-  console.log(testName)
-
   React.useEffect(() => {
     if (fullName !== '' && email !== '' && message !== '' && phoneNumber !== '' && agreed === true) {
       setDisableSubmit(false)

@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Profile from "./Profile";
 import EditProfile from "./EditProfile";
 import { currentUserProps } from "@/types/types";
 

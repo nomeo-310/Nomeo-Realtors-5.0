@@ -1,7 +1,7 @@
 import Input from '@/components/shared/Input';
 import Image from 'next/image';
 import React from 'react'
-import { HiOutlineEnvelope, HiOutlineMapPin, HiOutlinePhone, HiOutlineSparkles, HiOutlineUser } from 'react-icons/hi2';
+import { HiOutlineEnvelope, HiOutlineUser } from 'react-icons/hi2';
 import TextArea from '@/components/shared/TextArea';
 
 type currentUserProps = {

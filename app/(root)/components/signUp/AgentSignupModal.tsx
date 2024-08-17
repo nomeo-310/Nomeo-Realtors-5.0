@@ -1,3 +1,6 @@
+'use client'
+
+
 import React from 'react'
 import Modal from '@/components/shared/Modal'
 import useAgentSignUp from '@/hooks/useAgentSignUp'

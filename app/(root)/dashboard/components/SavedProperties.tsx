@@ -1,8 +1,7 @@
 import React from 'react'
 
-type Props = {}
 
-const SavedProperties = (props: Props) => {
+const SavedProperties = () => {
   return (
     <div>SavedProperties</div>
   )

@@ -10,7 +10,7 @@ import ChangePassword from './ChangePassword';
 import PropertyClient from './PropertyClient';
 import ProfileClient from './ProfileClient';
 import PostClient from './PostClient';
-import { currentUserProps, featuredBlogProps, featuredPropertiesProps } from '@/types/types';
+import { currentUserProps } from '@/types/types';
 
 
 type dashboardProps = {

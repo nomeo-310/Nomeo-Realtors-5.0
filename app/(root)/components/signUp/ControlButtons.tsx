@@ -1,3 +1,6 @@
+'use client'
+
+
 import Button from '@/components/shared/Button';
 import React from 'react'
 

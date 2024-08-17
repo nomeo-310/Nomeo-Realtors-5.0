@@ -1,8 +1,9 @@
+'use client'
+
 import React from 'react'
 import Modal from '@/components/shared/Modal'
 import useCookies from '@/hooks/useCookies'
 
-type Props = {}
 
 const CookiesModal = () => {
   const cookies = useCookies();

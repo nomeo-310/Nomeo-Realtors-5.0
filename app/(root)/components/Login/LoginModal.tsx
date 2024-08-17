@@ -1,3 +1,6 @@
+'use client'
+
+
 import React from 'react'
 import Button from '@/components/shared/Button';
 import Input from '@/components/shared/Input';
@@ -11,6 +14,8 @@ import { HiOutlineEnvelope, HiOutlineLockClosed } from 'react-icons/hi2';
 import { toast } from 'sonner';
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation';
+
+
 
 const LoginModal = () => {
   const loginUser = useLogin();
