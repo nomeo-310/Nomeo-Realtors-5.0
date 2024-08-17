@@ -79,8 +79,8 @@ const AllBuyingProperties = ({user}:propertiesContentProps) => {
           city={property.city}
           propertyCost={property.fullPropertyPrice}
           monthlyRent={property.monthlyRent}
-          liked={property.likes.includes(user._id)}
-          saved={property.bookmarks.includes(user._id)} 
+          liked={property.likes.includes(user?._id)}
+          saved={property.bookmarks.includes(user?._id)} 
           hideTag={true}
           agentDisplay={false}
           hideAgentInCharge={true}       

@@ -21,8 +21,7 @@ export const POST = async (request: Request) => {
     .skip((pageNumber - 1) * pageSize)
     .limit(pageSize + 1);
 
-
-
+    
     const nextPage = blogs.length > pageSize ? pageNumber + 1 : undefined;
 
     const data = {

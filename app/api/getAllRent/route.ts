@@ -11,12 +11,7 @@ export const POST = async (request:Request) => {
   const pageNumber = parseInt(value as string);
   const pageSize = 6;
 
-  const currentUser = await getCurrentUserRawData();
-
-  if (!currentUser) {
-    return Response.json({error: 'Unauthorized'}, {status: 404});
-  }
-
+  
   try {
     const properties = await Properties.find({ propertyTag: 'rent' })
     .populate({
