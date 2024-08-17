@@ -88,7 +88,7 @@ const TopSection = () => {
           <h2 className='text-lg lg:text-xl'>+Company:</h2>
           <div className='flex items-center gap-4 lg:text-lg'>
             <Link href={'/about-us'} className='hover:underline'>About</Link>
-            <Link href={'/blog'} className='hover:underline'>Blog</Link>
+            <Link href={'/blogs'} className='hover:underline'>Blog</Link>
             <Link href={'/contact'} className='hover:underline'>Contact</Link>
             <Link href={'/#testimonials'} className='hover:underline'>Testimonials</Link>
             <Link href={'/#faq'} className='hover:underline'>FAQs</Link>
