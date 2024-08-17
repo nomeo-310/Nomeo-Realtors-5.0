@@ -35,7 +35,7 @@ const AllBuyingProperties = ({user}:propertiesContentProps) => {
   };
 
   const {data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } = useInfiniteQuery({
-    queryKey: ['all-buy-properties', user._id],
+    queryKey: ['all-buy-properties', user?._id],
     queryFn: fetchApiData,
     initialPageParam: 1,
     getNextPageParam: (lastPage) => lastPage.nextPage
