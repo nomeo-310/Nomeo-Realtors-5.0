@@ -18,7 +18,7 @@ const SaveButton = ({user, property}:saveButtonProps) => {
   const path = usePathname();
   const loginUser = useLogin();
 
-  const saved = property.bookmarks.includes(user._id)
+  const saved = property.bookmarks.includes(user?._id)
 
   const handleSave = async () => {
     if (!user) {

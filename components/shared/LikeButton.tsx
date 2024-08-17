@@ -18,7 +18,7 @@ const LikeButton = ({user, property}:likeButtonProps) => {
   const path = usePathname();
   const loginUser = useLogin();
 
-  const liked = property.likes.includes(user._id);
+  const liked = property.likes.includes(user?._id);
 
   const handleLike = async () => {
     if (!user) {
