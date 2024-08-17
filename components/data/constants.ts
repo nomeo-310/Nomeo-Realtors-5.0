@@ -104,7 +104,7 @@ export const testimonyList = [
     testimony: "Investing in real estate can be risky, but with Nomeo Suites by my side, I feel confident. Their team provided invaluable advice on property selection and financing, helping me secure a great rental property with excellent potential.  They even handle the ongoing management, ensuring a steady stream of income.  Thanks to Nomeo Suites, my real estate investment is off to a fantastic start!",
     name: "john & maria garcia", 
     career: "teachers",
-    profileImage: ''
+    profileImage: '/images/profile_14.jpg'
   },
   {
     title: 'smooth sailing',
@@ -118,7 +118,7 @@ export const testimonyList = [
     testimony: "We were new to Lagos and unfamiliar with the different neighborhoods.  Nomeo Suites was an invaluable resource.  They provided detailed information on various areas, including schools, amenities, and safety considerations.  Their expertise helped us find the perfect family-friendly neighborhood for our needs.  We're so happy in our new home!",
     name: "lisa & michael wang", 
     career: "entrepreneurs",
-    profileImage: ''
+    profileImage: '/images/profile_13.jpg'
   }
 ];
 
